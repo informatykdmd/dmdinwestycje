@@ -335,68 +335,38 @@
                 oferty nieruchomości na wynajem i sprzedaż. 
             </p>
             <p>
-                Nasz zespół czeka, aby podzielić się z Tobą swoją wiedzą i doświadczeniem, oferując profesjonalne doradztwo dopasowane do Twoich potrzeb.
+                Nasz zespół czeka, aby podzielić się z Tobą swoją wiedzą i doświadczeniem, 
+                oferując profesjonalne doradztwo dopasowane do Twoich potrzeb.
             </p>
           </div>
           <a href="#faq" class="btn-get-started" data-aos="fade-up" data-aos-delay="400"><i class="bi bi-chevron-double-right"></i></a>
         </div>
 
         <div class="row gy-4">
+          {% for member in fourListTeam %}
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <img src="static/images/team/team-1.jpg" class="img-fluid" alt="">
+              <img src="{{ member['EMPLOYEE_PHOTO'] }}" class="img-fluid" alt="">
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
+                {% if member['PHONE'] != '' %}
+                <a href="tel:{{ member['PHONE'] }}" target="_blank" rel="noreferrer"><i class="bi bi-phone"></i></a>
+                {% endif %}
+                {% if member['EMAIL'] != '' %}
+                <a href="mailto:{{ member['EMAIL'] }}" target="_blank" rel="noreferrer"><i class="bi bi-envelope"></i></a>
+                {% endif %}
+                {% if member['FACEBOOK'] != '' %}
+                <a href="{{ member['FACEBOOK'] }}" target="_blank" rel="noreferrer"><i class="bi bi-facebook"></i></a>
+                {% endif %}
+                {% if member['LINKEDIN'] != '' %}
+                <a href="{{ member['LINKEDIN'] }}" target="_blank" rel="noreferrer"><i class="bi bi-linkedin"></i></a>
+                {% endif %}
               </div>
-              <h4>Jhone Bi</h4>
-              <span>Application Manager</span>
+              <h4>{{ member['EMPLOYEE_NAME'] }}</h4>
+              <span>{{ member['EMPLOYEE_ROLE'] }}</span>
             </div>
           </div><!-- End Team Member -->
-
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <img src="static/images/team/team-2.jpg" class="img-fluid" alt="">
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-              </div>
-              <h4>Sani Awesome</h4>
-              <span>Social Media</span>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <img src="static/images/team/team-3.jpg" class="img-fluid" alt="">
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-              </div>
-              <h4>Andrio Willi</h4>
-              <span>Content Writer</span>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="member">
-              <img src="static/images/team/team-4.jpg" class="img-fluid" alt="">
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-              </div>
-              <h4>Afa Jonson</h4>
-              <span>Business Manager</span>
-            </div>
-          </div><!-- End Team Member -->
+          {% endfor %}
+          
         </div>
       </div>
     </section><!-- End Our Team Section -->

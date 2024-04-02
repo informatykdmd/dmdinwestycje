@@ -538,11 +538,11 @@
           <div class="col-lg-4">
             <article>
               <div class="post-img">
-                <img src="{{ post['mainFoto'] }}" alt="" class="img-fluid">
+                <a href="/blog-one?post={{post['id']}}"><img src="{{ post['mainFoto'] }}" alt="" class="img-fluid"></a>
               </div>
               <p class="post-category">{{ post['category'] }}</p>
               <h2 class="title">
-                <a href="blog-details.html">{{ post['title'] }}</a>
+                <a href="/blog-one?post={{post['id']}}">{{ post['title'] }}</a>
               </h2>
               <div class="d-flex align-items-center">
                 <div class="post-meta">

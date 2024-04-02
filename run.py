@@ -389,7 +389,7 @@ def blogs():
         f'blogs.html'
         )
 
-@app.route('/blog-one')
+@app.route('/blog-one', methods=['GET'])
 def blogOne():
     session['page'] = 'blogOne'
 

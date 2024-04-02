@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- - - - - - - - -  Hero Section - - - - - - - -  -->
+  <section id="hero" class="page-hero">
+    <div class="container position-relative">
+      <div class="row gy-5" data-aos="fade-in">
+        <div class="col-lg-12  order-lg-1 d-flex flex-column align-items-left justify-content-start text-left caption">
+          <h2>Skontaktuj się z nami i rozpocznij swoją przygodę z DMD Inwestycje</h2>
+          <p>
+            Gotowy, aby wkroczyć na ścieżkę świadomych i zrównoważonych inwestycji? 
+            Nasz zespół w DMD Inwestycje czeka, by wspierać Cię na każdym etapie tej podróży. 
+            Niezależnie od tego, czy jesteś doświadczonym inwestorem, czy dopiero zaczynasz 
+            swoją przygodę, chętnie odpowiemy na Twoje pytania i pomożemy Ci zrealizować 
+            Twoje cele inwestycyjne. Skontaktuj się z nami już dziś!
+          </p>
+
+        </div>
+      </div>
+      <div class="breadcrumb">
+        <ul>
+          <li><strong>Nawigacja:</strong></li>
+          <li><a href="/">Strona Główna</a></li>
+          <li><i class="bi bi-chevron-double-right"></i></li>
+          <li>Kontakt</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section -->
+  <main id="main" class="single-page">
+
+    <!-- Start Contact Section -->
+    <div id="contact" class="contact-section section sections-bg">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Kontakt | Jesteśmy do Państwa dyspozycji 24/7</h2>
+            <p>
+              Jeśli mają Państwo jakiekolwiek pytania dotyczące inwestycji z 
+              DMD Inwestycje, kupna, sprzedaży lub jakiejkolwiek innej kwestii, 
+              nasz zespół jest zawsze gotowy, aby pomóc. Odpowiemy na wszystkie 
+              zapytania jak najszybciej i dołożymy wszelkich starań, aby rozwiać 
+              wszelkie wątpliwości i odpowiedzieć na Państwa pytania.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 col-md-12" data-aos="fade-left">
+            <div class="contact-form-box contact-form contact-form-3">
+              <div class="form-container-box">
+                <form class="contact-form form" id="ajax-contact" method="post">
+                  <div class="controls">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group form-input-box">
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Imię i Nazwisko*"
+                            required="required" data-error="Imię i Nazwisko jest wymagane!">
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group form-input-box">
+                          <input type="email" class="form-control" id="email" name="email" placeholder="E-mail*"
+                            required="required" data-error="E-mail jest wymagany!">
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group form-input-box">
+                          <input type="text" class="form-control" name="subject" placeholder="Temat Wiadomości"
+                            required="required">
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-group form-input-box">
+                          <textarea class="form-control" id="message" name="message" rows="10"
+                            placeholder="Napisz swoją wiadomość do nas tutaj*" required="required"
+                            data-error="Prosimy napisać wiadomość!"></textarea>
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" name="condition" id="condition" value="accepted" required/>
+                        <label class="form-check-label" for="condition">
+                            Akceptuję politykę prywatoności DMD INWESTYCJE, niniejszym wyrażam zgodę na przetwarzanie moich 
+                            danych osobowych zawartych w niniejszym formularzu w celach kontaktowych, zgodnie z obowiązującą 
+                            polityką prywatności.
+                        </label>
+                      </div>
+                      <div class="col-md-12">
+                        <button type="submit" data-text="Wyślij Wiadomość" class="btn-get-started aos-init aos-animate">Wyślij Wiadomość</button>
+                      </div>
+                      <div class="messages" id="komunikat_z_serwera"></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12" data-aos="fade-right">
+            <div class="contact-information-box-3">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="single-contact-info-box">
+                    <div class="contact-info">
+                      <h6>Adres:</h6>
+                      <p>ul. Dworkowa 51 </p>
+                      <p>05-082 Stare Babice</p>
+                      <!-- Change  'Wall%20Street,%20NYC' with your own business name -->
+                      <p><a href="https://www.google.com/maps/dir//Dworkowa+51,+Stare+Babice" target="_blank"><i class="fa fa-map-marker"></i> Zobacz Mapę</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="single-contact-info-box">
+                    <div class="contact-info">
+                      <h6>Telefon:</h6>
+                      <p><a href="tel:+48600202480">+48 600 202 480</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="single-contact-info-box">
+                    <div class="contact-info">
+                      <h6>E-mail:</h6>
+                      <p><a href="mailto:biuro@dmdinwestycje.pl">biuro@dmdinwestycje.pl</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Contact Section -->
+
+  </main><!-- End #main -->
+  {% endblock %}
+  {% block bottom_scripts %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('ajax-contact').addEventListener('submit', function(e) {
+            e.preventDefault(); // Zapobiegaj domyślnej akcji formularza
+            const formData = new FormData(this); // Użyj 'this', aby odnieść się do formularza
+            const jsonFormData = Object.fromEntries(formData.entries());
+
+            fetch('/send-mess-pl', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonFormData) // Przekazuj dane z formularza
+            })
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data);
+
+                const komunikatDiv = document.getElementById("komunikat_z_serwera");
+                if (komunikatDiv) {
+                    komunikatDiv.innerHTML = data.message;
+                    // Ustawienie koloru komunikatu na podstawie wartości 'success'
+                    if(data.success) {
+                        komunikatDiv.style.color = "#30ff00"; // Sukces - zielony
+                        document.getElementById('ajax-contact').reset();
+                    } else {
+                        komunikatDiv.style.color = "#ff3535"; // Niepowodzenie - czerwony
+                    }
+                    setTimeout(function() {
+                        komunikatDiv.innerHTML = '';
+                    }, 5000);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+  {% endblock %}
+  

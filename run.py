@@ -1,0 +1,547 @@
+from flask import Flask, render_template, redirect, url_for, flash, jsonify, session, request, current_app
+from flask_wtf import FlaskForm
+from flask_paginate import Pagination, get_page_args
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired
+from werkzeug.utils import secure_filename
+import mysqlDB as msq
+import secrets
+from datetime import datetime
+from googletrans import Translator
+
+app = Flask(__name__)
+app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
+app.config['SECRET_KEY'] = secrets.token_hex(16)
+
+def getLangText(text):
+    """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
+    translator = Translator()
+    translation = translator.translate(str(text), dest='en')
+    return translation.text
+
+def format_date(date_input, pl=True):
+    ang_pol = {
+        'January': 'styczeń',
+        'February': 'luty',
+        'March': 'marzec',
+        'April': 'kwiecień',
+        'May': 'maj',
+        'June': 'czerwiec',
+        'July': 'lipiec',
+        'August': 'sierpień',
+        'September': 'wrzesień',
+        'October': 'październik',
+        'November': 'listopad',
+        'December': 'grudzień'
+    }
+    # Sprawdzenie czy data_input jest instancją stringa; jeśli nie, zakładamy, że to datetime
+    if isinstance(date_input, str):
+        date_object = datetime.strptime(date_input, '%Y-%m-%d %H:%M:%S')
+    else:
+        # Jeśli date_input jest już obiektem datetime, używamy go bezpośrednio
+        date_object = date_input
+
+    formatted_date = date_object.strftime('%d %B %Y')
+    if pl:
+        for en, pl in ang_pol.items():
+            formatted_date = formatted_date.replace(en, pl)
+
+    return formatted_date
+
+#  Funkcja pobiera dane z bazy danych 
+def take_data_where_ID(key, table, id_name, ID):
+    dump_key = msq.connect_to_database(f'SELECT {key} FROM {table} WHERE {id_name} = {ID};')
+    return dump_key
+
+def take_data_table(key, table):
+    dump_key = msq.connect_to_database(f'SELECT {key} FROM {table};')
+    return dump_key
+
+def generator_teamDB(lang='pl'):
+    took_teamD = take_data_table('*', 'workers_team')
+    teamData = []
+    for data in took_teamD:
+        theme = {
+            'ID': int(data[0]),
+            'EMPLOYEE_PHOTO': data[1],
+            'EMPLOYEE_NAME': data[2],
+            'EMPLOYEE_ROLE': data[3] if lang=='pl' else getLangText(data[3]),
+            'EMPLOYEE_DEPARTMENT': data[4],
+            'PHONE':'' if data[5] is None else data[5],
+            'EMAIL': '' if data[6] is None else data[6],
+            'FACEBOOK': '' if data[7] is None else data[7],
+            'LINKEDIN': '' if data[8] is None else data[8],
+            'DATE_TIME': data[9],
+            'STATUS': int(data[10])
+        }
+        # dostosowane dla dmd inwestycje
+        if data[4] == 'dmd inwestycje':
+            teamData.append(theme)
+    return teamData
+
+def generator_subsDataDB():
+    subsData = []
+    took_subsD = take_data_table('*', 'newsletter')
+    for data in took_subsD:
+        if data[4] != 1: continue
+        ID = data[0]
+        theme = {
+            'id': ID, 
+            'email':data[2],
+            'name':data[1], 
+            'status': str(data[4]), 
+            }
+        subsData.append(theme)
+    return subsData
+
+def generator_daneDBList(lang='pl'):
+    daneList = []
+    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
+    for post in took_allPost:
+        id = post[0]
+        id_content = post[1]
+        id_author = post[2]
+
+        allPostComments = take_data_where_ID('*', 'comments', 'BLOG_POST_ID', id)
+        comments_dict = {}
+        for i, com in enumerate(allPostComments):
+            comments_dict[i] = {}
+            comments_dict[i]['id'] = com[0]
+            comments_dict[i]['message'] = com[2] if lang=='pl' else getLangText(com[2])
+            comments_dict[i]['user'] = take_data_where_ID('CLIENT_NAME', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['data-time'] = format_date(com[4]) if lang=='pl' else format_date(com[4], False)
+            
+        theme = {
+            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
+            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
+            'introduction': take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0]),
+            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
+            'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
+            'contentFoto': take_data_where_ID('CONTENT_FOTO', 'contents', 'ID', id_content)[0][0],
+            'additionalList': str(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0]).split('#splx#') if lang=='pl' else str(getLangText(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0])).replace('#SPLX#', '#splx#').split('#splx#'),
+            'tags': str(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0]).split(', ') if lang=='pl' else str(getLangText(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0])).split(', '),
+            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
+            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
+            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
+
+            'author_about': take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0] if lang=='pl' else getLangText(take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0]),
+            'author_avatar': take_data_where_ID('AVATAR_AUTHOR', 'authors', 'ID', id_author)[0][0],
+            'author_facebook': take_data_where_ID('FACEBOOK', 'authors', 'ID', id_author)[0][0],
+            'author_twitter': take_data_where_ID('TWITER_X', 'authors', 'ID', id_author)[0][0],
+            'author_instagram': take_data_where_ID('INSTAGRAM', 'authors', 'ID', id_author)[0][0],
+
+            'comments': comments_dict
+        }
+        daneList.append(theme)
+    return daneList
+
+def generator_daneDBList_short(lang='pl'):
+    daneList = []
+    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
+    for post in took_allPost:
+
+        id_content = post[1]
+        id_author = post[2]
+
+        theme = {
+            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
+            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
+            
+            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
+            'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
+            
+            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
+            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
+            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
+
+        }
+        daneList.append(theme)
+    return daneList
+
+def generator_daneDBList_one_post_id(id_post, lang='pl'):
+    daneList = []
+    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts WHERE ID={id_post};') # take_data_table('*', 'blog_posts')
+    for post in took_allPost:
+        id = post[0]
+        id_content = post[1]
+        id_author = post[2]
+
+        allPostComments = take_data_where_ID('*', 'comments', 'BLOG_POST_ID', id)
+        comments_dict = {}
+        for i, com in enumerate(allPostComments):
+            comments_dict[i] = {}
+            comments_dict[i]['id'] = com[0]
+            comments_dict[i]['message'] = com[2] if lang=='pl' else getLangText(com[2])
+            comments_dict[i]['user'] = take_data_where_ID('CLIENT_NAME', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['data-time'] = format_date(com[4]) if lang=='pl' else format_date(com[4], False)
+            
+        theme = {
+            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
+            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
+            'introduction': take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0]),
+            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
+            'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
+            'contentFoto': take_data_where_ID('CONTENT_FOTO', 'contents', 'ID', id_content)[0][0],
+            'additionalList': str(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0]).split('#splx#') if lang=='pl' else str(getLangText(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0])).replace('#SPLX#', '#splx#').split('#splx#'),
+            'tags': str(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0]).split(', ') if lang=='pl' else str(getLangText(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0])).split(', '),
+            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
+            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
+            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
+
+            'author_about': take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0] if lang=='pl' else getLangText(take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0]),
+            'author_avatar': take_data_where_ID('AVATAR_AUTHOR', 'authors', 'ID', id_author)[0][0],
+            'author_facebook': take_data_where_ID('FACEBOOK', 'authors', 'ID', id_author)[0][0],
+            'author_twitter': take_data_where_ID('TWITER_X', 'authors', 'ID', id_author)[0][0],
+            'author_instagram': take_data_where_ID('INSTAGRAM', 'authors', 'ID', id_author)[0][0],
+
+            'comments': comments_dict
+        }
+        daneList.append(theme)
+    return daneList
+
+def generator_daneDBList_3(lang='en'):
+    daneList = []
+    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
+    for i, post in enumerate(took_allPost):
+        id_content = post[1]
+        id_author = post[2]
+
+        theme = {
+            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
+            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
+            
+            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
+            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
+            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
+
+        }
+        daneList.append(theme)
+        if i == 2:
+            break
+    return daneList
+
+############################
+##      ######           ###
+##      ######           ###
+##     ####              ###
+##     ####              ###
+##    ####               ###
+##    ####               ###
+##   ####                ###
+##   ####                ###
+#####                    ###
+#####                    ###
+##   ####                ###
+##   ####                ###
+##    ####               ###
+##    ####               ###
+##     ####              ###
+##     ####              ###
+##      ######           ###
+##      ######           ###
+############################
+
+@app.route('/')
+def index():
+    session['page'] = 'index'
+    pageTitle = 'Strona Główna'
+
+    if f'TEAM-ALL' not in session:
+        team_list = generator_teamDB()
+        session[f'TEAM-ALL'] = team_list
+    else:
+        team_list = session[f'TEAM-ALL']
+
+    fourListTeam = []
+    for i, member in enumerate(team_list):
+        if  i < 4: fourListTeam.append(member)
+        
+    if f'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3()
+        session[f'BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session[f'BLOG-FOOTER']
+    
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'index.html', 
+        pageTitle=pageTitle,
+        fourListTeam=fourListTeam, 
+        blog_post_three=blog_post_three
+        )
+
+@app.route('/oferta-inwestycyjna')
+def ofertaInwestycyjna():
+    session['page'] = 'ofertaInwestycyjna'
+
+    return render_template(
+        f'ofertaInwestycyjna.html'
+        )
+
+@app.route('/oferta-najmu')
+def ofertaNajmu():
+    session['page'] = 'ofertaNajmu'
+
+    return render_template(
+        f'ofertaNajmu.html'
+        )
+
+@app.route('/oferta-sprzedazy')
+def ofertaSprzedazy():
+    session['page'] = 'ofertaSprzedazy'
+
+    return render_template(
+        f'ofertaSprzedazy.html'
+        )
+
+@app.route('/oferta-specjalna')
+def ofertaSpecjalna():
+    session['page'] = 'ofertaSpecjalna'
+
+    return render_template(
+        f'ofertaSpecjalna.html'
+        )
+
+@app.route('/my-jestesmy')
+def myJestesmy():
+    session['page'] = 'myJestesmy'
+
+    return render_template(
+        f'myJestesmy.html'
+        )
+
+@app.route('/my-zespol')
+def myZespol():
+    session['page'] = 'myZespol'
+
+    return render_template(
+        f'myZespol.html'
+        )
+
+@app.route('/my-partnerzy')
+def myPartnerzy():
+    session['page'] = 'myPartnerzy'
+
+    return render_template(
+        f'myPartnerzy.html'
+        )
+
+@app.route('/inwestycje-odkup')
+def inwestycjeOdkup():
+    session['page'] = 'inwestycjeOdkup'
+
+    return render_template(
+        f'inwestycjeOdkup.html'
+        )
+
+@app.route('/inwestycje-wspolne')
+def inwestycjeWspolne():
+    session['page'] = 'inwestycjeWspolne'
+
+    return render_template(
+        f'inwestycjeWspolne.html'
+        )
+
+@app.route('/inwestycje-pomoc')
+def inwestycjePomoc():
+    session['page'] = 'inwestycjePomoc'
+
+    return render_template(
+        f'inwestycjePomoc.html'
+        )
+
+@app.route('/inwestycje-projekt')
+def inwestycjeProjekt():
+    session['page'] = 'inwestycjeProjekt'
+
+    return render_template(
+        f'inwestycjeProjekt.html'
+        )
+
+@app.route('/inwestycje-budowa')
+def inwestycjeBudowa():
+    session['page'] = 'inwestycjeBudowa'
+
+    return render_template(
+        f'inwestycjeBudowa.html'
+        )
+
+@app.route('/inwestycje-maksymalizacja')
+def inwestycjeMaksymalizacja():
+    session['page'] = 'inwestycjeMaksymalizacja'
+
+    return render_template(
+        f'inwestycjeMaksymalizacja.html'
+        )
+
+@app.route('/blogs')
+def blogs():
+    session['page'] = 'blogs'
+
+    return render_template(
+        f'blogs.html'
+        )
+
+@app.route('/blog-one')
+def blogOne():
+    session['page'] = 'blogOne'
+
+    return render_template(
+        f'blogOne.html'
+        )
+
+@app.route('/kontakt')
+def kontakt():
+    session['page'] = 'kontakt'
+    pageTitle = 'Kontakt z Nami'
+
+    return render_template(
+        f'kontakt.html',
+        pageTitle=pageTitle,
+        )
+
+@app.route('/polityka-prv')
+def politykaPrv():
+    session['page'] = 'politykaPrv'
+
+    return render_template(
+        f'politykaPrv.html'
+        )
+
+@app.route('/rulez')
+def rulez():
+    session['page'] = 'rulez'
+
+    return render_template(
+        f'rulez.html'
+        )
+
+@app.route('/help')
+def help():
+    session['page'] = 'help'
+
+    return render_template(
+        f'help.html'
+        )
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # Tutaj możesz przekierować do dowolnej trasy, którą chcesz wyświetlić jako stronę błędu 404.
+    return redirect(url_for(f'index'))
+
+@app.route('/send-mess-pl', methods=['POST'])
+def sendMess():
+
+    if request.method == 'POST':
+        form_data = request.json
+        CLIENT_NAME = form_data['name']
+        CLIENT_SUBJECT = form_data['subject']
+        CLIENT_EMAIL = form_data['email']
+        CLIENT_MESSAGE = form_data['message']
+
+        if 'condition' not in form_data:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz zaakceptować naszą politykę prywatności!'
+                })
+        if CLIENT_NAME == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać swoje Imię i Nazwisko!'
+                })
+        if CLIENT_SUBJECT == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać temat wiadomości!'
+                })
+        if CLIENT_EMAIL == '' or '@' not in CLIENT_EMAIL or '.' not in CLIENT_EMAIL or len(CLIENT_EMAIL) < 7:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać adres email!'
+                })
+        if CLIENT_MESSAGE == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać treść wiadomości!'
+                })
+
+        zapytanie_sql = '''
+                INSERT INTO contact 
+                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
+                    VALUES (%s, %s, %s, %s, %s);
+                '''
+        dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
+    
+        if msq.insert_to_database(zapytanie_sql, dane):
+            return jsonify(
+                {
+                    'success': True, 
+                    'message': f'Wiadomość została wysłana!'
+                })
+        else:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Wystąpił problem z wysłaniem Twojej wiadomości, skontaktuj się w inny sposób lub spróbuj później!'
+                })
+
+    return redirect(url_for('index'))
+
+@app.route('/add-subs-pl', methods=['POST'])
+def addSubs():
+    subsList = generator_subsDataDB() # pobieranie danych subskrybentów
+
+    if request.method == 'POST':
+        form_data = request.json
+
+        SUB_NAME = form_data['Imie']
+        SUB_EMAIL = form_data['Email']
+        USER_HASH = secrets.token_hex(20)
+
+        allowed = True
+        for subscriber in subsList:
+            if subscriber['email'] == SUB_EMAIL:
+                allowed = False
+
+        if allowed:
+            zapytanie_sql = '''
+                    INSERT INTO newsletter 
+                        (CLIENT_NAME, CLIENT_EMAIL, ACTIVE, USER_HASH) 
+                        VALUES (%s, %s, %s, %s);
+                    '''
+            dane = (SUB_NAME, SUB_EMAIL, 0, USER_HASH)
+            if msq.insert_to_database(zapytanie_sql, dane):
+                return jsonify(
+                    {
+                        'success': True, 
+                        'message': f'Zgłoszenie nowego subskrybenta zostało wysłane, aktywuj przez email!'
+                    })
+            else:
+                return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Niestety nie udało nam się zarejestrować Twojej subskrypcji z powodu niezidentyfikowanego błędu!'
+                })
+        else:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Podany adres email jest już zarejestrowany!'
+                })
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True, port=3600)
+    # app.run(debug=True, host='0.0.0.0', port=3600)

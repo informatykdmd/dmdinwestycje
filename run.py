@@ -260,11 +260,11 @@ def index():
     for i, member in enumerate(team_list):
         if  i < 4: fourListTeam.append(member)
         
-    if f'BLOG-FOOTER' not in session:
-        blog_post = generator_daneDBList_3()
-        session[f'BLOG-FOOTER'] = blog_post
+    if f'BLOG-SHORT' not in session:
+        blog_post = generator_daneDBList_short()
+        session[f'BLOG-SHORT'] = blog_post
     else:
-        blog_post = session[f'BLOG-FOOTER']
+        blog_post = session[f'BLOG-SHORT']
     
     blog_post_three = []
     for i, member in enumerate(blog_post):

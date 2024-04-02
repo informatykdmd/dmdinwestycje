@@ -534,62 +534,27 @@
           <a href="#contact" class="btn-get-started" data-aos="fade-up" data-aos-delay="400"><i class="bi bi-chevron-double-right"></i></a>
         </div>
         <div class="row gy-4">
+          {% for post in blog_post_three %}
           <div class="col-lg-4">
             <article>
               <div class="post-img">
-                <img src="static/images/blog/blog-1.jpg" alt="" class="img-fluid">
+                <img src="{{ post['mainFoto'] }}" alt="" class="img-fluid">
               </div>
-              <p class="post-category">Selling</p>
+              <p class="post-category">{{ post['category'] }}</p>
               <h2 class="title">
-                <a href="blog-details.html">Home Improvement Ideas to Increase Property Value and Appeal</a>
+                <a href="blog-details.html">{{ post['title'] }}</a>
               </h2>
               <div class="d-flex align-items-center">
                 <div class="post-meta">
                   <p class="post-date">
-                    <time datetime="2022-01-01">Feb 1, 2022</time>
+                    <time datetime="2022-01-01">{{ post['data'] }}</time>
                   </p>
                 </div>
               </div>
             </article>
           </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-              <div class="post-img">
-                <img src="static/images/blog/blog-2.jpg" alt="" class="img-fluid">
-              </div>
-              <p class="post-category">Tips</p>
-              <h2 class="title">
-                <a href="blog-details.html">The Art of Home Staging: How to Make Your Property Stand Out</a>
-              </h2>
-              <div class="d-flex align-items-center">
-                <div class="post-meta">
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Oct 5, 2022</time>
-                  </p>
-                </div>
-              </div>
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-              <div class="post-img">
-                <img src="static/images/blog/blog-3.jpg" alt="" class="img-fluid">
-              </div>
-              <p class="post-category">Real Estate</p>
-              <h2 class="title">
-                <a href="blog-details.html">Investing in Real Estate: Strategies for Long-Term Financial Success</a>
-              </h2>
-              <div class="d-flex align-items-center">
-                <div class="post-meta">
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Dec 22, 2022</time>
-                  </p>
-                </div>
-              </div>
-            </article>
-          </div><!-- End post list item -->
+          {% endfor %}
+          
 
         </div><!-- End recent posts list -->
 

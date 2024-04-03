@@ -280,118 +280,147 @@ def index():
 @app.route('/oferta-inwestycyjna')
 def ofertaInwestycyjna():
     session['page'] = 'ofertaInwestycyjna'
+    pageTitle = 'Oferta Inwestycyjna'
 
     return render_template(
-        f'ofertaInwestycyjna.html'
+        f'ofertaInwestycyjna.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/oferta-najmu')
 def ofertaNajmu():
     session['page'] = 'ofertaNajmu'
+    pageTitle = 'Oferta Najmu'
 
     return render_template(
-        f'ofertaNajmu.html'
+        f'ofertaNajmu.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/oferta-sprzedazy')
 def ofertaSprzedazy():
     session['page'] = 'ofertaSprzedazy'
+    pageTitle = 'Oferta Sprzedaży'
 
     return render_template(
-        f'ofertaSprzedazy.html'
+        f'ofertaSprzedazy.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/oferta-specjalna')
 def ofertaSpecjalna():
     session['page'] = 'ofertaSpecjalna'
+    pageTitle = 'Ofeta Specjalna'
 
     return render_template(
-        f'ofertaSpecjalna.html'
+        f'ofertaSpecjalna.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/my-jestesmy')
 def myJestesmy():
     session['page'] = 'myJestesmy'
+    pageTitle = 'O nas'
 
     return render_template(
-        f'myJestesmy.html'
+        f'myJestesmy.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/my-zespol')
 def myZespol():
     session['page'] = 'myZespol'
+    pageTitle = 'Zespół'
 
     return render_template(
-        f'myZespol.html'
+        f'myZespol.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/my-partnerzy')
 def myPartnerzy():
     session['page'] = 'myPartnerzy'
+    pageTitle = 'Partnerzy'
 
     return render_template(
-        f'myPartnerzy.html'
+        f'myPartnerzy.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/inwestycje-odkup')
 def inwestycjeOdkup():
     session['page'] = 'inwestycjeOdkup'
+    pageTitle = 'Odkup Działki'
 
     return render_template(
-        f'inwestycjeOdkup.html'
+        f'inwestycjeOdkup.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/inwestycje-wspolne')
 def inwestycjeWspolne():
     session['page'] = 'inwestycjeWspolne'
+    pageTitle = 'Inwestycja Wspólna'
 
     return render_template(
-        f'inwestycjeWspolne.html'
+        f'inwestycjeWspolne.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/inwestycje-pomoc')
 def inwestycjePomoc():
     session['page'] = 'inwestycjePomoc'
+    pageTitle = 'Pomoc Prawna'
 
     return render_template(
-        f'inwestycjePomoc.html'
+        f'inwestycjePomoc.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/inwestycje-projekt')
 def inwestycjeProjekt():
     session['page'] = 'inwestycjeProjekt'
+    pageTitle = 'Projekt Inwestycju'
 
     return render_template(
-        f'inwestycjeProjekt.html'
+        f'inwestycjeProjekt.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/inwestycje-budowa')
 def inwestycjeBudowa():
     session['page'] = 'inwestycjeBudowa'
+    pageTitle = 'Kompleksowa Budowa'
 
     return render_template(
-        f'inwestycjeBudowa.html'
+        f'inwestycjeBudowa.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/inwestycje-maksymalizacja')
 def inwestycjeMaksymalizacja():
     session['page'] = 'inwestycjeMaksymalizacja'
+    pageTitle = 'Maksymalizacja Wartości'
 
     return render_template(
-        f'inwestycjeMaksymalizacja.html'
+        f'inwestycjeMaksymalizacja.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/blogs')
 def blogs():
     session['page'] = 'blogs'
+    pageTitle = 'Blog'
 
     return render_template(
-        f'blogs.html'
+        f'blogs.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/blog-one', methods=['GET'])
 def blogOne():
     session['page'] = 'blogOne'
+
 
     return render_template(
         f'blogOne.html'
@@ -410,25 +439,31 @@ def kontakt():
 @app.route('/polityka-prv')
 def politykaPrv():
     session['page'] = 'politykaPrv'
+    pageTitle = 'Polityka prywatności'
 
     return render_template(
-        f'politykaPrv.html'
+        f'politykaPrv.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/rulez')
 def rulez():
     session['page'] = 'rulez'
+    pageTitle = 'Zasady witryny'
 
     return render_template(
-        f'rulez.html'
+        f'rulez.html',
+        pageTitle=pageTitle,
         )
 
 @app.route('/help')
 def help():
     session['page'] = 'help'
+    pageTitle = 'Pomoc'
 
     return render_template(
-        f'help.html'
+        f'help.html',
+        pageTitle=pageTitle,
         )
 
 @app.errorhandler(404)

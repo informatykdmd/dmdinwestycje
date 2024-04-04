@@ -3208,9 +3208,19 @@ button.btn-get-started:hover {
   background: #959697;
 }
 
-.footer-widget ul li {
+/* .footer-widget ul li {
   display: inline-block;
-  /* float: left; */
+  float: left;
+  width: 50%;
+  margin-bottom: 12px;
+} */
+
+.footer-widget ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-widget ul li {
   width: 50%;
   margin-bottom: 12px;
 }

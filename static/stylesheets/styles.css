@@ -2156,7 +2156,7 @@ button:focus:not(:focus-visible){
   /* background: var(--color-primary); */
   background-color: #FFD700;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
-  border: 2px solid var(--color-primary);
+  border: 1px solid var(--color-primary);
   justify-content: space-between;
   align-items: center;
 }

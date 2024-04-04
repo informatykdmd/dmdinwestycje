@@ -2162,10 +2162,10 @@ button:focus:not(:focus-visible){
 }
 
 .btn-get-started:hover {
-  border-color: #2a2a2a;
-  background: #2a2a2a;
+  border-color: #FFD700;
+  background: #FFD700;
   color: #fff;
-  border: 2px solid #2a2a2a;
+  border: 2px solid #FFD700;
 }
 
 .btn-watch-video {

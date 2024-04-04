@@ -98,7 +98,7 @@ ul {
 section {
   padding: 90px 0;
   overflow: hidden;
-  background: #222;
+  background: #000000;
   position: relative;
   z-index: 90;
 }

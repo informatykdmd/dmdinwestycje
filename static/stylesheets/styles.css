@@ -694,7 +694,7 @@ section {
     transition: 0.5s;
     z-index: 9999;
     color: #fff;
-    background: #0d6a92;
+    background: #32a9e1;
   }
 
   .mobile-nav-hide {
@@ -2152,7 +2152,7 @@ button:focus:not(:focus-visible){
   padding: 14px 21px;
   text-align: center;
   transition: 0.3s;
-  color: #ffffff;
+  color: #000000;
   /* background: var(--color-primary); */
   background-color: #FFD700;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);

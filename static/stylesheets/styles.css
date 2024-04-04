@@ -3442,3 +3442,19 @@ button.btn-get-started:hover {
 .horizontal-list li:last-child {
   margin-right: 0; /* Usuwa margines z prawej strony ostatniego elementu listy */
 }
+
+.font-size-very-large {
+  font-size: 32px; /* Bardzo duże */
+}
+
+.font-size-large {
+  font-size: 24px; /* Duże */
+}
+
+.font-size-medium {
+  font-size: 16px; /* Średnie, często traktowane jako rozmiar domyślny */
+}
+
+.font-size-small {
+  font-size: 12px; /* Małe */
+}

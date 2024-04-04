@@ -3374,13 +3374,13 @@ button.btn-get-started:hover {
 
 /* Niebieski */
 .blue-bg {
-  background-color: #0000d9; /* Przykładowy kod HEX dla niebieskiego */
+  background-color: #323be1; /* Przykładowy kod HEX dla niebieskiego */
 }
 .blue-text {
-  color: #0000d9 !important;
+  color: #323be1 !important;
 }
 .blue-border {
-  border: 1px solid #0000d9;
+  border: 1px solid #323be1;
 }
 
 /* Czerwony */

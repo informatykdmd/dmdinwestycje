@@ -3255,7 +3255,7 @@ button.btn-get-started:hover {
 .subscribe-form button {
   position: absolute;
   right: 0;
-  background-color: #32a9e1;
+  background-color: #FFD700;
   padding: 14px 20px;
   border: honeydew;
   top: 0px;
@@ -3270,7 +3270,7 @@ button.btn-get-started:hover {
 }
 
 .subscribe-form button:hover {
-  background: #2e2e2e;
+  background: #FFD700;
 }
 
 .copyright-area {

@@ -2154,7 +2154,7 @@ button:focus:not(:focus-visible){
   transition: 0.3s;
   color: #000000;
   /* background: var(--color-primary); */
-  background-color: #FFD700;
+  background-color: #FFA500;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--color-primary);
   justify-content: space-between;
@@ -3017,9 +3017,9 @@ button.btn-get-started {
 }
 
 button.btn-get-started:hover {
-  border-color: #2a2a2a;
+  border-color: #FFD700;
   position: relative;
-  background: #2a2a2a;
+  background: #FFD700;
   color: #fff;
   border: 2px solid #2a2a2a;
 }
@@ -3255,7 +3255,7 @@ button.btn-get-started:hover {
 .subscribe-form button {
   position: absolute;
   right: 0;
-  background-color: #FFD700;
+  background-color: #FFA500;
   padding: 14px 20px;
   border: honeydew;
   top: 0px;
@@ -3270,7 +3270,7 @@ button.btn-get-started:hover {
 }
 
 .subscribe-form button:hover {
-  background: #FFA500;
+  background: #FFD700;
 }
 
 .copyright-area {

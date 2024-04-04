@@ -3255,7 +3255,7 @@ button.btn-get-started:hover {
 .subscribe-form button {
   position: absolute;
   right: 0;
-  background: var(--color-primary);
+  background-color: #32a9e1;
   padding: 14px 20px;
   border: honeydew;
   top: 0px;

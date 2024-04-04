@@ -3416,6 +3416,16 @@ button.btn-get-started:hover {
   border: 1px solid #58e132;
 }
 
+.white-bg {
+  background-color: #ffffff; /* Przykładowy kod HEX dla zielonego */
+}
+.white-text {
+  color: #ffffff !important;
+}
+.white-border {
+  border: 1px solid #ffffff;
+}
+
 .horizontal-list {
   list-style-type: none; /* Usuwa domyślne punktory */
   margin: 0; /* Resetuje domyślny margines */

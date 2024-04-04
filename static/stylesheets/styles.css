@@ -18,7 +18,7 @@
 
 :root {
   --color-default: #000000;
-  --color-primary: #FFD700;
+  --color-primary: #707070;
   --color-secondary: #2c2c2c;
 }
 
@@ -2153,7 +2153,8 @@ button:focus:not(:focus-visible){
   text-align: center;
   transition: 0.3s;
   color: #ffffff;
-  background: var(--color-primary);
+  /* background: var(--color-primary); */
+  background-color: #FFD700;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
   border: 2px solid var(--color-primary);
   justify-content: space-between;

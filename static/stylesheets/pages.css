@@ -32,7 +32,7 @@
 .page-hero-1 {
   background: url(../images/cta-bg-1.jpg) center center;
   background-color: #959697;
-  /* background-size: cover; */
+  background-size: cover;
   padding: 150px 0px;
   border-radius: 0px;
   overflow: hidden;

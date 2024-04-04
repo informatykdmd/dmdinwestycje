@@ -30,7 +30,7 @@
 }
 
 .page-hero-1 {
-  background: url(../images/cta-bg-1.jpg) center center;
+  background: url(../images/cta-bg-1.jpg) bottom center;
   background-color: #959697;
   background-size: cover;
   padding: 150px 0px;

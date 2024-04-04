@@ -3415,3 +3415,20 @@ button.btn-get-started:hover {
 .green-border {
   border: 1px solid #58e132;
 }
+
+.horizontal-list {
+  list-style-type: none; /* Usuwa domyślne punktory */
+  margin: 0; /* Resetuje domyślny margines */
+  padding: 0; /* Resetuje domyślne paddingi */
+  display: flex; /* Włącza Flexbox */
+  flex-direction: row; /* Ustawia elementy listy poziomo */
+  align-items: center; /* Opcjonalnie, wyrównuje elementy listy do środka w pionie */
+}
+
+.horizontal-list li {
+  margin-right: 20px; /* Dodaje odstęp między elementami listy; dostosuj według potrzeb */
+}
+
+.horizontal-list li:last-child {
+  margin-right: 0; /* Usuwa margines z prawej strony ostatniego elementu listy */
+}

@@ -3210,7 +3210,7 @@ button.btn-get-started:hover {
 
 .footer-widget ul li {
   display: inline-block;
-  float: left;
+  /* float: left; */
   width: 50%;
   margin-bottom: 12px;
 }
@@ -3295,3 +3295,112 @@ button.btn-get-started:hover {
   color: #000000;
 }
 
+/* Szary głęboki, prawie czarny */
+.deep-dark-gray-bg {
+  background-color: #24232B;
+}
+.deep-dark-gray-text {
+  color: #24232B;
+}
+.deep-dark-gray-border {
+  border: 1px solid #24232B;
+}
+
+/* Muted, ciemny szary */
+.muted-dark-gray-bg {
+  background-color: #5C5760;
+}
+.muted-dark-gray-text {
+  color: #5C5760;
+}
+.muted-dark-gray-border {
+  border: 1px solid #5C5760;
+}
+
+/* Ciemny, czerwonobrązowy */
+.dark-reddish-brown-bg {
+  background-color: #473C3E;
+}
+.dark-reddish-brown-text {
+  color: #473C3E;
+}
+.dark-reddish-brown-border {
+  border: 1px solid #473C3E;
+}
+
+/* Jasny, chłodny szary */
+.light-cool-gray-bg {
+  background-color: #B3B9C4;
+}
+.light-cool-gray-text {
+  color: #B3B9C4;
+}
+.light-cool-gray-border {
+  border: 1px solid #B3B9C4;
+}
+
+/* Średni, przytłumiony fiolet */
+.medium-muted-purple-bg {
+  background-color: #737387;
+}
+.medium-muted-purple-text {
+  color: #737387;
+}
+.medium-muted-purple-border {
+  border: 1px solid #737387;
+}
+
+/* Żółty */
+.yellow-bg {
+  background-color: #FFD700; /* Przykładowy kod HEX dla żółtego */
+}
+.yellow-text {
+  color: #FFD700;
+}
+.yellow-border {
+  border: 1px solid #FFD700;
+}
+
+/* Pomarańczowy */
+.orange-bg {
+  background-color: #FFA500; /* Przykładowy kod HEX dla pomarańczowego */
+}
+.orange-text {
+  color: #FFA500;
+}
+.orange-border {
+  border: 1px solid #FFA500;
+}
+
+/* Niebieski */
+.blue-bg {
+  background-color: #0000d9; /* Przykładowy kod HEX dla niebieskiego */
+}
+.blue-text {
+  color: #0000d9;
+}
+.blue-border {
+  border: 1px solid #0000d9;
+}
+
+/* Czerwony */
+.red-bg {
+  background-color: #e20101; /* Przykładowy kod HEX dla czerwonego */
+}
+.red-text {
+  color: #e20101;
+}
+.red-border {
+  border: 1px solid #e20101;
+}
+
+/* Zielony */
+.green-bg {
+  background-color: #008000; /* Przykładowy kod HEX dla zielonego */
+}
+.green-text {
+  color: #008000;
+}
+.green-border {
+  border: 1px solid #008000;
+}

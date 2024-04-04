@@ -3407,11 +3407,11 @@ button.btn-get-started:hover {
 
 /* Zielony */
 .green-bg {
-  background-color: #008000; /* Przykładowy kod HEX dla zielonego */
+  background-color: #58e132; /* Przykładowy kod HEX dla zielonego */
 }
 .green-text {
-  color: #008000 !important;
+  color: #58e132 !important;
 }
 .green-border {
-  border: 1px solid #008000;
+  border: 1px solid #58e132;
 }

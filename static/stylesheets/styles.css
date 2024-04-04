@@ -3377,7 +3377,7 @@ button.btn-get-started:hover {
   background-color: #0000d9; /* Przykładowy kod HEX dla niebieskiego */
 }
 .blue-text {
-  color: #0000d9;
+  color: #0000d9 !important;
 }
 .blue-border {
   border: 1px solid #0000d9;

@@ -2164,8 +2164,8 @@ button:focus:not(:focus-visible){
 .btn-get-started:hover {
   border-color: #FFD700;
   background: #FFD700;
-  color: #fff;
-  border: 2px solid #FFD700;
+  color: #000000;
+  border: 1px solid #FFD700;
 }
 
 .btn-watch-video {

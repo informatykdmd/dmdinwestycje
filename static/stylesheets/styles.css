@@ -3366,7 +3366,7 @@ button.btn-get-started:hover {
   background-color: #FFD700; /* Przykładowy kod HEX dla żółtego */
 }
 .yellow-text {
-  color: #FFD700;
+  color: #FFD700 !important;
 }
 .yellow-border {
   border: 1px solid #FFD700;
@@ -3377,7 +3377,7 @@ button.btn-get-started:hover {
   background-color: #FFA500; /* Przykładowy kod HEX dla pomarańczowego */
 }
 .orange-text {
-  color: #FFA500;
+  color: #FFA500 !important;
 }
 .orange-border {
   border: 1px solid #FFA500;
@@ -3399,7 +3399,7 @@ button.btn-get-started:hover {
   background-color: #e20101; /* Przykładowy kod HEX dla czerwonego */
 }
 .red-text {
-  color: #e20101;
+  color: #e20101 !important;
 }
 .red-border {
   border: 1px solid #e20101;
@@ -3410,7 +3410,7 @@ button.btn-get-started:hover {
   background-color: #008000; /* Przykładowy kod HEX dla zielonego */
 }
 .green-text {
-  color: #008000;
+  color: #008000 !important;
 }
 .green-border {
   border: 1px solid #008000;

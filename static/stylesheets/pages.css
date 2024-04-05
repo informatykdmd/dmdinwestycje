@@ -68,6 +68,25 @@
 .page-hero-2 p{
   color: #fff;
 }
+.page-hero-3 {
+  background: url(../images/cta-bg-4.jpg) center bottom;
+  background-color: #959697;
+  background-size: cover;
+  padding: 150px 0px;
+  border-radius: 0px;
+  /* overflow: hidden; */
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: center;
+}
+
+.page-hero-3 h2{
+  color: #fff;
+}
+
+.page-hero-3 p{
+  color: #fff;
+}
 .breadcrumb{
   position: absolute;
   bottom: -166px;

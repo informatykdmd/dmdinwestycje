@@ -432,9 +432,20 @@ def blogs():
 def blogOne():
     session['page'] = 'blogOne'
 
+    if 'post' in request.args:
+        post_id = request.args.get('post')
+        try: post_id_int = int(post_id)
+        except ValueError: return redirect(url_for('blogs'))
+    else:
+        return redirect(url_for(f'blogs'))
+    
+    choiced = generator_daneDBList_one_post_id(post_id_int)[0]
+    
+    choiced['len'] = len(choiced['comments'])
 
     return render_template(
-        f'blogOne.html'
+        f'blogOne.html',
+        choiced=choiced
         )
 
 @app.route('/kontakt')

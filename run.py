@@ -162,7 +162,7 @@ def generator_daneDBList_short(lang='pl'):
 
 def generator_daneDBList_prev_next(main_id):
     # Załóżmy, że msq.connect_to_database() zwraca listę tuple'i reprezentujących posty, np. [(1, 'Content1'), (2, 'Content2'), ...]
-    took_allPost = msq.connect_to_database('SELECT ID FROM blog_posts ORDER BY ID DESC;')
+    took_allPost = msq.connect_to_database('SELECT category FROM blog_posts ORDER BY ID DESC;')
     
     # Przekształcenie wyników z bazy danych do listy ID dla łatwiejszego wyszukiwania
     id_list = [post[0] for post in took_allPost]
@@ -186,6 +186,25 @@ def generator_daneDBList_prev_next(main_id):
             pre_next['next'] = id_list[current_index + 1]
     
     return pre_next
+
+def generator_daneDBList_cetegory():
+   
+    # Pobranie kategorii z bazy danych
+    took_allPost = msq.connect_to_database('SELECT category FROM blog_posts ORDER BY ID DESC;')
+    
+    # Zliczanie wystąpień każdej kategorii
+    cat_count = {}
+    for post in took_allPost:
+        category = post[0]
+        if category in cat_count:
+            cat_count[category] += 1
+        else:
+            cat_count[category] = 1
+
+    # Tworzenie listy stringów z nazwami kategorii i ilością wystąpień
+    cat_list = [f"{cat} ({count})" for cat, count in cat_count.items()]
+    
+    return cat_list
 
 def generator_daneDBList_one_post_id(id_post, lang='pl'):
     daneList = []
@@ -469,17 +488,18 @@ def blogOne():
     choiced = generator_daneDBList_one_post_id(post_id_int)[0]
     choiced['len'] = len(choiced['comments'])
 
-
-
     pre_next = {
         'prev': generator_daneDBList_prev_next(post_id_int)['prev'],  
         'next': generator_daneDBList_prev_next(post_id_int)['next']
         }
 
+    cat_list = generator_daneDBList_cetegory()
+
     return render_template(
         f'blogOne.html',
         choiced=choiced,
-        pre_next=pre_next
+        pre_next=pre_next,
+        cat_list=cat_list
         )
 
 @app.route('/kontakt')

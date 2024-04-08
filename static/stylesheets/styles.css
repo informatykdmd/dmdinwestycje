@@ -3494,10 +3494,10 @@ button.btn-get-started:hover {
   justify-content: flex-start; /* Wyrównuje dzieci do początku osi głównej (w tym przypadku do góry) */
 }
 
-.sh-batton button {
+.sh-batton {
   background-color: #FFA500;
 }
 
-.sh-batton button:hover {
+.sh-batton:hover {
   background-color: #FFD700;
 }

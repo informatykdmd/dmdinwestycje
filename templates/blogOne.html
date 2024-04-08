@@ -184,10 +184,19 @@
 
                 </div>
                 <!-- End blog comments -->
-                {{pre_next}}
+
                 <div class="d-flex justify-content-between mt-20">
-                <a href="#about" class="fill-button mt-3">Poprzedni</a>
-                <a href="#about" class="fill-button mt-3">Następny</a>
+                  {% if pre_next['prev'] != None %}
+                  <a href="/blog-one?post={{pre_next['prev']}}" class="fill-button mt-3">Poprzedni</a>
+                  {% else %}
+                  <a href="#" class="fill-button mt-3"></a>
+                  {% endif %}
+
+                  {% if pre_next['prev'] != None %}
+                  <a href="/blog-one?post={{pre_next['next']}}" class="fill-button mt-3">Następny</a>
+                  {% else %}
+                  <a href="#" class="fill-button mt-3"></a>
+                  {% endif %}
                 </div>
                 <!-- Next/Previous Post -->
             </div>

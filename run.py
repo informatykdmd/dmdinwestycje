@@ -160,6 +160,33 @@ def generator_daneDBList_short(lang='pl'):
         daneList.append(theme)
     return daneList
 
+def generator_daneDBList_prev_next(main_id):
+    # Załóżmy, że msq.connect_to_database() zwraca listę tuple'i reprezentujących posty, np. [(1, 'Content1'), (2, 'Content2'), ...]
+    took_allPost = msq.connect_to_database('SELECT ID FROM blog_posts ORDER BY ID DESC;')
+    
+    # Przekształcenie wyników z bazy danych do listy ID dla łatwiejszego wyszukiwania
+    id_list = [post[0] for post in took_allPost]
+    
+    # Inicjalizacja słownika dla wyników
+    pre_next = {
+        'prev': None,
+        'next': None
+    }
+    
+    # Znajdowanie indeksu podanego ID w liście
+    if main_id in id_list:
+        current_index = id_list.index(main_id)
+        
+        # Sprawdzanie i przypisywanie poprzedniego ID, jeśli istnieje
+        if current_index > 0:
+            pre_next['prev'] = id_list[current_index - 1]
+        
+        # Sprawdzanie i przypisywanie następnego ID, jeśli istnieje
+        if current_index < len(id_list) - 1:
+            pre_next['next'] = id_list[current_index + 1]
+    
+    return pre_next
+
 def generator_daneDBList_one_post_id(id_post, lang='pl'):
     daneList = []
     took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts WHERE ID={id_post};') # take_data_table('*', 'blog_posts')
@@ -440,12 +467,19 @@ def blogOne():
         return redirect(url_for(f'blogs'))
     
     choiced = generator_daneDBList_one_post_id(post_id_int)[0]
-    
     choiced['len'] = len(choiced['comments'])
+
+
+
+    pre_next = {
+        'prev': generator_daneDBList_prev_next(post_id_int)['prev'],  
+        'next': generator_daneDBList_prev_next(post_id_int)['next']
+        }
 
     return render_template(
         f'blogOne.html',
-        choiced=choiced
+        choiced=choiced,
+        pre_next=pre_next
         )
 
 @app.route('/kontakt')
@@ -632,7 +666,7 @@ def addComm():
 
 
         
-    return redirect(url_for('indexPl'))
+    return redirect(url_for('blogs'))
 
 if __name__ == '__main__':
     # app.run(debug=True, port=4000)

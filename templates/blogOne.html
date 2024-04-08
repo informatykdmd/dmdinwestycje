@@ -45,11 +45,14 @@
                 </h2>
                 <div class="d-flex align-items-center details-post-data">
                 <div class="post-meta d-flex">
-                    <p>{{choiced['author']}}</p>
+                    <i className="fa fa-user"></i> {{choiced['author']}} | 
+                    <i className="fa fa-calendar"></i> {{choiced['data']}} | 
+                    <i className="fa fa-commenting-o"></i> {{choiced['len']}}
+                    <!-- <p> </p>
                     <p class="post-sperator"> - </p>
                     <p class="post-date">
                     <time datetime="2023-01-01">{{choiced['data']}}</time>
-                    </p>
+                    </p> -->
                 </div>
                 </div>
                 <div class="col-lg-12">

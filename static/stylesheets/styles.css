@@ -3476,3 +3476,11 @@ button.btn-get-started:hover {
 .blog-content-foto {
   min-width: 100% !important;
 }
+
+.inline-list li {
+	display: inline-block;
+}
+
+.inline-list li + li {
+	margin-left: 14px;
+}

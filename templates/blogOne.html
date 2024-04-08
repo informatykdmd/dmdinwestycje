@@ -68,31 +68,33 @@
                   </li>
                   {% endfor %}
                 </ul>
-                <div class="">
-                  <h2 class="">TAGI:</h2>
-                  {% for tag in choiced['tags'] %}
-                  <li><a href="#">{{tag}}</a></li>
-                  {% endfor %}
-                </div>
-                <div class="">
-                  <h2 class="">UDOSTĘPNIJ:</h2>
-                  <ul class="inline-list bg-white ">
-                    <li>
-                        <a 
-                            class="link-dark icon fa fa-facebook" 
-                            href="https://www.facebook.com/sharer/sharer.php?u=https://www.elitehome.pl/blog-one-pl?post={{choiced['id']}}&title={{choiced['title']}}&description={{choiced['highlight']}}&picture=https://dmddomy.pl/static/images/logo_dmd_elitehome.png"
-                            target="_blank">
-                        </a>
-                    </li>
-                    <li>
-                        <a 
-                            class="link-dark icon fa fa-twitter" 
-                            href="https://twitter.com/intent/tweet?text={{choiced['highlight']}}&url=https://www.elitehome.pl/blog-one-pl?post={{choiced['id']}}" 
-                            target="_blank">
-                        </a>
-                    </li>
-                </ul>
-                </div>
+                <dic class="row">
+                  <div class="">
+                    <h2 class="">TAGI:</h2>
+                    {% for tag in choiced['tags'] %}
+                    <li><a href="#">{{tag}}</a></li>
+                    {% endfor %}
+                  </div>
+                  <div class="">
+                    <h2 class="">UDOSTĘPNIJ:</h2>
+                    <ul class="inline-list bg-white ">
+                      <li>
+                          <a 
+                              class="link-dark icon fa fa-facebook" 
+                              href="https://www.facebook.com/sharer/sharer.php?u=https://www.elitehome.pl/blog-one-pl?post={{choiced['id']}}&title={{choiced['title']}}&description={{choiced['highlight']}}&picture=https://dmddomy.pl/static/images/logo_dmd_elitehome.png"
+                              target="_blank">
+                          </a>
+                      </li>
+                      <li>
+                          <a 
+                              class="link-dark icon fa fa-twitter" 
+                              href="https://twitter.com/intent/tweet?text={{choiced['highlight']}}&url=https://www.elitehome.pl/blog-one-pl?post={{choiced['id']}}" 
+                              target="_blank">
+                          </a>
+                      </li>
+                  </ul>
+                  </div>
+                </dic>
                 <div class="post-author d-flex align-items-center">
                   <div class="author-image">
                       <img src="{{choiced['author_avatar']}}" class="flex-shrink-0" alt="">

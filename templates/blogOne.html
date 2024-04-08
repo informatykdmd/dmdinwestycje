@@ -46,9 +46,9 @@
                 <div class="d-flex align-items-center details-post-data">
                   <div class="post-meta d-flex">
                       <p class="font-size-medium">
-                        <a href="#"><i class="bi bi-person-circle"></i> {{choiced['author']}} </a> | 
+                        <a href="#author_link"><i class="bi bi-person-circle"></i> {{choiced['author']}} </a> | 
                         <a href="#"><i class="bi bi-calendar3"></i> {{choiced['data']}} </a> | 
-                        <a href="#"><i class="bi bi-chat-quote"></i> {{choiced['len']}} </a>
+                        <a href="#comments_link"><i class="bi bi-chat-quote"></i> {{choiced['len']}} </a>
                       </p>
                   </div>
                 </div>
@@ -98,7 +98,7 @@
                   </div>
                 </dic>
                 <!-- align-items-center -->
-                <div class="post-author d-flex ">
+                <div class="post-author d-flex " id="author_link">
                   <div class="author-image">
                       <img src="{{choiced['author_avatar']}}" class="flex-shrink-0" alt="">
                   </div>
@@ -129,7 +129,7 @@
                 </div>
                 <!-- End author -->
                 
-                <div class="comments">
+                <div class="comments" id="comments_link">
                   {% if choiced['len'] > 0 %}
                   <p><strong>Komentarze</strong></p>
                   {% for comm in choiced['comments'].values() %}
@@ -168,7 +168,7 @@
                         <input name="name" type="text" class="form-control" placeholder="Imię">
                         </div>
                         <div class="col-md-6 form-group">
-                        <input name="email" type="text" class="form-control" placeholder="E-mail*">
+                        <input name="email" type="text" class="form-control" placeholder="E-mail">
                         </div>
                     </div>
                     <!-- <div class="row">

@@ -3458,3 +3458,13 @@ button.btn-get-started:hover {
 .font-size-small {
   font-size: 12px; /* Małe */
 }
+
+.blog-highlight {
+  background-color: #282828;
+  color: whitesmoke;
+}
+
+.blog-highlight a {
+  background-color: #282828;
+  color: #FFA500;
+}

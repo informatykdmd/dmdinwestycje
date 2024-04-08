@@ -128,93 +128,36 @@
                   </div>
                 </div>
                 <!-- End author -->
+                
                 <div class="comments">
-                <h4 class="comments-count">6 Comments</h4>
-                <div id="comment-1" class="comment">
-                    <div class="d-flex">
-                    <div class="comment-img"><img src="static/images/blog/comments-1.jpg" alt=""></div>
-                    <div>
-                        <h5><a href="">Daisy Deborah </a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                        <time datetime="2023-01-01">01 Jan,2023</time>
-                        <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Xonsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                    </div>
-                </div>
-                <!-- End comment #1 -->
-
-                <div id="comment-2" class="comment">
-                    <div class="d-flex">
-                    <div class="comment-img"><img src="assets/images/blog/comments-2.jpg" alt=""></div>
-                    <div>
-                        <h5><a href="">Deborah William</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                        <time datetime="2023-01-01">01 Jan,2023</time>
-                        <p>
-                        Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut beatae.
-                        </p>
-                    </div>
-                    </div>
-
-                    <div id="comment-reply-1" class="comment comment-reply">
-                    <div class="d-flex">
-                        <div class="comment-img"><img src="assets/images/blog/comments-3.jpg" alt=""></div>
-                        <div>
-                        <h5><a href="">Stella Paul</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                        <time datetime="2023-01-01">01 Jan,2023</time>
-                        <p>
-                            Xonsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                        </div>
-                    </div>
-
-                    <div id="comment-reply-2" class="comment comment-reply">
-                        <div class="d-flex">
-                        <div class="comment-img"><img src="assets/images/blog/comments-4.jpg" alt=""></div>
-                        <div>
-                            <h5><a href="">Sara Paul</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                            <time datetime="2023-01-01">01 Jan,2023</time>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Xonsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </p>
-                        </div>
-                        </div>
-
-                    </div>
-                    <!-- End comment reply #2-->
-                    </div>
-                    <!-- End comment reply #1-->
-                </div>
-                <!-- End comment #2-->
-
-                <div id="comment-3" class="comment">
-                    <div class="d-flex">
-                    <div class="comment-img"><img src="assets/images/blog/comments-5.jpg" alt=""></div>
-                    <div>
-                        <h5><a href="">Willson David</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                        <time datetime="2023-01-01">01 Jan,2023</time>
-                        <p>
-                        Lorem ipsum dolor sit amet, Xonsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Lorem ipsum dolor sit amet, Xonsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                    </div>
-                </div>
-                <!-- End comment #3 -->
-
-                <div id="comment-4" class="comment">
-                    <div class="d-flex">
-                    <div class="comment-img"><img src="assets/images/blog/comments-6.jpg" alt=""></div>
-                    <div>
-                        <h5><a href="">R. David</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                        <time datetime="2023-01-01">01 Jan,2023</time>
-                        <p>
-                        Xonsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                    </div>
-                </div>
-                <!-- End comment #4 -->
+                  {% if choiced['len'] > 0 %}
+                  <h4 class="comments-count">Komentarze</h4>
+                  {% for comm in choiced['comments'].values() %}
+                  <div class="comment">
+                      <div class="d-flex">
+                        {% if comm['avatar'] != '' %}
+                          <div class="comment-img">
+                            <img src="{{comm['avatar']}}" alt="">
+                          </div>
+                        {% else %}
+                          <div class="comment-img">
+                            <img src="static/images/blog/comments-1.jpg" alt="">
+                          </div>
+                        {% endif %}
+                          <div>
+                              <h5><a href="">{{comm['user']}}</a>
+                                 <!-- <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a> -->
+                              </h5>
+                              <time datetime="2023-01-01">{{comm['data-time']}}</time>
+                              <p>
+                                {{comm['message']}}
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+                  <!-- End comment #1 -->
+                  {% endif %}
 
                 <div class="reply-form">
 

@@ -2728,18 +2728,18 @@ button:focus:not(:focus-visible){
 }
 
 .blog .sidebar .recent-posts h4 {
-  font-size: 12px;
+  font-size: 15px;
   margin-left: 95px;
   font-weight: bold;
 }
 
 .blog .sidebar .recent-posts h4 a {
-  color: #B3B9C4;
+  color: var(--color-default);
   transition: 0.3s;
 }
 
 .blog .sidebar .recent-posts h4 a:hover {
-  color: #ffffff;
+  color: var(--color-primary);
 }
 
 .blog .sidebar .recent-posts time {
@@ -3451,6 +3451,10 @@ button.btn-get-started:hover {
 
 .font-size-large {
   font-size: 24px !important; /* Duże */
+}
+
+.font-size-normal {
+  font-size: 20px !important; /* Normalne */
 }
 
 .font-size-medium {

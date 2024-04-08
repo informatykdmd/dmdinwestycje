@@ -3486,3 +3486,10 @@ button.btn-get-started:hover {
 .inline-list li + li {
 	margin-left: 14px;
 }
+
+.blog-author-align-top {
+  display: flex; /* Włącza Flexbox dla kontenera */
+  flex-direction: column; /* Ustawia kierunek elementów dzieci na pionowy */
+  align-items: flex-start; /* Wyrównuje dzieci do początku osi poprzecznej (w tym przypadku do lewej) */
+  justify-content: flex-start; /* Wyrównuje dzieci do początku osi głównej (w tym przypadku do góry) */
+}

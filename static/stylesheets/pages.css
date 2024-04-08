@@ -660,19 +660,19 @@
 .search-form button {
   position: absolute;
   right: 0;
-  background: #959697;
+  background: #FFA500;
   padding: 16px 20px;
   border: none;
   top: 0px;
   z-index: 90;
 }
 .search-form button i{
-  color: #fff;
+  color: #262626;
   font-size: 22px;
 }
 
 .search-form button:hover {
-  background: #2e2e2e;
+  background: #FFD700;
 }
 
 .blog .sidebar .sidebar-title {

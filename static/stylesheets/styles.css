@@ -2728,18 +2728,18 @@ button:focus:not(:focus-visible){
 }
 
 .blog .sidebar .recent-posts h4 {
-  font-size: 15px;
+  font-size: 12px;
   margin-left: 95px;
   font-weight: bold;
 }
 
 .blog .sidebar .recent-posts h4 a {
-  color: var(--color-default);
+  color: #B3B9C4;
   transition: 0.3s;
 }
 
 .blog .sidebar .recent-posts h4 a:hover {
-  color: var(--color-primary);
+  color: #ffffff;
 }
 
 .blog .sidebar .recent-posts time {

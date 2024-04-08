@@ -3464,6 +3464,8 @@ button.btn-get-started:hover {
   color: whitesmoke;
   padding: 15px;
   border-left: #32a9e1 3px solid;
+  font-size: x-large;
+  font-weight: 500;
 }
 
 .blog-highlight a {

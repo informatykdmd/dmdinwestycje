@@ -68,7 +68,7 @@
                   </li>
                   {% endfor %}
                 </ul>
-                <dic class="row mt-20">
+                <dic class="row mt-20"  id="author_link">
                   <div class="col-10">
                     <p><strong>TAGI:</strong></p>
                     <ul  class="horizontal-list">
@@ -98,7 +98,7 @@
                   </div>
                 </dic>
                 <!-- align-items-center -->
-                <div class="post-author d-flex " id="author_link">
+                <div class="post-author d-flex "  id="comments_link">
                   <div class="author-image">
                       <img src="{{choiced['author_avatar']}}" class="flex-shrink-0" alt="">
                   </div>
@@ -129,7 +129,7 @@
                 </div>
                 <!-- End author -->
                 
-                <div class="comments" id="comments_link">
+                <div class="comments">
                   {% if choiced['len'] > 0 %}
                   <p><strong>Komentarze</strong></p>
                   {% for comm in choiced['comments'].values() %}

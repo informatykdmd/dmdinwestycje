@@ -190,7 +190,7 @@ def generator_daneDBList_prev_next(main_id):
 def generator_daneDBList_cetegory():
    
     # Pobranie kategorii z bazy danych
-    took_allPost = msq.connect_to_database('SELECT category FROM blog_posts ORDER BY ID DESC;')
+    took_allPost = msq.connect_to_database('SELECT CATEGORY FROM contents ORDER BY ID DESC;')
     
     # Zliczanie wystąpień każdej kategorii
     cat_count = {}

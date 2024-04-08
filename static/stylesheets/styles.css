@@ -3463,6 +3463,7 @@ button.btn-get-started:hover {
   background-color: #282828;
   color: whitesmoke;
   padding: 15px;
+  border-left: #32a9e1 3px solid;
 }
 
 .blog-highlight a {

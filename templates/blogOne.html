@@ -220,17 +220,15 @@
             </div><!-- End sidebar categories-->
 
             <div class="sidebar-item recent-posts">
-              <h3 class="sidebar-title-1">Recent Posts</h3>
-              {{recentPosts}}
-
+              <h3 class="sidebar-title-1">Zobacz również</h3>
               <div class="mt-3">
                 {% for rPost in recentPosts %}
                 <div class="post-item mt-3">
-                  <img src="{{rPost['mainFoto']}}" alt="">
+                  <a href="/blog-one?post={{rPost['id']}}"><img src="{{rPost['mainFoto']}}" alt=""></a>
                   <div>
                     <h4><a href="/blog-one?post={{rPost['id']}}">{{rPost['title']}}</a></h4>
-                    <time datetime="2023-01-01">{{rPost['data']}}</time>
-                    <p class="font-size-small">{{rPost['author']}}</p>
+
+                    <p class="font-size-small"><i class="bi bi-person-circle"></i> {{rPost['author']}} | <i class="bi bi-calendar3"></i> {{rPost['data']}}</p>
                   </div>
                 </div><!-- End recent post item-->
                 {% endfor %}

@@ -8,6 +8,7 @@ import mysqlDB as msq
 import secrets
 from datetime import datetime
 from googletrans import Translator
+import random
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -188,7 +189,6 @@ def generator_daneDBList_prev_next(main_id):
     return pre_next
 
 def generator_daneDBList_cetegory():
-   
     # Pobranie kategorii z bazy danych
     took_allPost = msq.connect_to_database('SELECT CATEGORY FROM contents ORDER BY ID DESC;')
     
@@ -205,6 +205,20 @@ def generator_daneDBList_cetegory():
     cat_list = [f"{cat} ({count})" for cat, count in cat_count.items()]
     
     return cat_list
+
+def generator_daneDBList_RecentPosts(main_id):
+    # Pobieranie ID wszystkich postów oprócz main_id
+    query = f"SELECT ID FROM contents WHERE ID != {main_id} ORDER BY ID DESC;"
+    took_allPost = msq.connect_to_database(query)
+
+    # Przekształcanie wyników zapytania na listę ID
+    all_post_ids = [post[0] for post in took_allPost]
+
+    # Losowanie unikalnych ID z listy (zakładając, że chcemy np. 5 losowych postów, lub mniej jeśli jest mniej dostępnych)
+    num_posts_to_select = min(5, len(all_post_ids))  # Załóżmy, że chcemy maksymalnie 5 postów
+    posts = random.sample(all_post_ids, num_posts_to_select)
+
+    return posts
 
 def generator_daneDBList_one_post_id(id_post, lang='pl'):
     daneList = []
@@ -495,11 +509,13 @@ def blogOne():
 
     cat_list = generator_daneDBList_cetegory()
 
+    recentPosts = generator_daneDBList_RecentPosts(post_id_int)
     return render_template(
         f'blogOne.html',
         choiced=choiced,
         pre_next=pre_next,
-        cat_list=cat_list
+        cat_list=cat_list,
+        recentPosts=recentPosts
         )
 
 @app.route('/kontakt')

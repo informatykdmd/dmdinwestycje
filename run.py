@@ -206,7 +206,7 @@ def generator_daneDBList_cetegory():
     
     return cat_list
 
-def generator_daneDBList_RecentPosts(main_id):
+def generator_daneDBList_RecentPosts(main_id, amount = 3):
     # Pobieranie ID wszystkich postów oprócz main_id
     query = f"SELECT ID FROM contents WHERE ID != {main_id} ORDER BY ID DESC;"
     took_allPost = msq.connect_to_database(query)
@@ -215,7 +215,7 @@ def generator_daneDBList_RecentPosts(main_id):
     all_post_ids = [post[0] for post in took_allPost]
 
     # Losowanie unikalnych ID z listy (zakładając, że chcemy np. 5 losowych postów, lub mniej jeśli jest mniej dostępnych)
-    num_posts_to_select = min(5, len(all_post_ids))  # Załóżmy, że chcemy maksymalnie 5 postów
+    num_posts_to_select = min(amount, len(all_post_ids))  
     posts = random.sample(all_post_ids, num_posts_to_select)
 
     return posts
@@ -508,8 +508,12 @@ def blogOne():
         }
 
     cat_list = generator_daneDBList_cetegory()
+    take_id_rec_pos = generator_daneDBList_RecentPosts(post_id_int)
+    recentPosts = []
+    for idp in take_id_rec_pos:
+        recentPosts.append(generator_daneDBList_one_post_id(idp)[0])
+    
 
-    recentPosts = generator_daneDBList_RecentPosts(post_id_int)
     return render_template(
         f'blogOne.html',
         choiced=choiced,

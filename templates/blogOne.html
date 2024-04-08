@@ -71,9 +71,11 @@
                 <dic class="row">
                   <div class="col">
                     <h2 class="">TAGI:</h2>
-                    {% for tag in choiced['tags'] %}
-                    <li class="inline-list"><a href="#">{{tag}}</a></li>
-                    {% endfor %}
+                    <ul  class="inline-list">
+                      {% for tag in choiced['tags'] %}
+                      <li><a href="#">{{tag}}</a></li>
+                      {% endfor %}
+                    </ul>
                   </div>
                   <div class="col">
                     <h2 class="">UDOSTĘPNIJ:</h2>

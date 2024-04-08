@@ -62,7 +62,11 @@
                   <img src="{{choiced['contentFoto']}}" alt="{{choiced['title']}}" class="img-fluid mb-4">
                 </div>
                 <ul>
-                  <li><i class="bi bi-arrow-right-circle-fill"></i> Nemo enim ipsam voluptatem quia voluptas sit aspernatur</li>
+                  {% for point in choiced['additionalList'] %}
+                  <li>
+                    <i class="bi bi-arrow-right-circle-fill orange-text"></i> {{point}}
+                  </li>
+                  {% endfor %}
                 </ul>
 
                 

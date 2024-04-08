@@ -599,6 +599,41 @@ def addSubs():
                 })
     return redirect(url_for('index'))
 
+@app.route('/add-comm-pl', methods=['POST'])
+def addComm():
+    subsList = generator_subsDataDB() # pobieranie danych subskrybentów
+
+    if request.method == 'POST':
+        form_data = request.json
+        # print(form_data)
+        SUB_ID = None
+        SUB_NAME = form_data['Name']
+        SUB_EMAIL = form_data['Email']
+        SUB_COMMENT = form_data['Comment']
+        POST_ID = form_data['id']
+        allowed = False
+        for subscriber in subsList:
+            if subscriber['email'] == SUB_EMAIL and subscriber['name'] == SUB_NAME and int(subscriber['status']) == 1:
+                allowed = True
+                SUB_ID = subscriber['id']
+                break
+        if allowed and SUB_ID:
+            # print(form_data)
+            zapytanie_sql = '''
+                    INSERT INTO comments 
+                        (BLOG_POST_ID, COMMENT_CONNTENT, AUTHOR_OF_COMMENT_ID) 
+                        VALUES (%s, %s, %s);
+                    '''
+            dane = (POST_ID, SUB_COMMENT, SUB_ID)
+            if msq.insert_to_database(zapytanie_sql, dane):
+                return jsonify({'success': True, 'message': f'Post został skomentowany!'})
+        else:
+            return jsonify({'success': False, 'message': f'Musisz być naszym subskrybentem żeby komentować naszego bloga!'})
+
+
+        
+    return redirect(url_for('indexPl'))
+
 if __name__ == '__main__':
     # app.run(debug=True, port=4000)
     app.run(debug=True, host='0.0.0.0', port=4000)

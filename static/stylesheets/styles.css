@@ -3430,7 +3430,8 @@ button.btn-get-started:hover {
   list-style-type: none; /* Usuwa domyślne punktory */
   margin: 0; /* Resetuje domyślny margines */
   padding: 0; /* Resetuje domyślne paddingi */
-  display: flex; /* Włącza Flexbox */
+  /* display: flex;  */
+  /* Włącza Flexbox */
   flex-direction: row; /* Ustawia elementy listy poziomo */
   align-items: center; /* Opcjonalnie, wyrównuje elementy listy do środka w pionie */
 }

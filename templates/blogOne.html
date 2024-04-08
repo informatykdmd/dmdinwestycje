@@ -215,27 +215,22 @@
                 {% for cat in cat_list %}
                 <li><a href="#">{{cat}}</a></li>
                 {% endfor %}
-                <!-- <li><a href="#">Health & Lifestyle <span>(132)</span></a></li>
-                <li><a href="#">Social Media <span>(35)</span></a></li>
-                <li><a href="#">Development <span>(242)</span></a></li>
-                <li><a href="#">Creative Agency <span>(38)</span></a></li>
-                <li><a href="#">Educaiontion <span>(144)</span></a></li>
-                <li><a href="#">Tutorials <span>(144)</span></a></li>
-                <li><a href="#">Science <span>(144)</span></a></li>
-                <li>{{cat_list}}</li> -->
+
               </ul>
             </div><!-- End sidebar categories-->
 
             <div class="sidebar-item recent-posts">
               <h3 class="sidebar-title-1">Recent Posts</h3>
               {{recentPosts}}
-              <div class="mt-3">
 
+              <div class="mt-3">
+                {% for rPost in recentPosts %}
                 <div class="post-item mt-3">
-                  <img src="assets/images/blog/blog-recent-1.jpg" alt="">
+                  <img src="{{rPost['mainFoto']}}" alt="">
                   <div>
-                    <h4><a href="blog-details.html">Lorem ipsum dolor sit amet</a></h4>
-                    <time datetime="2023-01-01">Feb 1, 2023</time>
+                    <h4><a href="/blog-one?post={{rPost['id']}}">{{rPost['title']}}</a></h4>
+                    <time datetime="2023-01-01">{{rPost['data']}}</time>
+                    <p class="font-size-small">{{rPost['author']}}</p>
                   </div>
                 </div><!-- End recent post item-->
 

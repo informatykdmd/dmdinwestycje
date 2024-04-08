@@ -162,7 +162,7 @@ def generator_daneDBList_short(lang='pl'):
 
 def generator_daneDBList_prev_next(main_id):
     # Załóżmy, że msq.connect_to_database() zwraca listę tuple'i reprezentujących posty, np. [(1, 'Content1'), (2, 'Content2'), ...]
-    took_allPost = msq.connect_to_database('SELECT category FROM blog_posts ORDER BY ID DESC;')
+    took_allPost = msq.connect_to_database('SELECT ID FROM blog_posts ORDER BY ID DESC;')
     
     # Przekształcenie wyników z bazy danych do listy ID dla łatwiejszego wyszukiwania
     id_list = [post[0] for post in took_allPost]

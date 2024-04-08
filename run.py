@@ -511,7 +511,16 @@ def blogOne():
     take_id_rec_pos = generator_daneDBList_RecentPosts(post_id_int)
     recentPosts = []
     for idp in take_id_rec_pos:
-        recentPosts.append(generator_daneDBList_one_post_id(idp)[0])
+        t_post = generator_daneDBList_one_post_id(idp)[0]
+        theme = {
+            'id': t_post['id'],
+            'title': t_post['title'],
+            'mainFoto': t_post['mainFoto'],
+            'category': t_post['category'],
+            'author': t_post['author'],
+            'data': t_post['data']
+        }
+        recentPosts.append(theme)
     
 
     return render_template(

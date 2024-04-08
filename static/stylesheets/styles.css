@@ -3472,3 +3472,7 @@ button.btn-get-started:hover {
   background-color: #282828;
   color: #FFA500;
 }
+
+.blog-content-foto {
+  min-width: 100% !important;
+}

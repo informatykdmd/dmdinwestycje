@@ -592,6 +592,21 @@ def searchBlog():
         results = msq.connect_to_database(sqlQuery) 
         pageTitle = f'Wyniki wyszukiwania dla {query}'
 
+        searchResults = []
+        for find_id in results:
+            post_id = int(find_id[0])
+            t_post = generator_daneDBList_one_post_id(post_id)[0]
+            theme = {
+                'id': t_post['id'],
+                'title': t_post['title'],
+                'mainFoto': t_post['mainFoto'],
+                'introduction': t_post['introduction'],
+                'category': t_post['category'],
+                'author': t_post['author'],
+                'data': t_post['data']
+            }
+            searchResults.append(theme)
+
 
         take_id_rec_pos = generator_daneDBList_RecentPosts(0)
         recentPosts = []
@@ -610,7 +625,7 @@ def searchBlog():
         return render_template(
             "searchBlog.html",
             pageTitle=pageTitle,
-            searchResults=results,
+            searchResults=searchResults,
             recentPosts=recentPosts
             )
     else:

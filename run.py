@@ -203,8 +203,9 @@ def generator_daneDBList_cetegory():
 
     # Tworzenie listy stringów z nazwami kategorii i ilością wystąpień
     cat_list = [f"{cat} ({count})" for cat, count in cat_count.items()]
+    cat_dict = cat_count.items()
     
-    return cat_list
+    return cat_list, cat_dict
 
 def generator_daneDBList_RecentPosts(main_id, amount = 3):
     # Pobieranie ID wszystkich postów oprócz main_id
@@ -515,7 +516,8 @@ def blogOne():
         'next': generator_daneDBList_prev_next(post_id_int)['next']
         }
 
-    cat_list = generator_daneDBList_cetegory()
+    cats = generator_daneDBList_cetegory()
+    cat_dict = cats[1]
     take_id_rec_pos = generator_daneDBList_RecentPosts(post_id_int)
     recentPosts = []
     for idp in take_id_rec_pos:
@@ -535,7 +537,7 @@ def blogOne():
         f'blogOne.html',
         choiced=choiced,
         pre_next=pre_next,
-        cat_list=cat_list,
+        cat_dict=cat_dict,
         recentPosts=recentPosts
         )
 

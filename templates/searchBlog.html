@@ -39,33 +39,33 @@
                 <h2 class="title white-text">
                     {{pageTitle}}
                 </h2>
-                <div class="white-text">
-                    {{searchResults}}
-                </div>
-                {% for res in searchResults %}
-                <div class="col-lg-4">
-                    <article>
-                        <div class="post-img">
-                            <a href="/blog-one?post={{res['id']}}">
-                                <img src="{{res['mainFoto']}}" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                        <p class="post-category">{{res['category']}}</p>
-                        <h2 class="title">
-                            <a href="/blog-one?post={{res['id']}}">{{res['title']}}</a>
-                        </h2>
-                        <p>{{res['introduction']}}</p>
-                        <div class="d-flex align-items-center">
-                            <div class="post-meta d-flex">
-                                <p class="font-size-small">
-                                    <a href="#"><i class="bi bi-person-circle"></i> {{res['author']}} </a> | 
-                                    <a href="#"><i class="bi bi-calendar3"></i> {{res['data']}} </a> | 
-                                </p>
+                <div class="row">
+                    {% for res in searchResults %}
+                    <div class="col-lg-4">
+                        <article>
+                            <div class="post-img">
+                                <a href="/blog-one?post={{res['id']}}">
+                                    <img src="{{res['mainFoto']}}" alt="" class="img-fluid">
+                                </a>
                             </div>
-                        </div>
-                    </article>
-                </div><!-- End post list item -->
-                {% endfor %}
+                            <p class="post-category">{{res['category']}}</p>
+                            <h2 class="title">
+                                <a href="/blog-one?post={{res['id']}}">{{res['title']}}</a>
+                            </h2>
+                            <p>{{res['introduction']}}</p>
+                            <div class="d-flex align-items-center">
+                                <div class="post-meta d-flex">
+                                    <p class="font-size-small">
+                                        <a href="#"><i class="bi bi-person-circle"></i> {{res['author']}} </a> | 
+                                        <a href="#"><i class="bi bi-calendar3"></i> {{res['data']}} </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div><!-- End post list item -->
+                    {% endfor %}
+                </div>
+                
             </div>
             <div class="col-lg-4">
                 <div class="blog-sidbar">

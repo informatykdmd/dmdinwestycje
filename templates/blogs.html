@@ -64,17 +64,20 @@
                                 <img src="{{res['mainFoto']}}" alt="" class="img-fluid">
                             </a>
                         </div>
-                        <p class="post-category">{{res['category']}}</p>
-                        <h2 class="font-size-medium white-text">
-                            <a href="/blog-one?post={{res['id']}}">{{res['title']}}</a>
-                        </h2>
-                        <p>{{res['introduction']}}</p>
-                        <div class="d-flex align-items-center">
-                            <div class="post-meta d-flex">
-                                <p class="font-size-small">
-                                    <a href="/blog-one?post={{res['id']}}"><i class="bi bi-person-circle"></i> {{res['author']}} </a> | 
-                                    <a href="/blog-one?post={{res['id']}}"><i class="bi bi-calendar3"></i> {{res['data']}} </a>
-                                </p>
+
+                        <div class="m-5">
+                            <p class="post-category">{{res['category']}}</p>
+                            <h2 class="font-size-medium white-text">
+                                <a href="/blog-one?post={{res['id']}}">{{res['title']}}</a>
+                            </h2>
+                            <p>{{res['introduction']}}</p>
+                            <div class="d-flex align-items-center">
+                                <div class="post-meta d-flex">
+                                    <p class="font-size-small">
+                                        <a href="/blog-one?post={{res['id']}}"><i class="bi bi-person-circle"></i> {{res['author']}} </a> | 
+                                        <a href="/blog-one?post={{res['id']}}"><i class="bi bi-calendar3"></i> {{res['data']}} </a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </article>

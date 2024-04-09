@@ -52,12 +52,12 @@
                             <h2 class="font-size-medium">
                                 <a href="/blog-one?post={{res['id']}}">{{res['title']}}</a>
                             </h2>
-                            <p>{{res['introduction']}}</p>
+                            <p>{{res['introduction'][:300]}}</p>
                             <div class="d-flex align-items-center">
                                 <div class="post-meta d-flex">
                                     <p class="font-size-small">
-                                        <a href="#"><i class="bi bi-person-circle"></i> {{res['author']}} </a> | 
-                                        <a href="#"><i class="bi bi-calendar3"></i> {{res['data']}} </a>
+                                        <a href="/blog-one?post={{res['id']}}"><i class="bi bi-person-circle"></i> {{res['author']}} </a> | 
+                                        <a href="/blog-one?post={{res['id']}}"><i class="bi bi-calendar3"></i> {{res['data']}} </a>
                                     </p>
                                 </div>
                             </div>

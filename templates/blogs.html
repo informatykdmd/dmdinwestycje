@@ -33,14 +33,9 @@
     <!-- Recent Blog Posts Section -->
     <section id="recent-posts" class="recent-posts">
         <div class="container" data-aos="fade-up">
-          <div class="section-header">
-            <div>
-              <h2>Blogs | Stay updated with latest post</h2>
-              <p>Discover the latest trends, get inspired, and gain valuable knowledge to navigate the world of real estate with confidence.</p>
-            </div>
-          </div>
           <div class="row gy-4">
-            <div class="col-lg-4">
+
+            <!-- <div class="col-lg-4">
               <article>
                 <div class="post-img">
                   <img src="assets/images/blog/blog-1.jpg" alt="" class="img-fluid">
@@ -57,45 +52,35 @@
                   </div>
                 </div>
               </article>
-            </div><!-- End post list item -->
+            </div> -->
+            <!-- End post list item -->
   
-            <div class="col-lg-4">
-              <article>
-                <div class="post-img">
-                  <img src="assets/images/blog/blog-2.jpg" alt="" class="img-fluid">
-                </div>
-                <p class="post-category">Tips</p>
-                <h2 class="title">
-                  <a href="blog-details.html">The Art of Home Staging: How to Make Your Property Stand Out</a>
-                </h2>
-                <div class="d-flex align-items-center">
-                  <div class="post-meta">
-                    <p class="post-date">
-                      <time datetime="2022-01-01">Oct 5, 2022</time>
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div><!-- End post list item -->
-  
-            <div class="col-lg-4">
-              <article>
-                <div class="post-img">
-                  <img src="assets/images/blog/blog-3.jpg" alt="" class="img-fluid">
-                </div>
-                <p class="post-category">Real Estate</p>
-                <h2 class="title">
-                  <a href="blog-details.html">Investing in Real Estate: Strategies for Long-Term Financial Success</a>
-                </h2>
-                <div class="d-flex align-items-center">
-                  <div class="post-meta">
-                    <p class="post-date">
-                      <time datetime="2022-01-01">Dec 22, 2022</time>
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div><!-- End post list item -->
+
+                {% for res in posts %}
+                <div class="col-lg-4">
+                    <article>
+                        <div class="post-img">
+                            <a href="/blog-one?post={{res['id']}}">
+                                <img src="{{res['mainFoto']}}" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <p class="post-category">{{res['category']}}</p>
+                        <h2 class="font-size-medium white-text">
+                            <a href="/blog-one?post={{res['id']}}">{{res['title']}}</a>
+                        </h2>
+                        <p>{{res['introduction']}}</p>
+                        <div class="d-flex align-items-center">
+                            <div class="post-meta d-flex">
+                                <p class="font-size-small">
+                                    <a href="/blog-one?post={{res['id']}}"><i class="bi bi-person-circle"></i> {{res['author']}} </a> | 
+                                    <a href="/blog-one?post={{res['id']}}"><i class="bi bi-calendar3"></i> {{res['data']}} </a>
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div><!-- End post list item -->
+                {% endfor %}
+
   
           </div><!-- End recent posts list -->
   

@@ -204,7 +204,7 @@
           <div class="blog-sidbar">
             <div class="search-form">
                 <form method="POST" action="{{ url_for('searchBlog') }}" enctype="multipart/form-data">
-                    <input type="text" placeholder="Przeszukaj blog">
+                    <input type="text" name="query" placeholder="Przeszukaj blog">
                     <button><i class="fa fa-search"></i></button>
                 </form>
             </div>

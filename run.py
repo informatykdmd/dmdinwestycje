@@ -576,6 +576,22 @@ def page_not_found(e):
     # Tutaj możesz przekierować do dowolnej trasy, którą chcesz wyświetlić jako stronę błędu 404.
     return redirect(url_for(f'index'))
 
+@app.route('/search-post-blog', methods=['GET', 'POST'])
+def searchBlog():
+    if request.method == "POST":
+        query = request.form["query"]
+        sqlQuery = f'SELECT * FROM contents WHERE TITLE LIKE {query} OR CONTENT_MAIN LIKE {query} OR HIGHLIGHTS LIKE {query} OR BULLETS LIKE {query} ORDER BY ID DESC'
+        results = msq.connect_to_database(sqlQuery) 
+
+
+        return render_template(
+            "searchBlog.html",
+            searchResults=results
+            )
+    else:
+        print('Błąd requesta')
+        return redirect(url_for(f'index'))
+
 @app.route('/send-mess-pl', methods=['POST'])
 def sendMess():
 

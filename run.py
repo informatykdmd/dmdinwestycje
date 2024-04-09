@@ -588,9 +588,13 @@ def page_not_found(e):
 def searchBlog():
     if request.method == "POST":
         query = request.form["query"]
-        session['last_search'] = query  # Zapisz zapytanie do sesji
+        if query == '':
+            print('Błąd requesta')
+            return redirect(url_for('index'))
+        
+        session['last_search'] = query
     elif 'last_search' in session:
-        query = session['last_search']  # Użyj zapytania zapisanego w sesji
+        query = session['last_search']
     else:
         print('Błąd requesta')
         return redirect(url_for('index'))  # Uwaga: poprawiłem 'f' na 'index'

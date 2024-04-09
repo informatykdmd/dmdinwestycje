@@ -3435,6 +3435,17 @@ button.btn-get-started:hover {
   border: 1px solid #ffffff;
 }
 
+.white-gray {
+  color: #aaaaaa !important;
+}
+
+.white-gray a {
+  color: #aaaaaa !important;
+}
+
+.white-gray a:hover{
+  color: #ffffff !important;
+}
 .horizontal-list {
   list-style-type: none; /* Usuwa domyślne punktory */
   margin: 0; /* Resetuje domyślny margines */

@@ -492,7 +492,7 @@ def blogs():
     session['page'] = 'blogs'
     pageTitle = 'Blog'
 
-    blog_post = generator_daneDBList_short()
+    blog_post = generator_daneDBList()
 
     # Ustawienia paginacji
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')

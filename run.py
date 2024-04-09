@@ -203,7 +203,7 @@ def generator_daneDBList_cetegory():
 
     # Tworzenie listy stringów z nazwami kategorii i ilością wystąpień
     cat_list = [f"{cat} ({count})" for cat, count in cat_count.items()]
-    cat_dict = cat_count.items()
+    cat_dict = cat_count
     
     return cat_list, cat_dict
 

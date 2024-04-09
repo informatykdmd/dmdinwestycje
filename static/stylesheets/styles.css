@@ -3422,6 +3422,15 @@ button.btn-get-started:hover {
 .white-text {
   color: #ffffff !important;
 }
+
+.white-text a {
+  color: #ffffff !important;
+}
+
+.white-text a:hover{
+  color: #aaaaaa !important;
+}
+
 .white-border {
   border: 1px solid #ffffff;
 }

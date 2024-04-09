@@ -589,15 +589,16 @@ def searchBlog():
     if request.method == "POST":
         query = request.form["query"]
 
-        sqlQuery = f"""
+        sqlQuery = """
                     SELECT ID FROM contents 
-                    WHERE TITLE LIKE '%{query}%' 
-                    OR CONTENT_MAIN LIKE '%{query}%' 
-                    OR HIGHLIGHTS LIKE '%{query}%' 
-                    OR BULLETS LIKE '%{query}%' 
+                    WHERE TITLE LIKE %s 
+                    OR CONTENT_MAIN LIKE %s 
+                    OR HIGHLIGHTS LIKE %s 
+                    OR BULLETS LIKE %s 
                     ORDER BY ID DESC;
                     """
-        results = msq.connect_to_database(sqlQuery) 
+        params = (f'%{query}%', f'%{query}%', f'%{query}%', f'%{query}%')
+        results = msq.insert_to_database(sqlQuery, params) 
         pageTitle = f'Wyniki wyszukiwania dla {query}'
 
         searchResults = []

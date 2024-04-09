@@ -584,7 +584,7 @@ def page_not_found(e):
     # Tutaj możesz przekierować do dowolnej trasy, którą chcesz wyświetlić jako stronę błędu 404.
     return redirect(url_for(f'index'))
 
-@app.route('/search-post-blog', methods=['GET', 'POST'])
+@app.route('/search-post-blog') #, methods=['GET', 'POST']
 def searchBlog():
     if request.method == "POST":
         query = request.form["query"]

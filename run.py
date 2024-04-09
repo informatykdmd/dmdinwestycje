@@ -598,7 +598,7 @@ def searchBlog():
                     ORDER BY ID DESC;
                     """
         params = (f'%{query}%', f'%{query}%', f'%{query}%', f'%{query}%')
-        results = msq.insert_to_database(sqlQuery, params) 
+        results = msq.safe_connect_to_database(sqlQuery, params) 
         pageTitle = f'Wyniki wyszukiwania dla {query}'
 
         searchResults = []

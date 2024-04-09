@@ -68,47 +68,6 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="pagination section">
-                    <button class="btn">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="btn--icon"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    >
-                        <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M15 19l-7-7 7-7"
-                        />
-                    </svg>
-                    </button>
-                    <div class="pages">
-                    <a class="page">1</a>
-                    <a class="page active">2</a>
-                    <a class="page">3</a>
-                    <a class="page">4</a>
-                    </div>
-                    <button class="btn">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="btn--icon"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    >
-                        <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M9 5l7 7-7 7"
-                        />
-                    </svg>
-                    </button>
-                <!-- Pagination -->
-
                 {% if pagination.total_pages > 1 %}
                 <div class="pagination section">
                     {% if pagination.has_prev %}
@@ -116,40 +75,39 @@
                             <i class="fa fa-angle-left"></i>
                         </button>
                     {% else %}
-                        <li class="pagination-item-off font-small">
-                            <i class="fa fa-angle-left text-normal"></i>
-                        </li>
+                        <button class="btn">
+                            <i class="fa fa-angle-left"></i>
+                        </button>
                     {% endif %}
                     {% for page in pagination.pages %}
+                    <div class="pages">
                         {% if page %}
                             {% if page != pagination.page %}
-                                <li class="pagination-item font-small">
-                                    <a href="{{ url_for(request.endpoint, page=page) }}">
-                                        {{ page }}
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li class="pagination-item-off font-small">
+                                <a class="page" href="{{ url_for(request.endpoint, page=page) }}">
                                     {{ page }}
-                                </li>
+                                </a>
+                            {% else %}
+                            <a class="page active">
+                                {{ page }}
+                            </a>
                             {% endif %}
                         {% else %}
-                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                            ...
                         {% endif %}
+                    </div>
                     {% endfor %}
                     {% if pagination.has_next %}
-                        <li class="pagination-item font-small">
-                            <a href="{{ url_for(request.endpoint, page=pagination.page + 1) }}">
-                                <i class="fa fa-angle-right text-normal"></i>
-                            </a>                
-                        </li>
-                    {% else %}
-                        <li class="pagination-item-off font-small">
+                        <button class="btn" onclick="location.href='{{ url_for(request.endpoint, page=pagination.page + 1) }}';">
                             <i class="fa fa-angle-right text-normal"></i>
-                        </li>
+                        </button>
+                    {% else %}
+                        <button class="btn">
+                            <i class="fa fa-angle-right text-normal"></i>
+                        </button>
                     {% endif %}
                 </div>
                 {% endif %}
+                <!-- Pagination -->
                 
             </div>
             <div class="col-lg-4">

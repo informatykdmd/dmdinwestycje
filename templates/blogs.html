@@ -1,95 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>PrimeProperty - Real Estate Multipurpose Website Template</title>
-  <meta name="description" content="PrimeProperty - Real Estate Multipurpose Website Template">
-  <meta name="keywords" content="PrimeProperty - Real Estate Multipurpose Website Template, landing page template, application design, SEO optimization, digital marketing, professional team members, responsive design, user-friendly, customizable, animal template">
-  <meta content="" name="ZRTHEMES">
-
-  <!-- Favicons -->
-  <link href="assets/images/favicon.png" rel="icon">
-  <link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-    rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
-  <!-- Vendor CSS Files -->
-  <link href="assets/stylesheets/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <!-- Main CSS File -->
-  <link href="assets/stylesheets/styles.css" rel="stylesheet">
-  <link href="assets/stylesheets/pages.css" rel="stylesheet">
-
-
-</head>
-
-<body>
-
-  <header id="header" class="header d-flex align-items-center">
-    <div class="container container-xl d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <h1 class="logo"><img src="assets/images/logo-dark.svg" alt="">PrimeProperty</h1>
-      </a>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About</a></li>
-          <li class="dropdown"><a href="#"><span>Projects</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="projects.html">View All Projects</a></li>
-              <li><a href="project-details.html">Project Details</a></li>
-            </ul>
-          </li>
-          <li><a href="testimonials.html">Testimonials</a></li>
-          <li><a href="blogs.html">Blogs</a></li>
-          <li class="dropdown"><a href="#"><span>Pages</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="blogs.html">Blogs Page</a></li>
-              <li><a href="blog-details.html">Blog Details Page</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="faq.html">FAQs</a></li>
-              <li><a href="page.html">Terms & Conditions</a></li>
-              <li><a href="page.html">Privacy Policy</a></li>
-            </ul>
-          </li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav><!-- .navbar -->
-
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
-    </div>
-  </header><!-- End Header -->
-
-  <!-- - - - - - - - -  Hero Section - - - - - - - -  -->
-  <section id="hero" class="page-hero">
+{% block content %}
+<!-- - - - - - - - -  Hero Section - - - - - - - -  -->
+<section id="hero" class="page-hero-3">
     <div class="container position-relative">
       <div class="row gy-5" data-aos="fade-in">
         <div class="col-lg-12  order-lg-1 d-flex flex-column align-items-left justify-content-start text-left caption">
-          <h2>Blogs / News</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <h2>Blog DMD</h2>
+          <p>Twoje Newsy prosto z Serca DMD</p>
+          <p style="max-width: 40%;">
+            Poznaj miejsce, gdzie pulsujące serce branży nieruchomości bije 
+            najmocniej – nasz blog DMD. Tutaj, prosto z centrum wydarzeń, przekazujemy 
+            Ci najświeższe newsy, analizy i opinie z pierwszej ręki. To Twoje źródło 
+            niezbędnych informacji, które pozwolą Ci nie tylko trzymać rękę na pulsie rynku, 
+            ale też aktywnie w nim uczestniczyć.
+        </p>
         </div>
       </div>
       <div class="breadcrumb">
         <ul>
-          <li><strong>You are here:</strong></li>
-          <li><a href="index.html">Home</a></li>
+          <li><strong>Nawigacja:</strong></li>
+          <li><a href="/">Strona Główna</a></li>
           <li><i class="bi bi-chevron-double-right"></i></li>
-          <li>Blogs</li>
+          <li>{{pageTitle}}</li>
         </ul>
       </div>
     </div>
@@ -97,249 +30,117 @@
   <!-- End Hero Section -->
 
   <main id="main" class="single-page">
-
     <!-- Recent Blog Posts Section -->
     <section id="recent-posts" class="recent-posts">
-      <div class="container" data-aos="fade-up">
-        <div class="section-header">
-          <div>
-            <h2>Blogs | Stay updated with latest post</h2>
-            <p>Discover the latest trends, get inspired, and gain valuable knowledge to navigate the world of real estate with confidence.</p>
+        <div class="container" data-aos="fade-up">
+          <div class="section-header">
+            <div>
+              <h2>Blogs | Stay updated with latest post</h2>
+              <p>Discover the latest trends, get inspired, and gain valuable knowledge to navigate the world of real estate with confidence.</p>
+            </div>
           </div>
+          <div class="row gy-4">
+            <div class="col-lg-4">
+              <article>
+                <div class="post-img">
+                  <img src="assets/images/blog/blog-1.jpg" alt="" class="img-fluid">
+                </div>
+                <p class="post-category">Selling</p>
+                <h2 class="title">
+                  <a href="blog-details.html">Home Improvement Ideas to Increase Property Value and Appeal</a>
+                </h2>
+                <div class="d-flex align-items-center">
+                  <div class="post-meta">
+                    <p class="post-date">
+                      <time datetime="2022-01-01">Feb 1, 2022</time>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div><!-- End post list item -->
+  
+            <div class="col-lg-4">
+              <article>
+                <div class="post-img">
+                  <img src="assets/images/blog/blog-2.jpg" alt="" class="img-fluid">
+                </div>
+                <p class="post-category">Tips</p>
+                <h2 class="title">
+                  <a href="blog-details.html">The Art of Home Staging: How to Make Your Property Stand Out</a>
+                </h2>
+                <div class="d-flex align-items-center">
+                  <div class="post-meta">
+                    <p class="post-date">
+                      <time datetime="2022-01-01">Oct 5, 2022</time>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div><!-- End post list item -->
+  
+            <div class="col-lg-4">
+              <article>
+                <div class="post-img">
+                  <img src="assets/images/blog/blog-3.jpg" alt="" class="img-fluid">
+                </div>
+                <p class="post-category">Real Estate</p>
+                <h2 class="title">
+                  <a href="blog-details.html">Investing in Real Estate: Strategies for Long-Term Financial Success</a>
+                </h2>
+                <div class="d-flex align-items-center">
+                  <div class="post-meta">
+                    <p class="post-date">
+                      <time datetime="2022-01-01">Dec 22, 2022</time>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div><!-- End post list item -->
+  
+          </div><!-- End recent posts list -->
+  
         </div>
-        <div class="row gy-4">
-          <div class="col-lg-4">
-            <article>
-              <div class="post-img">
-                <img src="assets/images/blog/blog-1.jpg" alt="" class="img-fluid">
-              </div>
-              <p class="post-category">Selling</p>
-              <h2 class="title">
-                <a href="blog-details.html">Home Improvement Ideas to Increase Property Value and Appeal</a>
-              </h2>
-              <div class="d-flex align-items-center">
-                <div class="post-meta">
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Feb 1, 2022</time>
-                  </p>
-                </div>
-              </div>
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-              <div class="post-img">
-                <img src="assets/images/blog/blog-2.jpg" alt="" class="img-fluid">
-              </div>
-              <p class="post-category">Tips</p>
-              <h2 class="title">
-                <a href="blog-details.html">The Art of Home Staging: How to Make Your Property Stand Out</a>
-              </h2>
-              <div class="d-flex align-items-center">
-                <div class="post-meta">
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Oct 5, 2022</time>
-                  </p>
-                </div>
-              </div>
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-              <div class="post-img">
-                <img src="assets/images/blog/blog-3.jpg" alt="" class="img-fluid">
-              </div>
-              <p class="post-category">Real Estate</p>
-              <h2 class="title">
-                <a href="blog-details.html">Investing in Real Estate: Strategies for Long-Term Financial Success</a>
-              </h2>
-              <div class="d-flex align-items-center">
-                <div class="post-meta">
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Dec 22, 2022</time>
-                  </p>
-                </div>
-              </div>
-            </article>
-          </div><!-- End post list item -->
-
-        </div><!-- End recent posts list -->
-
-      </div>
     </section><!-- End Recent Blog Posts Section -->
-
-  <!-- Pagination -->
-  <div class="pagination section">
-    <button class="btn">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="btn--icon"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M15 19l-7-7 7-7"
-        />
-      </svg>
-    </button>
-    <div class="pages">
-      <a class="page">1</a>
-      <a class="page active">2</a>
-      <a class="page">3</a>
-      <a class="page">4</a>
-    </div>
-    <button class="btn">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="btn--icon"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M9 5l7 7-7 7"
-        />
-      </svg>
-    </button>
-  <!-- Pagination -->
-  </div>
-
-  </main><!-- End #main -->
-
-  <!-- Footer -->
-  <footer id="footer" class="footer-section">
-    <div class="container">
-        <div class="footer-content">
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 mb-50">
-                    <div class="footer-widget">
-                        <div class="footer-logo">
-                            <a href="index.html" class="logo d-flex align-items-center">
-                              <h1>PrimeProperty</h1>
-                            </a>
-                        </div>
-                        <div class="footer-text">
-                            <p>At Prime Property, we are dedicated to providing exceptional real estate services. With years of industry expertise and a passion for delivering personalized solutions</p>
-                        </div>
-                        <div class="contact-info">
-                          <h6>Address:</h6>
-                          <p>11 West Town</p>
-                          <p>PBo 12345, United States</p>
-                          <!-- Change  'Wall%20Street,%20NYC' with your own business name -->
-                          <p><a href="https://www.google.com/maps/dir//Wall%20Street,%20NYC" target="_blank">Get Directions</a></p>
-                        </div>
-                        <div class="contact-info">
-                          <h6>Phone:</h6>
-                          <p>+1 1234 56 789</p>
-                          <p>+1 1234 56 780</p>
-                        </div>
-                        <div class="contact-info">
-                          <h6>Email:</h6>
-                          <p>info@example.com</p>
-                          <p>email@example.com</p>
-                        </div>
-                        <div class="footer-social-icon">
-                            <span>Follow us</span>
-                            <a href="#"><i class="fa fa-facebook facebook-bg"></i></a>
-                            <a href="#"><i class="fa fa-twitter twitter-bg"></i></a>
-                            <a href="#"><i class="fa fa-google google-bg"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                    <div class="footer-widget">
-                        <div class="footer-widget-heading">
-                            <h3>Useful Links</h3>
-                        </div>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="projects.html">Portfolio</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="team.html">Our Agents</a></li>
-                            <li><a href="testimonials.html">Our Reviews</a></li>
-                            <li><a href="#">Our Partners</a></li>
-                            <li><a href="faq.html">FAQs</a></li>
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="blogs.html">Our News</a></li>
-                            <li><a href="services.html">Our Services</a></li>
-                            <li><a href="team.html">Our Team</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="page.html">Terms & Condriotions</a></li>
-                            <li><a href="page.html">Privacy & Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                    <div class="footer-widget">
-                        <div class="footer-widget-heading">
-                            <h3>Newsletter</h3>
-                        </div>
-                        <div class="footer-text mb-25">
-                            <p>Don't miss to subscribe to our new feeds, kindly fill the form below.</p>
-                        </div>
-                        <div class="subscribe-form">
-                            <form action="#">
-                                <input type="text" placeholder="Email Address">
-                                <button><i class="fa fa-telegram"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Pagination -->
+    {% if pagination.total_pages > 1 %}
+    <div class="pagination section">
+        {% if pagination.has_prev %}
+            <button class="btn" onclick="location.href='{{ url_for(request.endpoint, page=pagination.page - 1) }}';">
+                <i class="fa fa-angle-left"></i>
+            </button>
+        {% else %}
+            <button class="btn" disabled>
+                <i class="fa fa-angle-left"></i>
+            </button>
+        {% endif %}
+        {% for page in pagination.pages %}
+        <div class="pages">
+            {% if page %}
+                {% if page != pagination.page %}
+                    <a class="page" href="{{ url_for(request.endpoint, page=page) }}">
+                        {{ page }}
+                    </a>
+                {% else %}
+                    <a class="page active">
+                        {{ page }}
+                    </a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
         </div>
+        {% endfor %}
+        {% if pagination.has_next %}
+            <button class="btn" onclick="location.href='{{ url_for(request.endpoint, page=pagination.page + 1) }}';">
+                <i class="fa fa-angle-right text-normal"></i>
+            </button>
+        {% else %}
+            <button class="btn" disabled >
+                <i class="fa fa-angle-right text-normal"></i>
+            </button>
+        {% endif %}
     </div>
-    <div class="copyright-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 text-left text-lg-left">
-                    <div class="copyright-text">
-                        <p>PrimeProperty © 2023 - Designed by Zr Themes.</p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 d-none d-lg-block">
-                    <div class="footer-menu text-right">
-                        <ul>
-                            <li><a href="page.html">Terms & Conditions</a></li>
-                            <li><a href="page.html">Privacy Policy</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </footer>
-  <!-- End Footer -->
-
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/javascripts/jquery.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/javascripts/plugins.js"></script>
-  <script src="assets/javascripts/validator.min.js"></script>
-  <script src="assets/javascripts/contactform.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/javascripts/main.js"></script>
-
-</body>
-
-</html>
+    {% endif %}
+    <!-- Pagination -->
+</main><!-- End #main -->
+{% endblock %}

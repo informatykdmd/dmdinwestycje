@@ -284,6 +284,14 @@ def generator_daneDBList_3(lang='en'):
             break
     return daneList
 
+def smart_truncate(content, length=200):
+    if len(content) <= length:
+        return content
+    else:
+        # Znajdujemy miejsce, gdzie jest koniec pełnego słowa, nie przekraczając maksymalnej długości
+        truncated_content = content[:length].rsplit(' ', 1)[0]
+        return f"{truncated_content}..."
+
 ############################
 ##      ######           ###
 ##      ######           ###
@@ -600,7 +608,7 @@ def searchBlog():
                 'id': t_post['id'],
                 'title': t_post['title'],
                 'mainFoto': t_post['mainFoto'],
-                'introduction': t_post['introduction'],
+                'introduction': smart_truncate(t_post['introduction'], 200),
                 'category': t_post['category'],
                 'author': t_post['author'],
                 'data': t_post['data']

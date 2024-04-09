@@ -582,7 +582,7 @@ def searchBlog():
         query = request.form["query"]
 
         sqlQuery = f"""
-                    SELECT * FROM contents 
+                    SELECT ID FROM contents 
                     WHERE TITLE LIKE '%{query}%' 
                     OR CONTENT_MAIN LIKE '%{query}%' 
                     OR HIGHLIGHTS LIKE '%{query}%' 

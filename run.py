@@ -630,12 +630,21 @@ def searchBlog():
                 'data': t_post['data']
             }
             recentPosts.append(theme)
-            
+        
+        # Ustawienia paginacji
+        page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+        total = len(recentPosts)
+        pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+
+        # Pobierz tylko odpowiednią ilość postów na aktualnej stronie
+        posts = recentPosts[offset: offset + per_page]
+
         return render_template(
             "searchBlog.html",
             pageTitle=pageTitle,
             searchResults=searchResults,
-            recentPosts=recentPosts
+            pagination=pagination,
+            posts=posts
             )
     else:
         print('Błąd requesta')

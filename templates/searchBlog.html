@@ -112,9 +112,9 @@
                 {% if pagination.total_pages > 1 %}
                 <div class="pagination section">
                     {% if pagination.has_prev %}
-                        <button class="btn" href="{{ url_for(request.endpoint, page=pagination.page - 1) }}">
+                        <a class="btn" href="{{ url_for(request.endpoint, page=pagination.page - 1) }}">
                             <i class="fa fa-angle-left text-normal"></i>
-                            </button>
+                        </a>
                         <!-- <li class="pagination-item font-small">
                             <a href="{{ url_for(request.endpoint, page=pagination.page - 1) }}">
                                 <i class="fa fa-angle-left text-normal"></i>

@@ -588,49 +588,55 @@ def page_not_found(e):
 def searchBlog():
     if request.method == "POST":
         query = request.form["query"]
+        session['last_search'] = query  # Zapisz zapytanie do sesji
+    elif 'last_search' in session:
+        query = session['last_search']  # Użyj zapytania zapisanego w sesji
+    else:
+        print('Błąd requesta')
+        return redirect(url_for('index'))  # Uwaga: poprawiłem 'f' na 'index'
 
-        sqlQuery = """
-                    SELECT ID FROM contents 
-                    WHERE TITLE LIKE %s 
-                    OR CONTENT_MAIN LIKE %s 
-                    OR HIGHLIGHTS LIKE %s 
-                    OR BULLETS LIKE %s 
-                    ORDER BY ID DESC;
-                    """
-        params = (f'%{query}%', f'%{query}%', f'%{query}%', f'%{query}%')
-        results = msq.safe_connect_to_database(sqlQuery, params) 
-        pageTitle = f'Wyniki wyszukiwania dla {query}'
+    sqlQuery = """
+                SELECT ID FROM contents 
+                WHERE TITLE LIKE %s 
+                OR CONTENT_MAIN LIKE %s 
+                OR HIGHLIGHTS LIKE %s 
+                OR BULLETS LIKE %s 
+                ORDER BY ID DESC;
+                """
+    params = (f'%{query}%', f'%{query}%', f'%{query}%', f'%{query}%')
+    results = msq.safe_connect_to_database(sqlQuery, params)
+    pageTitle = f'Wyniki wyszukiwania dla {query}'
 
-        searchResults = []
-        for find_id in results:
-            post_id = int(find_id[0])
-            t_post = generator_daneDBList_one_post_id(post_id)[0]
-            theme = {
-                'id': t_post['id'],
-                'title': t_post['title'],
-                'mainFoto': t_post['mainFoto'],
-                'introduction': smart_truncate(t_post['introduction'], 200),
-                'category': t_post['category'],
-                'author': t_post['author'],
-                'data': t_post['data']
-            }
-            searchResults.append(theme)
+    searchResults = []
+    for find_id in results:
+        post_id = int(find_id[0])
+        t_post = generator_daneDBList_one_post_id(post_id)[0]
+        theme = {
+            'id': t_post['id'],
+            'title': t_post['title'],
+            'mainFoto': t_post['mainFoto'],
+            'introduction': smart_truncate(t_post['introduction'], 200),
+            'category': t_post['category'],
+            'author': t_post['author'],
+            'data': t_post['data']
+        }
+        searchResults.append(theme)
 
-        found = len(searchResults)
+    found = len(searchResults)
 
-        take_id_rec_pos = generator_daneDBList_RecentPosts(0)
-        recentPosts = []
-        for idp in take_id_rec_pos:
-            t_post = generator_daneDBList_one_post_id(idp)[0]
-            theme = {
-                'id': t_post['id'],
-                'title': t_post['title'],
-                'mainFoto': t_post['mainFoto'],
-                'category': t_post['category'],
-                'author': t_post['author'],
-                'data': t_post['data']
-            }
-            recentPosts.append(theme)
+    take_id_rec_pos = generator_daneDBList_RecentPosts(0)
+    recentPosts = []
+    for idp in take_id_rec_pos:
+        t_post = generator_daneDBList_one_post_id(idp)[0]
+        theme = {
+            'id': t_post['id'],
+            'title': t_post['title'],
+            'mainFoto': t_post['mainFoto'],
+            'category': t_post['category'],
+            'author': t_post['author'],
+            'data': t_post['data']
+        }
+        recentPosts.append(theme)
 
     # Ustawienia paginacji
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
@@ -648,9 +654,7 @@ def searchBlog():
         pagination=pagination,
         recentPosts=recentPosts
         )
-    # else:
-    #     print('Błąd requesta')
-    #     return redirect(url_for(f'index'))
+
 
 @app.route('/send-mess-pl', methods=['POST'])
 def sendMess():

@@ -75,7 +75,7 @@
                             <i class="fa fa-angle-left"></i>
                         </button>
                     {% else %}
-                        <button class="btn">
+                        <button class="btn" disabled>
                             <i class="fa fa-angle-left"></i>
                         </button>
                     {% endif %}
@@ -87,9 +87,9 @@
                                     {{ page }}
                                 </a>
                             {% else %}
-                            <a class="page active">
-                                {{ page }}
-                            </a>
+                                <a class="page active">
+                                    {{ page }}
+                                </a>
                             {% endif %}
                         {% else %}
                             ...
@@ -101,7 +101,7 @@
                             <i class="fa fa-angle-right text-normal"></i>
                         </button>
                     {% else %}
-                        <button class="btn">
+                        <button class="btn" disabled >
                             <i class="fa fa-angle-right text-normal"></i>
                         </button>
                     {% endif %}

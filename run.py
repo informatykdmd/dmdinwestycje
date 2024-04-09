@@ -586,7 +586,7 @@ def page_not_found(e):
 
 @app.route('/search-post-blog', methods=['GET', 'POST']) #, methods=['GET', 'POST']
 def searchBlog():
-    if request.method == "POST" or request.method == "GET":
+    if request.method == "POST":
         query = request.form["query"]
 
         sqlQuery = """
@@ -631,26 +631,26 @@ def searchBlog():
                 'data': t_post['data']
             }
             recentPosts.append(theme)
-        
-        # Ustawienia paginacji
-        page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-        total = len(searchResults)
-        pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
-        # Pobierz tylko odpowiednią ilość postów na aktualnej stronie
-        posts = searchResults[offset: offset + per_page]
+    # Ustawienia paginacji
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+    total = len(searchResults)
+    pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
-        return render_template(
-            "searchBlog.html",
-            pageTitle=pageTitle,
-            posts=posts,
-            found=found,
-            pagination=pagination,
-            recentPosts=recentPosts
-            )
-    else:
-        print('Błąd requesta')
-        return redirect(url_for(f'index'))
+    # Pobierz tylko odpowiednią ilość postów na aktualnej stronie
+    posts = searchResults[offset: offset + per_page]
+
+    return render_template(
+        "searchBlog.html",
+        pageTitle=pageTitle,
+        posts=posts,
+        found=found,
+        pagination=pagination,
+        recentPosts=recentPosts
+        )
+    # else:
+    #     print('Błąd requesta')
+    #     return redirect(url_for(f'index'))
 
 @app.route('/send-mess-pl', methods=['POST'])
 def sendMess():

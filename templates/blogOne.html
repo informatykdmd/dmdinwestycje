@@ -233,7 +233,7 @@
               <h3 class="sidebar-title-1">Kategorie bloga</h3>
               <ul class="mt-3 white-gray">
                 {% for cat, count in cat_dict.items() %}
-                <li style="margin-left: 15px;"><a href="#">{{cat}} ({{count}})</a></li>
+                <li style="margin-left: 15px;"><a href="/find-by-category?category={{cat}}">{{cat}} ({{count}})</a></li>
                 {% endfor %}
               </ul>
             </div><!-- End sidebar categories-->

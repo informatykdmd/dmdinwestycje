@@ -586,6 +586,73 @@ def page_not_found(e):
     # Tutaj możesz przekierować do dowolnej trasy, którą chcesz wyświetlić jako stronę błędu 404.
     return redirect(url_for(f'index'))
 
+
+@app.route('/find-by-category', methods=['GET'])
+def findByCategory():
+
+    query = request.args.get('category')
+    if not query:
+        print('Błąd requesta')
+        return redirect(url_for('index'))
+        
+    sqlQuery = """
+                SELECT ID FROM contents 
+                WHERE CATEGORY LIKE %s 
+                ORDER BY ID DESC;
+                """
+    params = (f'%{query}%', )
+    results = msq.safe_connect_to_database(sqlQuery, params)
+    pageTitle = f'Wyniki wyszukiwania dla categorii {query}'
+
+    searchResults = []
+    for find_id in results:
+        post_id = int(find_id[0])
+        t_post = generator_daneDBList_one_post_id(post_id)[0]
+        theme = {
+            'id': t_post['id'],
+            'title': t_post['title'],
+            'mainFoto': t_post['mainFoto'],
+            'introduction': smart_truncate(t_post['introduction'], 200),
+            'category': t_post['category'],
+            'author': t_post['author'],
+            'data': t_post['data']
+        }
+        searchResults.append(theme)
+
+    found = len(searchResults)
+
+    take_id_rec_pos = generator_daneDBList_RecentPosts(0)
+    recentPosts = []
+    for idp in take_id_rec_pos:
+        t_post = generator_daneDBList_one_post_id(idp)[0]
+        theme = {
+            'id': t_post['id'],
+            'title': t_post['title'],
+            'mainFoto': t_post['mainFoto'],
+            'category': t_post['category'],
+            'author': t_post['author'],
+            'data': t_post['data']
+        }
+        recentPosts.append(theme)
+
+    # Ustawienia paginacji
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+    total = len(searchResults)
+    pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+
+    # Pobierz tylko odpowiednią ilość postów na aktualnej stronie
+    posts = searchResults[offset: offset + per_page]
+
+    return render_template(
+        "searchBlog.html",
+        pageTitle=pageTitle,
+        posts=posts,
+        found=found,
+        pagination=pagination,
+        recentPosts=recentPosts
+        )
+
+
 @app.route('/search-post-blog', methods=['GET', 'POST']) #, methods=['GET', 'POST']
 def searchBlog():
     if request.method == "POST":

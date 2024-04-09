@@ -616,6 +616,7 @@ def searchBlog():
             }
             searchResults.append(theme)
 
+        found = len(searchResults)
 
         take_id_rec_pos = generator_daneDBList_RecentPosts(0)
         recentPosts = []
@@ -643,6 +644,7 @@ def searchBlog():
             "searchBlog.html",
             pageTitle=pageTitle,
             posts=posts,
+            found=found,
             pagination=pagination,
             recentPosts=recentPosts
             )

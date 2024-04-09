@@ -580,13 +580,31 @@ def page_not_found(e):
 def searchBlog():
     if request.method == "POST":
         query = request.form["query"]
+
         sqlQuery = f'SELECT * FROM contents WHERE TITLE LIKE {query} OR CONTENT_MAIN LIKE {query} OR HIGHLIGHTS LIKE {query} OR BULLETS LIKE {query} ORDER BY ID DESC'
         results = msq.connect_to_database(sqlQuery) 
+        pageTitle = f'Wyniki wyszukiwania dla {query}'
 
 
+        take_id_rec_pos = generator_daneDBList_RecentPosts(0)
+        recentPosts = []
+        for idp in take_id_rec_pos:
+            t_post = generator_daneDBList_one_post_id(idp)[0]
+            theme = {
+                'id': t_post['id'],
+                'title': t_post['title'],
+                'mainFoto': t_post['mainFoto'],
+                'category': t_post['category'],
+                'author': t_post['author'],
+                'data': t_post['data']
+            }
+            recentPosts.append(theme)
+            
         return render_template(
             "searchBlog.html",
-            searchResults=results
+            pageTitle=pageTitle,
+            searchResults=results,
+            recentPosts=recentPosts
             )
     else:
         print('Błąd requesta')

@@ -60,6 +60,7 @@ def take_data_table(key, table):
 
 def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'nieaktywna', 'wszystkie'
     took_specOffer = take_data_table('*', 'OfertySpecjalne')
+    print(took_specOffer)
     specOffer = []
     for data in took_specOffer:
         theme = {

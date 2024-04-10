@@ -84,7 +84,7 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
                 specOffer.append(theme)
         if status == 'wszystkie':
             specOffer.append(theme)
-
+    print(specOffer)
     return specOffer
 
 def generator_teamDB(lang='pl'):

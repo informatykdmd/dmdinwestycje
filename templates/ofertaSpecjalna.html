@@ -31,13 +31,12 @@
             <h2 class="white-text">{{secOffers['Tytul']}}</h2>
             
             <div class="row">
+              {% for foto in secOffers['Zdjecia'] %}
+              <div class="col-lg-6">
+                <img src="{{foto}}" class="img-fluid mb-4" alt="">
+              </div>
+              {% endfor %}
 
-              <div class="col-lg-6">
-                <img src="{{secOffers['Zdjecia']}}" class="img-fluid mb-4" alt="">
-              </div>
-              <div class="col-lg-6">
-                <img src="{{secOffers['Zdjecia']}}" class="img-fluid mb-4" alt="">
-              </div>
             </div>
             <p>
                 {{secOffers['Opis']}}

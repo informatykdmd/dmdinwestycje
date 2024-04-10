@@ -60,7 +60,41 @@ def take_data_table(key, table):
 
 def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'nieaktywna', 'wszystkie'
     took_specOffer = take_data_table('*', 'OfertySpecjalne')
-    print(took_specOffer)
+    """
+        (
+            1, 
+            'Oferta 1', 
+            'Opis', 
+            Decimal('150000.00'), 
+            'warzawa', 
+            3, 
+            Decimal('66.00'), 
+            'http://dmddomy.pl:4000/static/images/blog/blog-1.jpg', 
+            'aktywna', 
+            'sprzedaz', 
+            datetime.date(2024, 4, 10), 
+            datetime.date(2024, 4, 20), 
+            datetime.datetime(2024, 4, 10, 12, 37, 29), 
+            datetime.datetime(2024, 4, 10, 12, 37, 29)
+        )
+
+        {
+            'ID': 1, 
+            'Tytul': 'Oferta 1', 
+            'Opis': 'Opis', 
+            'Cena': Decimal('150000.00'), 
+            'LiczbaPokoi': 'warzawa', 
+            'Metraz': 3, 
+            'Zdjecia': Decimal('66.00'), 
+            'Status': 'http://dmddomy.pl:4000/static/images/blog/blog-1.jpg', 
+            'Rodzaj': 'aktywna', 
+            'DataRozpoczecia': 'sprzedaz', 
+            'DataZakonczenia': datetime.date(2024, 4, 10), 
+            'DataUtworzenia': datetime.date(2024, 4, 20), 
+            'DataAktualizacji': datetime.datetime(2024, 4, 10, 12, 37, 29)
+        }
+    """
+    
     specOffer = []
     for data in took_specOffer:
         theme = {
@@ -68,21 +102,22 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
             'Opis': data[2] if lang=='pl' else getLangText(data[2]),
             'Cena': data[3],
-            'LiczbaPokoi': data[4],
-            'Metraz': data[5],
-            'Zdjecia': data[6],
-            'Status': data[7], #ENUM('aktywna', 'nieaktywna'): Używam typu ENUM do określenia statusu oferty. To sprawia, że tylko wartości 'aktywna' i 'nieaktywna' są dozwolone w tej kolumnie.
-            'Rodzaj': data[8] if lang=='pl' else getLangText(data[8]),
-            'DataRozpoczecia': data[9],
-            'DataZakonczenia': data[10],
-            'DataUtworzenia': data[11],
-            'DataAktualizacji': data[12]
+            'Lokalizacja': data[4],
+            'LiczbaPokoi': data[5],
+            'Metraz': data[6],
+            'Zdjecia': data[7],
+            'Status': data[8], #ENUM('aktywna', 'nieaktywna'): Używam typu ENUM do określenia statusu oferty. To sprawia, że tylko wartości 'aktywna' i 'nieaktywna' są dozwolone w tej kolumnie.
+            'Rodzaj': data[9] if lang=='pl' else getLangText(data[8]),
+            'DataRozpoczecia': data[10],
+            'DataZakonczenia': data[11],
+            'DataUtworzenia': data[12],
+            'DataAktualizacji': data[13]
         }
         #'' if data[5] is None else data[5]
         # dostosowane dla dmd inwestycje
-        print(theme)
+
         if status == 'aktywna' or status == 'nieaktywna':
-            if data[7] == status:
+            if data[8] == status:
                 specOffer.append(theme)
         if status == 'wszystkie':
             specOffer.append(theme)

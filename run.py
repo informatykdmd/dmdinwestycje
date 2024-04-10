@@ -60,40 +60,6 @@ def take_data_table(key, table):
 
 def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'nieaktywna', 'wszystkie'
     took_specOffer = take_data_table('*', 'OfertySpecjalne')
-    """
-        (
-            1, 
-            'Oferta 1', 
-            'Opis', 
-            Decimal('150000.00'), 
-            'warzawa', 
-            3, 
-            Decimal('66.00'), 
-            'http://dmddomy.pl:4000/static/images/blog/blog-1.jpg', 
-            'aktywna', 
-            'sprzedaz', 
-            datetime.date(2024, 4, 10), 
-            datetime.date(2024, 4, 20), 
-            datetime.datetime(2024, 4, 10, 12, 37, 29), 
-            datetime.datetime(2024, 4, 10, 12, 37, 29)
-        )
-
-        {
-            'ID': 1, 
-            'Tytul': 'Oferta 1', 
-            'Opis': 'Opis', 
-            'Cena': Decimal('150000.00'), 
-            'LiczbaPokoi': 'warzawa', 
-            'Metraz': 3, 
-            'Zdjecia': Decimal('66.00'), 
-            'Status': 'http://dmddomy.pl:4000/static/images/blog/blog-1.jpg', 
-            'Rodzaj': 'aktywna', 
-            'DataRozpoczecia': 'sprzedaz', 
-            'DataZakonczenia': datetime.date(2024, 4, 10), 
-            'DataUtworzenia': datetime.date(2024, 4, 20), 
-            'DataAktualizacji': datetime.datetime(2024, 4, 10, 12, 37, 29)
-        }
-    """
     
     specOffer = []
     for data in took_specOffer:
@@ -113,8 +79,6 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'DataUtworzenia': data[12],
             'DataAktualizacji': data[13]
         }
-        #'' if data[5] is None else data[5]
-        # dostosowane dla dmd inwestycje
 
         if status == 'aktywna' or status == 'nieaktywna':
             if data[8] == status:
@@ -445,7 +409,8 @@ def ofertaSprzedazy():
 def ofertaSpecjalna():
     session['page'] = 'ofertaSpecjalna'
     pageTitle = 'Ofeta Specjalna'
-    secOffers = generator_specialOffert()
+    secOffers = generator_specialOffert()[0]
+
 
     return render_template(
         f'ofertaSpecjalna.html',

@@ -58,6 +58,35 @@ def take_data_table(key, table):
     dump_key = msq.connect_to_database(f'SELECT {key} FROM {table};')
     return dump_key
 
+def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'nieaktywna', 'wszystkie'
+    took_specOffer = take_data_table('*', 'OfertySpecjane')
+    specOffer = []
+    for data in took_specOffer:
+        theme = {
+            'ID': int(data[0]),
+            'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
+            'Opis': data[2] if lang=='pl' else getLangText(data[2]),
+            'Cena': data[3],
+            'LiczbaPokoi': data[4],
+            'Metraz': data[5],
+            'Zdjecia': data[6],
+            'Status': data[7], #ENUM('aktywna', 'nieaktywna'): Używam typu ENUM do określenia statusu oferty. To sprawia, że tylko wartości 'aktywna' i 'nieaktywna' są dozwolone w tej kolumnie.
+            'Rodzaj': data[8] if lang=='pl' else getLangText(data[8]),
+            'DataRozpoczecia': data[9],
+            'DataZakonczenia': data[10],
+            'DataUtworzenia': data[11],
+            'DataAktualizacji': data[12]
+        }
+        #'' if data[5] is None else data[5]
+        # dostosowane dla dmd inwestycje
+        if status == 'aktywna' or status == 'nieaktywna':
+            if data[7] == status:
+                specOffer.append(theme)
+        if status == 'wszystkie':
+            specOffer.append(theme)
+
+    return specOffer
+
 def generator_teamDB(lang='pl'):
     took_teamD = take_data_table('*', 'workers_team')
     teamData = []
@@ -380,10 +409,12 @@ def ofertaSprzedazy():
 def ofertaSpecjalna():
     session['page'] = 'ofertaSpecjalna'
     pageTitle = 'Ofeta Specjalna'
+    secOffers = generator_specialOffert()
 
     return render_template(
         f'ofertaSpecjalna.html',
         pageTitle=pageTitle,
+        secOffers=secOffers
         )
 
 @app.route('/my-jestesmy')

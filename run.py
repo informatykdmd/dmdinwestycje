@@ -103,7 +103,7 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'Opis': data[2] if lang=='pl' else getLangText(data[2]),
             'Cena': data[3],
             'Lokalizacja': data[4],
-            'LiczbaPokoi': data[5],
+            'LiczbaPokoi': '' if data[5] is None else data[5],
             'Metraz': data[6],
             'Zdjecia': data[7],
             'Status': data[8], #ENUM('aktywna', 'nieaktywna'): Używam typu ENUM do określenia statusu oferty. To sprawia, że tylko wartości 'aktywna' i 'nieaktywna' są dozwolone w tej kolumnie.
@@ -121,7 +121,6 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
                 specOffer.append(theme)
         if status == 'wszystkie':
             specOffer.append(theme)
-    print(specOffer)
     return specOffer
 
 def generator_teamDB(lang='pl'):

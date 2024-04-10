@@ -79,6 +79,7 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
         }
         #'' if data[5] is None else data[5]
         # dostosowane dla dmd inwestycje
+        print(theme)
         if status == 'aktywna' or status == 'nieaktywna':
             if data[7] == status:
                 specOffer.append(theme)

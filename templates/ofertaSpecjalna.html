@@ -78,7 +78,7 @@
                     {% set first = True %}
                     {% for foto in secOffers['Zdjecia'] %}
                         <!-- active -->
-                        {% if first %}
+                        {% if first==True %}
                         <div class="carousel-item active">
                             <img src="{{foto}}" class="object-fit-cover rounded d-block w-100" alt="">
                         </div>

@@ -78,11 +78,11 @@
                     {% for foto in secOffers['Zdjecia'] %}
                         {% if loop.first %}
                         <div class="carousel-item active">
-                            <img src="{{foto}}" class="object-fit-cover rounded d-block w-100" alt="">
+                            <img src="{{ foto }}" alt="" class="img-fluid mb-4 gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal" data-index="{{ loop.index0 }}">
                         </div>
                         {% else %}
                         <div class="carousel-item">
-                            <img src="{{foto}}" class="object-fit-cover rounded d-block w-100" alt="">
+                            <img src="{{ foto }}" alt="" class="img-fluid mb-4 gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal" data-index="{{ loop.index0 }}">
                         </div>
                         {% endif %}
                     {% endfor %}

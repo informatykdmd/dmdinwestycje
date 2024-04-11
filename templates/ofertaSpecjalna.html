@@ -28,6 +28,7 @@
         <div class="row">
             <div class="col-lg-12">
             <h2 class="white-text">{{secOffers['Tytul']}}</h2>
+            <img src="{{secOffers['Zdjecia'][0]}}" alt="" class="" data-bs-toggle="modal" data-bs-target="#galleryModal">
             <p>
                 {{secOffers['Opis']}}
             </p>
@@ -43,7 +44,6 @@
             </ul>
             <br />
             <div class="row">
-
                 <div id="gallery-container">
                     {% for foto in secOffers['Zdjecia'] %}
                         <img src="{{foto}}" alt="" class="gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal">

@@ -80,7 +80,23 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'DataRozpoczecia': data[10],
             'DataZakonczenia': data[11],
             'DataUtworzenia': data[12],
-            'DataAktualizacji': data[13]
+            'DataAktualizacji': data[13],
+            'Kaucja': data[14],
+            'Czynsz': data[15],
+            'Umeblowanie': data[16],
+            'LiczbaPieter': data[17],
+            'PowierzchniaDzialki': data[18],
+            'TechBudowy': data[19],
+            'FormaKuchni': data[20],
+            'TypDomu': data[21],
+            'StanWykonczenia': data[22],
+            'RokBudowy': data[23],
+            'NumerKW': data[24],
+            'InformacjeDodatkowe': data[25],
+            'Rynek': data[26],
+            'PrzeznaczenieLokalu': data[27],
+            'Poziom': data[28]
+            
         }
 
         if status == 'aktywna' or status == 'nieaktywna':
@@ -422,13 +438,28 @@ def ofertaSpecjalna():
             'Lokalizacja':'Brak danych o lokalizacji',
             'LiczbaPokoi': 'Brak danych!',
             'Metraz': 'Brak danych!',
-            'Zdjecia': 'Brak danych!',
+            'Zdjecia': [],
             'Status': 'Brak danych!',
             'Rodzaj': 'Brak danych!',
             'DataRozpoczecia': 'Brak danych!',
             'DataZakonczenia': 'Brak danych!',
             'DataUtworzenia': 'Brak danych!',
-            'DataAktualizacji': 'Brak danych!'
+            'DataAktualizacji': 'Brak danych!',
+            'Kaucja': 'Brak danych!',
+            'Czynsz': 'Brak danych!',
+            'Umeblowanie': 'Brak danych!',
+            'LiczbaPieter': 'Brak danych!',
+            'PowierzchniaDzialki': 'Brak danych!',
+            'TechBudowy': 'Brak danych!',
+            'FormaKuchni': 'Brak danych!',
+            'TypDomu': 'Brak danych!',
+            'StanWykonczenia': 'Brak danych!',
+            'RokBudowy': 'Brak danych!',
+            'NumerKW': 'Brak danych!',
+            'InformacjeDodatkowe': 'Brak danych!',
+            'Rynek': 'Brak danych!',
+            'PrzeznaczenieLokalu': 'Brak danych!',
+            'Poziom': 'Brak danych!'
         }
 
     try: mainFoto = secOffers['Zdjecia'][0]

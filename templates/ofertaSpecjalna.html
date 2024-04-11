@@ -70,17 +70,16 @@
     <div class="container" data-aos="fade-up">
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
             <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                    <div class="testimonial-wrap">
-                        <div class="testimonial-item">
-                            <div id="gallery-container">
-                                {% for foto in secOffers['Zdjecia'] %}
-                                <img src="{{foto}}" alt="" class="gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal">
-                                {% endfor %}
+                <div id="gallery-container">
+                    {% for foto in secOffers['Zdjecia'] %}
+                    <div class="swiper-slide">
+                        <div class="testimonial-wrap">
+                            <div class="testimonial-item">
+                                <img src="{{foto}}" alt="" class="gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal">    
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div><!-- End gallery item -->
             </div>
             <div class="swiper-pagination"></div>

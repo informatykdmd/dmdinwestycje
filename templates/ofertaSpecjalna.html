@@ -25,44 +25,47 @@
 <main id="main" class="single-page">
     <section class="single-page">
         <div class="container" data-aos="fade-up">
-        <div class="row">
-            <div class="col-lg-12">
-            <h2 class="white-text">{{secOffers['Tytul']}}</h2>
-            <img src="{{mainFoto}}" alt="" class="img-fluid gallery-img-main rounded-2" data-bs-toggle="modal" data-bs-target="#galleryModal">
-            <p>
-                {{secOffers['Opis']}}
-            </p>
-            <p>
-                {{secOffers}}
-            </p>
-            <p class="white-text font-size-large">
-                <strong>Parametry:</strong>
-            </p>
-            <ul class="horizontal-list">
-                <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rodzaj: </strong> {{secOffers['Rodzaj']}}</li>
-                <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Lokalizacja: </strong> {{secOffers['Lokalizacja']}}</li>
-                <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Cena: </strong> {{secOffers['Cena']}}</li>
-                <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Metraz: </strong> {{secOffers['Metraz']}}</li>
-                <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Liczba Pokoi: </strong> {{secOffers['LiczbaPokoi']}}</li>
-            </ul>
-            <br />
             <div class="row">
-                <div id="gallery-container">
-                    {% for foto in secOffers['Zdjecia'] %}
-                        <img src="{{foto}}" alt="" class="gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal">
-                    {% endfor %}
+                <div class="col-lg-10">
+                    <h2 class="white-text">{{secOffers['Tytul']}}</h2>
+                    <img src="{{mainFoto}}" alt="" class="img-fluid gallery-img-main rounded-2" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                    <p>
+                        {{secOffers['Opis']}}
+                    </p>
+                    <p>
+                        {{secOffers}}
+                    </p>
+                    
+                    <div class="row">
+                        <div id="gallery-container">
+                            {% for foto in secOffers['Zdjecia'] %}
+                                <img src="{{foto}}" alt="" class="gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <br />
+
+                    <h3 class="white-text">Zapraszamy do skorzystania z oferty</h3>
+                    <p>
+                        Nie czekaj – dołącz do grona naszych zadowolonych klientów. Skontaktuj się z nami już dziś, aby dowiedzieć się więcej 
+                        o tej lub innej naszej ofercie.
+                    </p>
+                </div>
+                <div class="col-lg-2">
+                    <p class="white-text font-size-large">
+                        <strong>Parametry:</strong>
+                    </p>
+                    <ul class="horizontal-list">
+                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rodzaj: </strong> {{secOffers['Rodzaj']}}</li>
+                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Lokalizacja: </strong> {{secOffers['Lokalizacja']}}</li>
+                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Cena: </strong> {{secOffers['Cena']}}</li>
+                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Metraz: </strong> {{secOffers['Metraz']}}</li>
+                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Liczba Pokoi: </strong> {{secOffers['LiczbaPokoi']}}</li>
+                    </ul>
+                    <br />
                 </div>
             </div>
-            
-            <br />
-
-            <h3 class="white-text">Zapraszamy do skorzystania z oferty</h3>
-            <p>
-                Nie czekaj – dołącz do grona naszych zadowolonych klientów. Skontaktuj się z nami już dziś, aby dowiedzieć się więcej 
-                o tej lub innej naszej ofercie.
-            </p>
-        </div>
-        </div>
         </div>
     </section>
 {% endblock %}

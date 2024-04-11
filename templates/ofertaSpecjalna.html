@@ -102,3 +102,18 @@
 </overflow>
     
 {% endblock %}
+{% block bottom_scripts %}
+<script>
+    document.querySelectorAll('.gallery-img').forEach((item, index) => {
+    item.addEventListener('click', () => {
+      const carouselInner = document.querySelector('.carousel-inner');
+      Array.from(carouselInner.children).forEach((carouselItem, idx) => {
+        carouselItem.classList.remove('active');
+        if (idx === index) {
+          carouselItem.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

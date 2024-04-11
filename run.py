@@ -431,7 +431,7 @@ def ofertaSpecjalna():
             'DataAktualizacji': 'Brak danych!'
         }
 
-    try: mainFoto = secOffers[0]
+    try: mainFoto = secOffers['Zdjecia'][0]
     except IndexError: mainFoto = ''
 
     return render_template(

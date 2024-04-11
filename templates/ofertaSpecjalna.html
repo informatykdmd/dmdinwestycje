@@ -74,7 +74,7 @@
             <div class="modal-body">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <!-- Wnętrze karuzeli z elementami -->
-                <div class="carousel-inner">
+                <div class="carousel-inner" id="gallery-container">
                     {% for foto in secOffers['Zdjecia'] %}
                         {% if loop.first %}
                         <div class="carousel-item active">
@@ -108,16 +108,29 @@
 {% endblock %}
 {% block bottom_scripts %}
 <script>
-    document.querySelectorAll('.gallery-img').forEach((item, index) => {
-    item.addEventListener('click', () => {
-      const carouselInner = document.querySelector('.carousel-inner');
-      Array.from(carouselInner.children).forEach((carouselItem, idx) => {
-        carouselItem.classList.remove('active');
-        if (idx === index) {
-          carouselItem.classList.add('active');
-        }
-      });
+//     document.querySelectorAll('.gallery-img').forEach((item, index) => {
+//     item.addEventListener('click', () => {
+//       const carouselInner = document.querySelector('.carousel-inner');
+//       Array.from(carouselInner.children).forEach((carouselItem, idx) => {
+//         carouselItem.classList.remove('active');
+//         if (idx === index) {
+//           carouselItem.classList.add('active');
+//         }
+//       });
+//     });
+//   });
+    document.querySelectorAll('.gallery-img').forEach(item => {
+        item.addEventListener('click', () => {
+            const index = item.getAttribute('data-index'); // Pobiera indeks klikniętego obrazka
+            const carouselInner = document.querySelector('.carousel-inner');
+            Array.from(carouselInner.children).forEach((carouselItem, idx) => {
+                carouselItem.classList.remove('active'); // Usuwa klasę active z wszystkich elementów
+                if (idx.toString() === index) {
+                    carouselItem.classList.add('active'); // Dodaje klasę active do klikniętego obrazka
+                }
+            });
+        });
     });
-  });
 </script>
+
 {% endblock %}

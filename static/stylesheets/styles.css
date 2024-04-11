@@ -3532,6 +3532,13 @@ button.btn-get-started:hover {
 	margin: 10px;
 	cursor: pointer;
   }
+
+.gallery-img-main {
+    width: 100%;
+    height: auto;
+    margin: 10px;
+    cursor: pointer;
+    }
   
   #gallery-overlay {
 	position: fixed;

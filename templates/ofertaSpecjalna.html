@@ -75,11 +75,19 @@
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <!-- Wnętrze karuzeli z elementami -->
                 <div class="carousel-inner">
+                    {% set first = True %}
                     {% for foto in secOffers['Zdjecia'] %}
-                    <!-- active -->
-                    <div class="carousel-item active">
-                        <img src="{{foto}}" class="object-fit-cover rounded d-block w-100" alt="">
-                    </div>
+                        <!-- active -->
+                        {% if first %}
+                        <div class="carousel-item active">
+                            <img src="{{foto}}" class="object-fit-cover rounded d-block w-100" alt="">
+                        </div>
+                        {% else %}
+                        <div class="carousel-item">
+                            <img src="{{foto}}" class="object-fit-cover rounded d-block w-100" alt="">
+                        </div>
+                        {% endif %}
+                    {% set first = False %}
                     {% endfor %}
                     <!-- <div class="carousel-item">
                         <img src="images\our-work\full\2.jpg" class="object-fit-cover rounded d-block w-100" alt="Opis zdjęcia 2">

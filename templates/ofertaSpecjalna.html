@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-lg-3 pt-30">
                     <p class="white-text font-size-large">
-                        <strong>{{secOffers['Cena']}} PLN</strong>
+                        <strong><span id="price">{{secOffers['Cena']}}</span> PLN</strong>
                     </p>
                     <ul class="horizontal-list">
                         <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rodzaj: </strong> {{secOffers['Rodzaj']}}</li>
@@ -122,6 +122,16 @@
       });
     });
   });    
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var priceElement = document.getElementById("price");
+    var price = parseFloat(priceElement.innerText).toLocaleString('pl-PL', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    priceElement.innerText = price;
+    });
+
 </script>
 
 {% endblock %}

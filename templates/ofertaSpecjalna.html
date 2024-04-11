@@ -44,13 +44,10 @@
             <br />
             <div class="row">
 
-                <!-- <div class="col-lg-6">
-                <img src="{{foto}}" class="img-fluid mb-4" alt="">
-                </div> -->
                 <div id="gallery-container">
-                {% for foto in secOffers['Zdjecia'] %}
-                <img src="{{foto}}" alt="" class="gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal">
-                {% endfor %}
+                    {% for foto in secOffers['Zdjecia'] %}
+                        <img src="{{foto}}" alt="" class="gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                    {% endfor %}
                 </div>
             </div>
             
@@ -65,28 +62,6 @@
         </div>
         </div>
     </section>
-<!-- Gallery Section -->
-<section id="testimonials" class="testimonials">
-    <div class="container" data-aos="fade-up">
-        <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
-            <div class="swiper-wrapper">
-                
-                    {% for foto in secOffers['Zdjecia'] %}
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <div id="gallery-container">
-                                    <img src="{{foto}}" alt="" class="gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal">    
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End gallery item -->
-                    {% endfor %}
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </div>
-</section><!-- End Gallery Section -->
 {% endblock %}
 {% block end_of_body %}
 <!-- Modal z karuzelą -->

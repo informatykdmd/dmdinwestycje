@@ -412,12 +412,32 @@ def ofertaSprzedazy():
 def ofertaSpecjalna():
     session['page'] = 'ofertaSpecjalna'
     pageTitle = 'Ofeta Specjalna'
-    secOffers = generator_specialOffert()[0]
 
+    try: secOffers = generator_specialOffert()[0]
+    except IndexError: secOffers = {
+            'ID': 0,
+            'Tytul': 'Brak danych o tytule',
+            'Opis': 'Brak danych o opisie',
+            'Cena': 'Brak danych o cenie',
+            'Lokalizacja':'Brak danych o lokalizacji',
+            'LiczbaPokoi': 'Brak danych!',
+            'Metraz': 'Brak danych!',
+            'Zdjecia': 'Brak danych!',
+            'Status': 'Brak danych!',
+            'Rodzaj': 'Brak danych!',
+            'DataRozpoczecia': 'Brak danych!',
+            'DataZakonczenia': 'Brak danych!',
+            'DataUtworzenia': 'Brak danych!',
+            'DataAktualizacji': 'Brak danych!'
+        }
+
+    try: mainFoto = secOffers[0]
+    except IndexError: mainFoto = ''
 
     return render_template(
         f'ofertaSpecjalna.html',
         pageTitle=pageTitle,
+        mainFoto=mainFoto,
         secOffers=secOffers
         )
 

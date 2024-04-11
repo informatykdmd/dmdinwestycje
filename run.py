@@ -63,6 +63,9 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
     
     specOffer = []
     for data in took_specOffer:
+        try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[7])[0][1:-1]
+        except IndexError: fotoList = []
+
         theme = {
             'ID': int(data[0]),
             'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
@@ -71,7 +74,7 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'Lokalizacja': data[4],
             'LiczbaPokoi': '' if data[5] is None else data[5],
             'Metraz': data[6],
-            'Zdjecia': [foto for foto in take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[7])[0][1:-1] if foto is not None],
+            'Zdjecia': [foto for foto in fotoList if foto is not None],
             'Status': data[8], #ENUM('aktywna', 'nieaktywna'): Używam typu ENUM do określenia statusu oferty. To sprawia, że tylko wartości 'aktywna' i 'nieaktywna' są dozwolone w tej kolumnie.
             'Rodzaj': data[9] if lang=='pl' else getLangText(data[8]),
             'DataRozpoczecia': data[10],

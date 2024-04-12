@@ -119,7 +119,9 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'Rynek': '' if data[26] is None else data[26],
             'PrzeznaczenieLokalu': '' if data[27] is None else data[27],
             'Poziom': '' if data[28] is None else data[28],
-            'GPS': gps_json
+            'GPS': gps_json,
+            'TelefonKontaktowy': '' if data[30] is None else data[30],
+            'EmailKontaktowy': '' if data[31] is None else data[31]
         }
 
         if status == 'aktywna' or status == 'nieaktywna':
@@ -483,7 +485,9 @@ def ofertaSpecjalna():
             'Rynek': 'Brak danych!',
             'PrzeznaczenieLokalu': 'Brak danych!',
             'Poziom': 'Brak danych!',
-            'GPS': {}
+            'GPS': {},
+            'TelefonKontaktowy': 'Brak danych!',
+            'EmailKontaktowy': 'Brak danych!'
         }
 
     {"latitude": 52.229676, "longitude": 21.012229}

@@ -3482,6 +3482,9 @@ button.btn-get-started:hover {
   margin-right: 0; /* Usuwa margines z prawej strony ostatniego elementu listy */
 }
 
+.font-contact-sidebar {
+  font-size: 50px !important; /* Bardzo duże */
+}
 .font-size-very-large {
   font-size: 32px !important; /* Bardzo duże */
 }

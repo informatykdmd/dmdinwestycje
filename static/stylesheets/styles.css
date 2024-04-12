@@ -3689,3 +3689,9 @@ button.btn-get-started:hover {
 .padding-left-10 {
   padding-left: 10px !important;
 }
+
+.special-offer-homepage {
+  border: #000064 dashed 2px;
+  font-weight: bold;
+  color: #000064;
+}

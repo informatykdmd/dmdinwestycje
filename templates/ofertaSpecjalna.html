@@ -112,19 +112,19 @@
                             <li><i class="bi bi-house-up"></i> <strong class="white-text">Liczba Pięter: </strong> {{secOffers['LiczbaPieter']}}</li>
                             {% endif %}
                             {% if secOffers['PowierzchniaDzialki']!=0 %}
-                            <li><i class="bi bi-app-indicator"></i> <strong class="white-text">Powierzchnia Dzialki: </strong> {{secOffers['PowierzchniaDzialki']}} m&sup2;</li>
+                            <li><i class="bi bi-app-indicator"></i> <strong class="white-text">Powierzchnia Dzialki: </strong> <br />{{secOffers['PowierzchniaDzialki']}} m&sup2;</li>
                             {% endif %}
                             {% if secOffers['TechBudowy']!='' %}
-                            <li><i class="bi bi-house-gear"></i> <strong class="white-text">Technologia Budowy  </strong> {{secOffers['TechBudowy']}}</li>
+                            <li><i class="bi bi-house-gear"></i> <strong class="white-text">Technologia Budowy: </strong> <br />{{secOffers['TechBudowy']}}</li>
                             {% endif %}
                             {% if secOffers['FormaKuchni']!="" %}
-                            <li><i class="bi bi-house-heart"></i> <strong class="white-text">Forma Kuchni: </strong> {{secOffers['FormaKuchni']}}</li>
+                            <li><i class="bi bi-house-heart"></i> <strong class="white-text">Forma Kuchni: </strong> <br />{{secOffers['FormaKuchni']}}</li>
                             {% endif %}
                             {% if secOffers['TypDomu']!="" %}
                             <li><i class="bi bi-house"></i> <strong class="white-text">Typ Domu: </strong> {{secOffers['TypDomu']}}</li>
                             {% endif %}
                             {% if secOffers['StanWykonczenia']!="" %}
-                            <li><i class="bi bi-house-check"></i> <strong class="white-text">Stan Wykończenia: </strong> {{secOffers['StanWykonczenia']}}</li>
+                            <li><i class="bi bi-house-check"></i> <strong class="white-text">Stan Wykończenia: </strong> <br />{{secOffers['StanWykonczenia']}}</li>
                             {% endif %}
                             {% if secOffers['RokBudowy']!=0 %}
                             <li><i class="bi bi-calendar3"></i> <strong class="white-text">Rok Budowy: </strong> {{secOffers['RokBudowy']}}</li>
@@ -136,7 +136,7 @@
                             <li><i class="bi bi-cart-check"></i> <strong class="white-text">Rynek: </strong> {{secOffers['Rynek']}}</li>
                             {% endif %}
                             {% if secOffers['PrzeznaczenieLokalu']!="" %}
-                            <li><i class="bi bi-signpost-split"></i> <strong class="white-text">Przeznaczenie Lokalu: </strong> {{secOffers['PrzeznaczenieLokalu']}}</li>
+                            <li><i class="bi bi-signpost-split"></i> <strong class="white-text">Przeznaczenie Lokalu: </strong> <br />{{secOffers['PrzeznaczenieLokalu']}}</li>
                             {% endif %}
                             {% if secOffers['Poziom']!='None' %}
                             <li><i class="bi bi-stack"></i> <strong class="white-text">Poziom: </strong> {{secOffers['Poziom']}}</li>

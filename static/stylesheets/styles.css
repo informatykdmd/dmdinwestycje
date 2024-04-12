@@ -3484,6 +3484,7 @@ button.btn-get-started:hover {
 
 .font-contact-sidebar {
   font-size: 50px !important; /* Bardzo duże */
+  margin: 5px;
 }
 .font-size-very-large {
   font-size: 32px !important; /* Bardzo duże */

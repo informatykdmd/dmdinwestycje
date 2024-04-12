@@ -59,7 +59,7 @@
                     <div class="offer-frame-details">
 
                         <ul >
-                            {% if secOffers['TelefonKontaktowy']=='' and secOffers['EmailKontaktowy']=='' %}
+                            {% if secOffers['TelefonKontaktowy']!='' and secOffers['EmailKontaktowy']!='' %}
                             <li>
                                 <p>
                                     <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 

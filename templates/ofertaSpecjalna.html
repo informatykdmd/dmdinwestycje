@@ -72,34 +72,82 @@
                                 </a>
                             </li>
                             {% endif %}
-                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rodzaj: </strong> {{secOffers['Rodzaj']}}</li>
+                            <li>
+                                <strong class="white-text">Rodzaj: </strong> 
+                                {% if secOffers['Rodzaj'] == 'sprzedaz' %}
+                                    Oferta Sprzedaży
+                                {% elif secOffers['Rodzaj'] == 'zakup' %}
+                                    Oferta Kupna
+                                {% elif secOffers['Rodzaj'] == 'wynajem' %}
+                                    Oferta Wynajmu
+                                {% endif %}
+                            </li>
+                            {% if secOffers['Lokalizacja']!='' %}
                             <li>
                                 <i class="bi bi-arrow-right-circle-fill orange-text"></i> 
                                 <strong class="white-text">Lokalizacja: </strong> {{secOffers['Lokalizacja']}} 
+                                {% if coordinates[0]!='None' and coordinates[1]!='None' %}
                                 <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
                                     <i class="fa fa-map-marker red-text"></i>
                                 </a>
                                 <a href="javascript:void(0);" onClick="openGoogleMaps('{{coordinates[0]}}','{{coordinates[1]}}');">
                                     <i class="fa fa-map-marker blue-text"></i>
                                 </a>
+                                {% endif %}
                             </li>
+                            {% endif %}
+                            {% if secOffers['Cena']!=0 %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Cena: </strong> {{secOffers['Cena']}}</li>
+                            {% endif %}
+                            {% if secOffers['Metraz']!=0 %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Metraz: </strong> {{secOffers['Metraz']}}</li>
+                            {% endif %}
+                            {% if secOffers['LiczbaPokoi']!=0 %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Liczba Pokoi: </strong> {{secOffers['LiczbaPokoi']}}</li>
+                            {% endif %}
+                            {% if secOffers['Kaucja']!=0 %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Kaucja: </strong> {{secOffers['Kaucja']}}</li>
+                            {% endif %}
+                            {% if secOffers['Czynsz']!=0 %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Czynsz: </strong> {{secOffers['Czynsz']}}</li>
+                            {% endif %}
+                            {% if secOffers['LiczbaPieter']!=0 %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Liczba Pięter: </strong> {{secOffers['LiczbaPieter']}}</li>
+                            {% endif %}
+                            {% if secOffers['PowierzchniaDzialki']!=0 %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Powierzchnia Dzialki: </strong> {{secOffers['PowierzchniaDzialki']}}</li>
+                            {% endif %}
+                            {% if secOffers['TechBudowy']!='' %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Technologia Budowy  </strong> {{secOffers['TechBudowy']}}</li>
+                            {% endif %}
+                            {% if secOffers['FormaKuchni']!="" %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Forma Kuchni: </strong> {{secOffers['FormaKuchni']}}</li>
+                            {% endif %}
+                            {% if secOffers['TypDomu']!="" %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Typ Domu: </strong> {{secOffers['TypDomu']}}</li>
+                            {% endif %}
+                            {% if secOffers['StanWykonczenia']!="" %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Stan Wykończenia: </strong> {{secOffers['StanWykonczenia']}}</li>
+                            {% endif %}
+                            {% if secOffers['RokBudowy']!=0 %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rok Budowy: </strong> {{secOffers['RokBudowy']}}</li>
+                            {% endif %}
+                            {% if secOffers['NumerKW']!=0 %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Numer KW: </strong> {{secOffers['NumerKW']}}</li>
+                            {% endif %}
+                            {% if secOffers['Rynek']!="" %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rynek: </strong> {{secOffers['Rynek']}}</li>
+                            {% endif %}
+                            {% if secOffers['PrzeznaczenieLokalu']!="" %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Przeznaczenie Lokalu: </strong> {{secOffers['PrzeznaczenieLokalu']}}</li>
+                            {% endif %}
+                            {% if secOffers['Poziom']!='None' %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Poziom: </strong> {{secOffers['Poziom']}}</li>
+                            {% endif %}
+                            {% if secOffers['InformacjeDodatkowe']!="" %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Informacje Dodatkowe: </strong> {{secOffers['InformacjeDodatkowe']}}</li>
+                            {% endif %}
+                            
                         </ul>
                     </div>
                     <br />

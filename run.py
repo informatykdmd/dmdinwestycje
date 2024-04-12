@@ -100,10 +100,10 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'Zdjecia': [foto for foto in fotoList if foto is not None],
             'Status': data[8], #ENUM('aktywna', 'nieaktywna'): Używam typu ENUM do określenia statusu oferty. To sprawia, że tylko wartości 'aktywna' i 'nieaktywna' są dozwolone w tej kolumnie.
             'Rodzaj': data[9] if lang=='pl' else getLangText(data[8]),
-            'DataRozpoczecia': data[10],
-            'DataZakonczenia': data[11],
-            'DataUtworzenia': data[12],
-            'DataAktualizacji': data[13],
+            'DataRozpoczecia': format_date(data[10]),
+            'DataZakonczenia': format_date(data[11]),
+            'DataUtworzenia': format_date(data[12]),
+            'DataAktualizacji': format_date(data[13]),
             'Kaucja': 0.00 if data[14] is None else data[14],
             'Czynsz': 0.00 if data[15] is None else data[15],
             'Umeblowanie': '' if data[16] is None else data[16],
@@ -118,7 +118,7 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'InformacjeDodatkowe': '' if data[25] is None else data[25],
             'Rynek': '' if data[26] is None else data[26],
             'PrzeznaczenieLokalu': '' if data[27] is None else data[27],
-            'Poziom': '' if data[28] is None else data[28],
+            'Poziom': 'None' if data[28] is None else data[28],
             'GPS': gps_json,
             'TelefonKontaktowy': '' if data[30] is None else data[30],
             'EmailKontaktowy': '' if data[31] is None else data[31]
@@ -484,7 +484,7 @@ def ofertaSpecjalna():
             'InformacjeDodatkowe': 'Brak danych!',
             'Rynek': 'Brak danych!',
             'PrzeznaczenieLokalu': 'Brak danych!',
-            'Poziom': 'Brak danych!',
+            'Poziom': 'None',
             'GPS': {},
             'TelefonKontaktowy': 'Brak danych!',
             'EmailKontaktowy': 'Brak danych!'

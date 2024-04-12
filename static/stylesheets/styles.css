@@ -3704,8 +3704,8 @@ button.btn-get-started:hover {
 }
 
 .offer {
-  width: 200px;
-  height: 100px;
+  /* width: 200px;
+  height: 100px; */
   position: absolute;
   display: flex;
   align-items: center;
@@ -3745,7 +3745,8 @@ button.btn-get-started:hover {
 #specTytul {
   top: 0;
   left: 0;
-  transform: translate(-70%, -70%);
+  transform: translate(-5%, -8%);
+  border-radius: 3%;
 }
 
 #specRodzaj {

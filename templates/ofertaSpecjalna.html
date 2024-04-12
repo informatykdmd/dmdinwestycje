@@ -79,17 +79,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 
-                                    <i class="bi bi-envelope orange-text font-contact-sidebar"></i> 
-                                </a>
-                                <a href="https://wa.me/{{secOffers['TelefonKontaktowy']}}">
-                                    <i class="bi bi-whatsapp green-text font-contact-sidebar"></i> 
-                                </a>
-                                <a href="tel:{{secOffers['TelefonKontaktowy']}}">
-                                    <i class="bi bi-phone-flip green-text font-contact-sidebar"></i> 
-                                </a>
-                            </li>
                             {% endif %}
                             <li>
                                 <div style="min-height: 50px;">
@@ -97,7 +86,7 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Rodzaj Oferty</span>
                                     </div>
-                                    <div>
+                                    <div class="padding-left-10">
                                         <i class="bi bi-house-check white-gray"></i> 
                                         {% if secOffers['Rodzaj'] == 'sprzedaz' %}
                                             Oferta Sprzedaży
@@ -116,8 +105,8 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Lokalizacja</span>
                                     </div>
-                                    <div>
-                                        <strong class="white-text"><i class="bi bi-geo"></i> </strong> {{secOffers['Lokalizacja']}} 
+                                    <div class="padding-left-10">
+                                        <strong class="green-text"><i class="bi bi-geo"></i> </strong> {{secOffers['Lokalizacja']}} 
                                         {% if coordinates[0]!='None' and coordinates[1]!='None' %}
                                         <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
                                             <i class="fa fa-map-marker red-text"></i>
@@ -138,7 +127,7 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Metraż</span>
                                     </div>
-                                    <div>
+                                    <div class="padding-left-10">
                                         <i class="bi bi-house-check white-gray"></i> {{secOffers['Metraz']}} m&sup2;
                                     </div>
                                 </div>
@@ -151,8 +140,8 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Liczba Pokoi</span>
                                     </div>
-                                    <div>
-                                        <i class="bi bi-house-check orange-text"></i> {{secOffers['LiczbaPokoi']}} PLN
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-check orange-text"></i> {{secOffers['LiczbaPokoi']}}
                                     </div>
                                 </div>
                             </li>
@@ -164,7 +153,7 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Kaucja</span>
                                     </div>
-                                    <div>
+                                    <div class="padding-left-10">
                                         <i class="bi bi-cash orange-text"></i> {{secOffers['Kaucja']}} PLN
                                     </div>
                                 </div>
@@ -177,8 +166,8 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Czynsz</span>
                                     </div>
-                                    <div>
-                                        <i class="bi bi-cash red-text"></i> {{secOffers['Czynsz']}} PLN
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-cash green-text"></i> {{secOffers['Czynsz']}} PLN
                                     </div>
                                 </div>
                             </li>
@@ -190,8 +179,8 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Liczba Pięter</span>
                                     </div>
-                                    <div>
-                                        <i class="bi bi-house-up red-text"></i> {{secOffers['LiczbaPieter']}}
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-up geen-text"></i> {{secOffers['LiczbaPieter']}}
                                     </div>
                                 </div>
                             </li>
@@ -203,8 +192,8 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                          <strong class="white-text font-size-very-small">Powierzchnia Dzialki</strong>
                                     </div>
-                                    <div>
-                                        <i class="bi bi-app-indicator"></i> {{secOffers['PowierzchniaDzialki']}} m&sup2;
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-app-indicator white-text"></i> {{secOffers['PowierzchniaDzialki']}} m&sup2;
                                     </div>
                                 </div>
                             </li>
@@ -216,7 +205,7 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Technologia Budowy</span>
                                     </div>
-                                    <div>
+                                    <div class="padding-left-10">
                                         <i class="bi bi-house-gear green-text"></i> {{secOffers['TechBudowy']}}
                                     </div>
                                 </div>
@@ -229,8 +218,8 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Forma Kuchni</span>
                                     </div>
-                                    <div>
-                                        <i class="bi bi-house-heart white-text"></i> {{secOffers['FormaKuchni']}}
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-heart white-gray"></i> {{secOffers['FormaKuchni']}}
                                     </div>
                                 </div>
                             </li>
@@ -242,8 +231,8 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Typ Domu</span>
                                     </div>
-                                    <div>
-                                        <i class="bi bi-house white-text"></i> {{secOffers['TypDomu']}}
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house white-gray"></i> {{secOffers['TypDomu']}}
                                     </div>
                                 </div>
                             </li>
@@ -255,7 +244,7 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Stan Wykończenia</span>
                                     </div>
-                                    <div>
+                                    <div class="padding-left-10">
                                         <i class="bi bi-house-check white-gray"></i> {{secOffers['StanWykonczenia']}}
                                     </div>
                                 </div>
@@ -268,7 +257,7 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">RokBudowy</span>
                                     </div>
-                                    <div>
+                                    <div class="padding-left-10">
                                         <i class="bi bi-calendar3 white-gray"></i> {{secOffers['RokBudowy']}}
                                     </div>
                                 </div>
@@ -281,8 +270,8 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                          <strong class="white-text font-size-very-small">Numer KW</strong>
                                     </div>
-                                    <div>
-                                        <i class="bi bi-journal-text"></i> {{secOffers['NumerKW']}}
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-journal-text green-text"></i> {{secOffers['NumerKW']}}
                                     </div>
                                 </div>
                             </li>
@@ -294,8 +283,8 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Rynek</span>
                                     </div>
-                                    <div>
-                                        <i class="bi bi-cart-check white-text"></i> {{secOffers['Rynek']}}
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-cart-check white-gray"></i> {{secOffers['Rynek']}}
                                     </div>
                                 </div>
                             </li>
@@ -307,7 +296,7 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                         <span class="white-text font-size-very-small padding-left-5">Przeznaczenie Lokalu</span>
                                     </div>
-                                    <div>
+                                    <div class="padding-left-10">
                                         <i class="bi bi-signpost-split green-text"></i> {{secOffers['PrzeznaczenieLokalu']}}
                                     </div>
                                 </div>
@@ -320,7 +309,7 @@
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                          <span class="white-text font-size-very-small padding-left-5">Poziom</span>
                                     </div>
-                                    <div>
+                                    <div class="padding-left-10">
                                         <i class="bi bi-stack orange-text"></i> {{secOffers['Poziom']}}
                                     </div>
                                 </div>
@@ -331,10 +320,10 @@
                                 <div style="min-height: 50px;">
                                     <div>
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                         <span class="white-text font-size-very-small padding-left-5">Informacje Dodatkowe</span>
+                                         <span class="white-text font-size-very-small padding-left-5">Informacje Dodatkowe </span> <i class="bi bi-info-lg green-text"></i>
                                     </div>
-                                    <div>
-                                        <i class="bi bi-info-lg green-text"></i> {{secOffers['InformacjeDodatkowe']}}
+                                    <div class="padding-left-10">
+                                         {{secOffers['InformacjeDodatkowe']}}
                                     </div>
                                 </div>
                             </li>

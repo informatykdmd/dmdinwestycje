@@ -9,6 +9,7 @@ import secrets
 from datetime import datetime
 from googletrans import Translator
 import random
+import json
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -66,6 +67,9 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
         try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[7])[0][1:-1]
         except IndexError: fotoList = []
 
+        try: gps_json = json.loads(data[29])
+        except json.JSONDecodeError: gps_json = {}
+
         theme = {
             'ID': int(data[0]),
             'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
@@ -73,7 +77,7 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'Cena': data[3],
             'Lokalizacja': data[4],
             'LiczbaPokoi': '' if data[5] is None else data[5],
-            'Metraz': data[6],
+            'Metraz': '' if data[6] is None else data[6],
             'Zdjecia': [foto for foto in fotoList if foto is not None],
             'Status': data[8], #ENUM('aktywna', 'nieaktywna'): Używam typu ENUM do określenia statusu oferty. To sprawia, że tylko wartości 'aktywna' i 'nieaktywna' są dozwolone w tej kolumnie.
             'Rodzaj': data[9] if lang=='pl' else getLangText(data[8]),
@@ -81,22 +85,22 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             'DataZakonczenia': data[11],
             'DataUtworzenia': data[12],
             'DataAktualizacji': data[13],
-            'Kaucja': data[14],
-            'Czynsz': data[15],
-            'Umeblowanie': data[16],
-            'LiczbaPieter': data[17],
-            'PowierzchniaDzialki': data[18],
-            'TechBudowy': data[19],
-            'FormaKuchni': data[20],
-            'TypDomu': data[21],
-            'StanWykonczenia': data[22],
-            'RokBudowy': data[23],
-            'NumerKW': data[24],
-            'InformacjeDodatkowe': data[25],
-            'Rynek': data[26],
-            'PrzeznaczenieLokalu': data[27],
-            'Poziom': data[28]
-            
+            'Kaucja': 0.00 if data[14] is None else data[14],
+            'Czynsz': 0.00 if data[15] is None else data[15],
+            'Umeblowanie': '' if data[16] is None else data[16],
+            'LiczbaPieter': 0 if data[17] is None else data[17],
+            'PowierzchniaDzialki': 0.00 if data[18] is None else data[18],
+            'TechBudowy': '' if data[19] is None else data[19],
+            'FormaKuchni': '' if data[20] is None else data[20],
+            'TypDomu': '' if data[21] is None else data[21],
+            'StanWykonczenia': '' if data[22] is None else data[22],
+            'RokBudowy': 0 if data[23] is None else data[23],
+            'NumerKW': '' if data[24] is None else data[24],
+            'InformacjeDodatkowe': '' if data[25] is None else data[25],
+            'Rynek': '' if data[26] is None else data[26],
+            'PrzeznaczenieLokalu': '' if data[27] is None else data[27],
+            'Poziom': '' if data[28] is None else data[28],
+            'GPS': gps_json
         }
 
         if status == 'aktywna' or status == 'nieaktywna':
@@ -459,7 +463,8 @@ def ofertaSpecjalna():
             'InformacjeDodatkowe': 'Brak danych!',
             'Rynek': 'Brak danych!',
             'PrzeznaczenieLokalu': 'Brak danych!',
-            'Poziom': 'Brak danych!'
+            'Poziom': 'Brak danych!',
+            'GPS': {}
         }
 
     try: mainFoto = secOffers['Zdjecia'][0]

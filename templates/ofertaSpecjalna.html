@@ -103,10 +103,10 @@
                             <li><i class="bi bi-house-check"></i> <strong class="white-text">Liczba Pokoi: </strong> {{secOffers['LiczbaPokoi']}}</li>
                             {% endif %}
                             {% if secOffers['Kaucja']!=0 %}
-                            <li><i class="bi bi-cash"></i> <strong class="white-text">Kaucja: </strong> {{secOffers['Kaucja']}}</li>
+                            <li><i class="bi bi-cash"></i> <strong class="white-text">Kaucja: </strong> {{secOffers['Kaucja']}} PLN</li>
                             {% endif %}
                             {% if secOffers['Czynsz']!=0 %}
-                            <li><i class="bi bi-cash"></i> <strong class="white-text">Czynsz: </strong> {{secOffers['Czynsz']}}</li>
+                            <li><i class="bi bi-cash"></i> <strong class="white-text">Czynsz: </strong> {{secOffers['Czynsz']}} PLN</li>
                             {% endif %}
                             {% if secOffers['LiczbaPieter']!=0 %}
                             <li><i class="bi bi-house-up"></i> <strong class="white-text">Liczba Pięter: </strong> {{secOffers['LiczbaPieter']}}</li>
@@ -116,7 +116,7 @@
                                 <div style="min-height: 50px;">
                                     <div>
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                         <strong class="white-text">Powierzchnia Dzialki</strong>
+                                         <strong class="white-text font-size-very-small">Powierzchnia Dzialki</strong>
                                     </div>
                                     <div>
                                         <i class="bi bi-app-indicator"></i> {{secOffers['PowierzchniaDzialki']}} m&sup2;
@@ -144,10 +144,10 @@
                                 <div style="min-height: 50px;">
                                     <div>
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                         <strong class="white-text">Numer KW</strong>
+                                         <strong class="white-text font-size-very-small">Numer KW</strong>
                                     </div>
                                     <div>
-                                        <i class="bi bi-journal-text"></i> {{secOffers['NumerKW']}} m&sup2;
+                                        <i class="bi bi-journal-text"></i> {{secOffers['NumerKW']}}
                                     </div>
                                 </div>
                             </li>
@@ -160,10 +160,10 @@
                                 <div style="min-height: 50px;">
                                     <div>
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                         <strong class="white-text">Przeznaczenie Lokalu</strong>
+                                         <strong class="white-text font-size-very-small">Przeznaczenie Lokalu</strong>
                                     </div>
                                     <div>
-                                        <i class="bi bi-signpost-split"></i> {{secOffers['PrzeznaczenieLokalu']}} m&sup2;
+                                        <i class="bi bi-signpost-split"></i> {{secOffers['PrzeznaczenieLokalu']}}
                                     </div>
                                 </div>
                             </li>
@@ -176,10 +176,10 @@
                                 <div style="min-height: 50px;">
                                     <div>
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                         <strong class="white-text">Informacje Dodatkowe</strong>
+                                         <strong class="white-text font-size-very-small">Informacje Dodatkowe</strong>
                                     </div>
                                     <div>
-                                        <i class="bi bi-info-lg white-text"> {{secOffers['InformacjeDodatkowe']}} m&sup2;
+                                        <i class="bi bi-info-lg white-text"> {{secOffers['InformacjeDodatkowe']}}
                                     </div>
                                 </div>
                             </li>

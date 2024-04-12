@@ -84,6 +84,25 @@
                             </li>
                             {% if secOffers['Lokalizacja']!='' %}
                             <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Lokalizacja</span>
+                                    </div>
+                                    <div>
+                                        <strong class="white-text"><i class="bi bi-geo"></i> </strong> {{secOffers['Lokalizacja']}} 
+                                        {% if coordinates[0]!='None' and coordinates[1]!='None' %}
+                                        <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                            <i class="fa fa-map-marker red-text"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" onClick="openGoogleMaps('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                            <i class="fa fa-map-marker blue-text"></i>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
                                 <strong class="white-text"><i class="bi bi-geo"></i> </strong> {{secOffers['Lokalizacja']}} 
                                 {% if coordinates[0]!='None' and coordinates[1]!='None' %}
                                 <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
@@ -97,19 +116,69 @@
                             {% endif %}
                             
                             {% if secOffers['Metraz']!=0 %}
-                            <li><i class="bi bi-app-indicator"></i> {{secOffers['Metraz']}} m&sup2;</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Metraż</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-house-check white-gray"></i> {{secOffers['Metraz']}} m&sup2;
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['LiczbaPokoi']!=0 %}
-                            <li><i class="bi bi-house-check"></i> <strong class="white-text">Liczba Pokoi: </strong> {{secOffers['LiczbaPokoi']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Liczba Pokoi</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-house-check orange-text"></i> {{secOffers['LiczbaPokoi']}} PLN
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['Kaucja']!=0 %}
-                            <li><i class="bi bi-cash"></i> <strong class="white-text">Kaucja: </strong> {{secOffers['Kaucja']}} PLN</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Kaucja</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-cash orange-text"></i> {{secOffers['Kaucja']}} PLN
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['Czynsz']!=0 %}
-                            <li><i class="bi bi-cash"></i> <strong class="white-text">Czynsz: </strong> {{secOffers['Czynsz']}} PLN</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Czynsz</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-cash red-text"></i> {{secOffers['Czynsz']}} PLN
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['LiczbaPieter']!=0 %}
-                            <li><i class="bi bi-house-up"></i> <strong class="white-text">Liczba Pięter: </strong> {{secOffers['LiczbaPieter']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Liczba Pięter</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-house-up red-text"></i> {{secOffers['LiczbaPieter']}}
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['PowierzchniaDzialki']!=0 %}
                             <li>
@@ -125,19 +194,69 @@
                             </li>
                             {% endif %}
                             {% if secOffers['TechBudowy']!='' %}
-                            <li><i class="bi bi-house-gear"></i> <strong class="white-text">Technologia Budowy: </strong> <br />{{secOffers['TechBudowy']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Technologia Budowy</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-house-gear green-text"></i> {{secOffers['TechBudowy']}}
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['FormaKuchni']!="" %}
-                            <li><i class="bi bi-house-heart"></i> <strong class="white-text">Forma Kuchni: </strong> <br />{{secOffers['FormaKuchni']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Forma Kuchni</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-house-heart white-text"></i> {{secOffers['FormaKuchni']}}
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['TypDomu']!="" %}
-                            <li><i class="bi bi-house"></i> <strong class="white-text">Typ Domu: </strong> {{secOffers['TypDomu']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Typ Domu</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-house white-text"></i> {{secOffers['TypDomu']}}
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['StanWykonczenia']!="" %}
-                            <li><i class="bi bi-house-check"></i> <strong class="white-text">Stan Wykończenia: </strong> <br />{{secOffers['StanWykonczenia']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Stan Wykończenia</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-house-check white-gray"></i> {{secOffers['StanWykonczenia']}}
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['RokBudowy']!=0 %}
-                            <li><i class="bi bi-calendar3"></i> <strong class="white-text">Rok Budowy: </strong> {{secOffers['RokBudowy']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">RokBudowy</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-calendar3 white-gray"></i> {{secOffers['RokBudowy']}}
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['NumerKW']!='' %}
                             <li>
@@ -153,23 +272,43 @@
                             </li>
                             {% endif %}
                             {% if secOffers['Rynek']!="" %}
-                            <li><i class="bi bi-cart-check"></i> <strong class="white-text">Rynek: </strong> {{secOffers['Rynek']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Rynek</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-cart-check white-text"></i> {{secOffers['Rynek']}}
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['PrzeznaczenieLokalu']!="" %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                         <strong class="white-text font-size-very-small">Przeznaczenie Lokalu</strong>
+                                        <span class="white-text font-size-very-small padding-left-5">Przeznaczenie Lokalu</span>
                                     </div>
                                     <div>
-                                        <i class="bi bi-signpost-split"></i> {{secOffers['PrzeznaczenieLokalu']}}
+                                        <i class="bi bi-signpost-split green-text"></i> {{secOffers['PrzeznaczenieLokalu']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
                             {% if secOffers['Poziom']!='None' %}
-                            <li><i class="bi bi-stack"></i> <strong class="white-text">Poziom: </strong> {{secOffers['Poziom']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                         <span class="white-text font-size-very-small padding-left-5">Poziom</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-stack orange-text"></i> {{secOffers['Poziom']}}
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['InformacjeDodatkowe']!="" %}
                             <li>
@@ -179,7 +318,7 @@
                                          <span class="white-text font-size-very-small padding-left-5">Informacje Dodatkowe</span>
                                     </div>
                                     <div>
-                                        <i class="bi bi-info-lg white-text"></i> {{secOffers['InformacjeDodatkowe']}}
+                                        <i class="bi bi-info-lg green-text"></i> {{secOffers['InformacjeDodatkowe']}}
                                     </div>
                                 </div>
                             </li>

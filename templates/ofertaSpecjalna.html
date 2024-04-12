@@ -61,6 +61,25 @@
                         <ul >
                             {% if secOffers['TelefonKontaktowy']!='' and secOffers['EmailKontaktowy']!='' %}
                             <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Szybki Kontakt</span>
+                                    </div>
+                                    <div style="text-align: center !important;">
+                                        <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 
+                                            <i class="bi bi-envelope orange-text font-contact-sidebar"></i> 
+                                        </a>
+                                        <a href="https://wa.me/{{secOffers['TelefonKontaktowy']}}">
+                                            <i class="bi bi-whatsapp green-text font-contact-sidebar"></i> 
+                                        </a>
+                                        <a href="tel:{{secOffers['TelefonKontaktowy']}}">
+                                            <i class="bi bi-phone-flip green-text font-contact-sidebar"></i> 
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
                                 <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 
                                     <i class="bi bi-envelope orange-text font-contact-sidebar"></i> 
                                 </a>
@@ -73,14 +92,22 @@
                             </li>
                             {% endif %}
                             <li>
-                                <strong class="white-text"><i class="bi bi-layers"></i> </strong> 
-                                {% if secOffers['Rodzaj'] == 'sprzedaz' %}
-                                    Oferta Sprzedaży
-                                {% elif secOffers['Rodzaj'] == 'zakup' %}
-                                    Oferta Kupna
-                                {% elif secOffers['Rodzaj'] == 'wynajem' %}
-                                    Oferta Wynajmu
-                                {% endif %}
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Rodzaj Oferty</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-house-check white-gray"></i> 
+                                        {% if secOffers['Rodzaj'] == 'sprzedaz' %}
+                                            Oferta Sprzedaży
+                                        {% elif secOffers['Rodzaj'] == 'zakup' %}
+                                            Oferta Kupna
+                                        {% elif secOffers['Rodzaj'] == 'wynajem' %}
+                                            Oferta Wynajmu
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </li>
                             {% if secOffers['Lokalizacja']!='' %}
                             <li>
@@ -101,17 +128,6 @@
                                         {% endif %}
                                     </div>
                                 </div>
-                            </li>
-                            <li>
-                                <strong class="white-text"><i class="bi bi-geo"></i> </strong> {{secOffers['Lokalizacja']}} 
-                                {% if coordinates[0]!='None' and coordinates[1]!='None' %}
-                                <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
-                                    <i class="fa fa-map-marker red-text"></i>
-                                </a>
-                                <a href="javascript:void(0);" onClick="openGoogleMaps('{{coordinates[0]}}','{{coordinates[1]}}');">
-                                    <i class="fa fa-map-marker blue-text"></i>
-                                </a>
-                                {% endif %}
                             </li>
                             {% endif %}
                             

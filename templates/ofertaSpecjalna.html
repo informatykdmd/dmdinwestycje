@@ -53,39 +53,41 @@
                     </p>
                 </div>
                 <div class="col-lg-3 content ps-0" data-aos="fade-left" data-aos-delay="500" >
-                    <p class="white-text font-size-very-large" style="font-weight: 800;">
+                    <p class="white-text font-size-large" style="font-weight: 900;">
                         <strong><span id="price">{{secOffers['Cena']}}</span> PLN</strong>
                     </p>
-                    <ul >
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rodzaj: </strong> {{secOffers['Rodzaj']}}</li>
-                        <li>
-                            <i class="bi bi-arrow-right-circle-fill orange-text"></i> 
-                            <strong class="white-text">Lokalizacja: </strong> {{secOffers['Lokalizacja']}} 
-                            <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
-                                <i class="fa fa-map-marker red-text"></i>
-                            </a>
-                            <a href="javascript:void(0);" onClick="openGoogleMaps('{{coordinates[0]}}','{{coordinates[1]}}');">
-                                <i class="fa fa-map-marker blue-text"></i>
-                            </a>
-                        </li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Cena: </strong> {{secOffers['Cena']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Metraz: </strong> {{secOffers['Metraz']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Liczba Pokoi: </strong> {{secOffers['LiczbaPokoi']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Kaucja: </strong> {{secOffers['Kaucja']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Czynsz: </strong> {{secOffers['Czynsz']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Liczba Pięter: </strong> {{secOffers['LiczbaPieter']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Powierzchnia Dzialki: </strong> {{secOffers['PowierzchniaDzialki']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Technologia Budowy  </strong> {{secOffers['TechBudowy']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Forma Kuchni: </strong> {{secOffers['FormaKuchni']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Typ Domu: </strong> {{secOffers['TypDomu']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Stan Wykończenia: </strong> {{secOffers['StanWykonczenia']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rok Budowy: </strong> {{secOffers['RokBudowy']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Numer KW: </strong> {{secOffers['NumerKW']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rynek: </strong> {{secOffers['Rynek']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Przeznaczenie Lokalu: </strong> {{secOffers['PrzeznaczenieLokalu']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Poziom: </strong> {{secOffers['Poziom']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Informacje Dodatkowe: </strong> {{secOffers['InformacjeDodatkowe']}}</li>
-                    </ul>
+                    <div class="medium-muted-purple-border">
+                        <ul >
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rodzaj: </strong> {{secOffers['Rodzaj']}}</li>
+                            <li>
+                                <i class="bi bi-arrow-right-circle-fill orange-text"></i> 
+                                <strong class="white-text">Lokalizacja: </strong> {{secOffers['Lokalizacja']}} 
+                                <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                    <i class="fa fa-map-marker red-text"></i>
+                                </a>
+                                <a href="javascript:void(0);" onClick="openGoogleMaps('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                    <i class="fa fa-map-marker blue-text"></i>
+                                </a>
+                            </li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Cena: </strong> {{secOffers['Cena']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Metraz: </strong> {{secOffers['Metraz']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Liczba Pokoi: </strong> {{secOffers['LiczbaPokoi']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Kaucja: </strong> {{secOffers['Kaucja']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Czynsz: </strong> {{secOffers['Czynsz']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Liczba Pięter: </strong> {{secOffers['LiczbaPieter']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Powierzchnia Dzialki: </strong> {{secOffers['PowierzchniaDzialki']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Technologia Budowy  </strong> {{secOffers['TechBudowy']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Forma Kuchni: </strong> {{secOffers['FormaKuchni']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Typ Domu: </strong> {{secOffers['TypDomu']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Stan Wykończenia: </strong> {{secOffers['StanWykonczenia']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rok Budowy: </strong> {{secOffers['RokBudowy']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Numer KW: </strong> {{secOffers['NumerKW']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rynek: </strong> {{secOffers['Rynek']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Przeznaczenie Lokalu: </strong> {{secOffers['PrzeznaczenieLokalu']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Poziom: </strong> {{secOffers['Poziom']}}</li>
+                            <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Informacje Dodatkowe: </strong> {{secOffers['InformacjeDodatkowe']}}</li>
+                        </ul>
+                    </div>
                     <br />
                 </div>
             </div>

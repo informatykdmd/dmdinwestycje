@@ -3494,6 +3494,42 @@ button.btn-get-started:hover {
   color:#ececec;
 }
 
+.href-contact-sidebar-email {
+  color:#ccc44d;
+}
+
+.href-contact-sidebar-email a {
+  color:#f6ff00;
+}
+
+.href-contact-sidebar-email a:hover {
+  color:#f6ff00;
+}
+
+.href-contact-sidebar-whatsapp {
+  color:#4fc600;
+}
+
+.href-contact-sidebar-whatsapp a {
+  color:#9cff5a;
+}
+
+.href-contact-sidebar-whatsapp a:hover {
+  color:#9cff5a;
+}
+
+.href-contact-sidebar-phone {
+  color:#1f8600;
+}
+
+.href-contact-sidebar-phone a {
+  color:#83f85f;
+}
+
+.href-contact-sidebar-phone a:hover {
+  color:#83f85f;
+}
+
 .font-contact-sidebar {
   font-size: 20pt !important; /* Bardzo duże */
   margin: 5px;

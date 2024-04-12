@@ -171,17 +171,23 @@
                             {% if secOffers['Poziom']!='None' %}
                             <li><i class="bi bi-stack"></i> <strong class="white-text">Poziom: </strong> {{secOffers['Poziom']}}</li>
                             {% endif %}
+                            {% if secOffers['InformacjeDodatkowe']!="" %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                         <strong class="white-text">Informacje Dodatkowe</strong>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-info-lg white-text"> {{secOffers['InformacjeDodatkowe']}} m&sup2;
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                     <br />
-                    {% if secOffers['InformacjeDodatkowe']!="" %}
-                        <ol>
-                            <li>
-                                <i class="bi bi-info-lg white-text"></i> <strong class="white-text">Informacje Dodatkowe: </strong>
-                            </li>
-                            <li><p>{{secOffers['InformacjeDodatkowe']}}</p></li>
-                        </ol>
-                    {% endif %}
+                    
                 </div>
             </div>
         </div>

@@ -60,18 +60,16 @@
 
                         <ul >
                             {% if secOffers['TelefonKontaktowy']!='' and secOffers['EmailKontaktowy']!='' %}
-                            <li>
-                                <p style="text-align: center;">
-                                    <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 
-                                        <i class="bi bi-envelope orange-text font-contact-sidebar"></i> 
-                                    </a>
-                                    <a href="https://wa.me/{{secOffers['TelefonKontaktowy']}}">
-                                        <i class="bi bi-whatsapp green-text font-contact-sidebar"></i> 
-                                    </a>
-                                    <a href="tel:{{secOffers['TelefonKontaktowy']}}">
-                                        <i class="bi bi-phone-flip green-text font-contact-sidebar"></i> 
-                                    </a>
-                                </p>
+                            <li style="text-align: center;">
+                                <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 
+                                    <i class="bi bi-envelope orange-text font-contact-sidebar"></i> 
+                                </a>
+                                <a href="https://wa.me/{{secOffers['TelefonKontaktowy']}}">
+                                    <i class="bi bi-whatsapp green-text font-contact-sidebar"></i> 
+                                </a>
+                                <a href="tel:{{secOffers['TelefonKontaktowy']}}">
+                                    <i class="bi bi-phone-flip green-text font-contact-sidebar"></i> 
+                                </a>
                             </li>
                             {% endif %}
                             <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rodzaj: </strong> {{secOffers['Rodzaj']}}</li>

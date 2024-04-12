@@ -3630,3 +3630,7 @@ button.btn-get-started:hover {
   border: #ffffff dotted 1px;
   background-color: #282828;
 }
+
+.padding-left-10 {
+  padding-left: 10px !important;
+}

@@ -84,7 +84,6 @@
                             </li>
                             {% if secOffers['Lokalizacja']!='' %}
                             <li>
-                                <i class="bi bi-arrow-right-circle-fill orange-text"></i> 
                                 <strong class="white-text"><i class="bi bi-geo"></i> </strong> {{secOffers['Lokalizacja']}} 
                                 {% if coordinates[0]!='None' and coordinates[1]!='None' %}
                                 <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
@@ -98,7 +97,7 @@
                             {% endif %}
                             
                             {% if secOffers['Metraz']!=0 %}
-                            <li><i class="bi bi-app-indicator"></i> <strong class="white-text">Metraż: </strong> {{secOffers['Metraz']}} m&sup2;</li>
+                            <li><i class="bi bi-app-indicator"></i> {{secOffers['Metraz']}} m&sup2;</li>
                             {% endif %}
                             {% if secOffers['LiczbaPokoi']!=0 %}
                             <li><i class="bi bi-house-check"></i> <strong class="white-text">Liczba Pokoi: </strong> {{secOffers['LiczbaPokoi']}}</li>

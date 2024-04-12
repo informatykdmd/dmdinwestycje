@@ -3606,3 +3606,16 @@ button.btn-get-started:hover {
     overflow-y: auto;
 }
 
+.offer-frame-details {
+  padding: 10px;
+  border: #8c9191 solid 1px;
+}
+
+.offer-frame-details li{
+  padding: 5px;
+  border: #8c9191 solid 1px;
+}
+
+.offer-frame-details li:hover {
+  border: #658892 solid 1px;
+}

@@ -359,7 +359,8 @@
                 <div class="carousel-inner">
                     {% for foto in secOffers['Zdjecia'] %}
                         {% if loop.first %}
-                        <div class="carousel-item active">
+                        <!-- active -->
+                        <div class="carousel-item">
                             <img src="{{foto}}" class="object-fit-cover rounded d-block w-100" alt="">
                         </div>
                         {% else %}

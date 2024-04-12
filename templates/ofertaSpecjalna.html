@@ -112,7 +112,14 @@
                             <li><i class="bi bi-house-up"></i> <strong class="white-text">Liczba Pięter: </strong> {{secOffers['LiczbaPieter']}}</li>
                             {% endif %}
                             {% if secOffers['PowierzchniaDzialki']!=0 %}
-                            <li><i class="bi bi-app-indicator"></i> <strong class="white-text">Powierzchnia Dzialki: </strong> <br />{{secOffers['PowierzchniaDzialki']}} m&sup2;</li>
+                            <li>
+                                <div>
+                                    <i class="bi bi-app-indicator"></i> <strong class="white-text">Powierzchnia Dzialki: </strong>
+                                </div>
+                                <div>
+                                    {{secOffers['PowierzchniaDzialki']}} m&sup2;
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['TechBudowy']!='' %}
                             <li><i class="bi bi-house-gear"></i> <strong class="white-text">Technologia Budowy: </strong> <br />{{secOffers['TechBudowy']}}</li>

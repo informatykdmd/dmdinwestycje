@@ -3495,11 +3495,11 @@ button.btn-get-started:hover {
 }
 
 .href-contact-sidebar-email {
-  color:#ccc44d;
+  color:#f3d600;
 }
 
 .href-contact-sidebar-email a {
-  color:#f6ff00;
+  color:#f3d600;
 }
 
 .href-contact-sidebar-email a:hover {
@@ -3507,11 +3507,11 @@ button.btn-get-started:hover {
 }
 
 .href-contact-sidebar-whatsapp {
-  color:#4fc600;
+  color:#1f8600;
 }
 
 .href-contact-sidebar-whatsapp a {
-  color:#9cff5a;
+  color:#1f8600;
 }
 
 .href-contact-sidebar-whatsapp a:hover {
@@ -3519,15 +3519,15 @@ button.btn-get-started:hover {
 }
 
 .href-contact-sidebar-phone {
-  color:#1f8600;
+  color:#004a86;
 }
 
 .href-contact-sidebar-phone a {
-  color:#83f85f;
+  color:#004a86;
 }
 
 .href-contact-sidebar-phone a:hover {
-  color:#83f85f;
+  color:#008cff;
 }
 
 .font-contact-sidebar {

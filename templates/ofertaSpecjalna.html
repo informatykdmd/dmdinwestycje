@@ -141,21 +141,17 @@
                             {% if secOffers['Poziom']!='None' %}
                             <li><i class="bi bi-stack"></i> <strong class="white-text">Poziom: </strong> {{secOffers['Poziom']}}</li>
                             {% endif %}
-                            {% if secOffers['InformacjeDodatkowe']!="" %}
-                            <li>
-                                <ol>
-                                    <li>
-                                        <i class="bi bi-info-circle"></i> <strong class="white-text">Informacje Dodatkowe: </strong>
-                                    </li>
-                                    <li>{{secOffers['InformacjeDodatkowe']}}</li>
-                                </ol>
-                                
-                            </li>
-                            {% endif %}
-                            
                         </ul>
                     </div>
                     <br />
+                    {% if secOffers['InformacjeDodatkowe']!="" %}
+                        <ol>
+                            <li>
+                                <i class="bi bi-info-circle"></i> <strong class="white-text">Informacje Dodatkowe: </strong>
+                            </li>
+                            <li><p>{{secOffers['InformacjeDodatkowe']}}</p></li>
+                        </ol>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -40,7 +40,7 @@
                     <div class="row">
                         <div id="gallery-container">
                             {% for foto in secOffers['Zdjecia'] %}
-                                <img src="{{foto}}" alt="" class="gallery-img" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                                <img src="{{foto}}" alt="" class="gallery-img object-fit-cover border rounded" data-bs-toggle="modal" data-bs-target="#galleryModal">
                             {% endfor %}
                         </div>
                     </div>

@@ -3609,14 +3609,15 @@ button.btn-get-started:hover {
 .offer-frame-details {
   padding: 10px;
   border: #393939 solid 1px;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .offer-frame-details li{
   padding: 5px;
-  border: #8c9191 solid 1px;
+  border: #8c9191 dotted 1px;
 }
 
 .offer-frame-details li:hover {
-  border: #ffffff solid 1px;
+  border: #ffffff dotted 1px;
+  background-color: #282828;
 }

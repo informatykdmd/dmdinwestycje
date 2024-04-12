@@ -3695,3 +3695,67 @@ button.btn-get-started:hover {
   font-weight: bold;
   color: #000064;
 }
+
+#SpecialOfferArea {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  background-color: #f4f4f4;
+}
+
+.offer {
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#offer1 {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1; /* Najniższa warstwa */
+}
+
+#offer2 {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2; /* Druga warstwa */
+}
+
+#offer3 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* Trzecia warstwa, najwyższa */
+}
+
+#offer4 {
+  top: 120px;
+  left: 300px;
+  z-index: 4; /* Można regulować, jeśli chcesz zmienić kolejność na wierzchu */
+}
+
+#specTytul {
+  top: 120px;
+  left: 300px;
+  z-index: 4;
+}
+
+#specRodzaj {
+  top: 120px;
+  left: 300px;
+  z-index: 5;
+}
+
+#specOpis {
+  top: 120px;
+  left: 300px;
+  z-index: 6;
+}

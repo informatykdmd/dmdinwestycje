@@ -143,11 +143,13 @@
                             {% endif %}
                             {% if secOffers['InformacjeDodatkowe']!="" %}
                             <li>
-                                <p>
-                                    <i class="bi bi-info-circle"></i> <strong class="white-text">Informacje Dodatkowe: </strong>
-                                </p>
+                                <ol>
+                                    <li>
+                                        <i class="bi bi-info-circle"></i> <strong class="white-text">Informacje Dodatkowe: </strong>
+                                    </li>
+                                    <li>{{secOffers['InformacjeDodatkowe']}}</li>
+                                </ol>
                                 
-                                <p>{{secOffers['InformacjeDodatkowe']}}</p>
                             </li>
                             {% endif %}
                             

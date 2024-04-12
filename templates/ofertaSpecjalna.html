@@ -113,7 +113,7 @@
                             {% endif %}
                             {% if secOffers['PowierzchniaDzialki']!=0 %}
                             <li>
-                                <div style="min-height: 60px;">
+                                <div style="min-height: 50px;">
                                     <div>
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                                          <strong class="white-text">Powierzchnia Dzialki</strong>
@@ -140,13 +140,33 @@
                             <li><i class="bi bi-calendar3"></i> <strong class="white-text">Rok Budowy: </strong> {{secOffers['RokBudowy']}}</li>
                             {% endif %}
                             {% if secOffers['NumerKW']!='' %}
-                            <li><i class="bi bi-journal-text"></i> <strong class="white-text">Numer KW: </strong> {{secOffers['NumerKW']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                         <strong class="white-text">Numer KW</strong>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-journal-text"></i> {{secOffers['NumerKW']}} m&sup2;
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['Rynek']!="" %}
                             <li><i class="bi bi-cart-check"></i> <strong class="white-text">Rynek: </strong> {{secOffers['Rynek']}}</li>
                             {% endif %}
                             {% if secOffers['PrzeznaczenieLokalu']!="" %}
-                            <li><i class="bi bi-signpost-split"></i> <strong class="white-text">Przeznaczenie Lokalu: </strong> <br />{{secOffers['PrzeznaczenieLokalu']}}</li>
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                         <strong class="white-text">Przeznaczenie Lokalu</strong>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-signpost-split"></i> {{secOffers['PrzeznaczenieLokalu']}} m&sup2;
+                                    </div>
+                                </div>
+                            </li>
                             {% endif %}
                             {% if secOffers['Poziom']!='None' %}
                             <li><i class="bi bi-stack"></i> <strong class="white-text">Poziom: </strong> {{secOffers['Poziom']}}</li>

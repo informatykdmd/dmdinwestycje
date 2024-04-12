@@ -3482,8 +3482,20 @@ button.btn-get-started:hover {
   margin-right: 0; /* Usuwa margines z prawej strony ostatniego elementu listy */
 }
 
+.href-contact-sidebar {
+  color:#9b9b9b;
+}
+
+.href-contact-sidebar a {
+  color:#cbcbcb;
+}
+
+.href-contact-sidebar a:hover {
+  color:#ececec;
+}
+
 .font-contact-sidebar {
-  font-size: 40pt !important; /* Bardzo duże */
+  font-size: 30pt !important; /* Bardzo duże */
   margin: 5px;
   margin-left: 15px;
 }

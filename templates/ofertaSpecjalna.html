@@ -67,7 +67,18 @@
                                         <span class="white-text font-size-very-small padding-left-5">Szybki Kontakt</span>
                                     </div>
                                     <div style="text-align: center !important;">
-                                        <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 
+                                        <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
+                                            <a href="mailto:{{secOffers['EmailKontaktowy']}}" class="btn btn-outline-secondary">
+                                                <i class="bi bi-envelope orange-text font-contact-sidebar"></i> 
+                                            </a>
+                                            <a href="https://wa.me/{{secOffers['TelefonKontaktowy']}}" class="btn btn-outline-secondary">
+                                                <i class="bi bi-whatsapp green-text font-contact-sidebar"></i> 
+                                            </a>
+                                            <a href="tel:{{secOffers['TelefonKontaktowy']}}" class="btn btn-outline-secondary">
+                                                <i class="bi bi-phone-flip green-text font-contact-sidebar"></i> 
+                                            </a>
+                                        </div>
+                                        <!-- <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 
                                             <i class="bi bi-envelope orange-text font-contact-sidebar"></i> 
                                         </a>
                                         <a href="https://wa.me/{{secOffers['TelefonKontaktowy']}}">
@@ -75,7 +86,7 @@
                                         </a>
                                         <a href="tel:{{secOffers['TelefonKontaktowy']}}">
                                             <i class="bi bi-phone-flip green-text font-contact-sidebar"></i> 
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </div>
                             </li>

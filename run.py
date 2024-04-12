@@ -67,8 +67,23 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
         try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[7])[0][1:-1]
         except IndexError: fotoList = []
 
-        try: gps_json = json.loads(data[29])
-        except json.JSONDecodeError: gps_json = {}
+        try:
+            if data[29] is not None:
+                gps_json = json.loads(data[29])
+            else:
+                raise ValueError("Dane są None, nie można przetworzyć JSON")
+        except json.JSONDecodeError:
+            print("Błąd: Podane dane nie są poprawnym JSON-em")
+            gps_json = {}
+        except IndexError:
+            print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+            gps_json = {}
+        except TypeError as e:
+            print(f"Błąd typu danych: {e}")
+            gps_json = {}
+        except Exception as e:
+            print(f"Nieoczekiwany błąd: {e}")
+            gps_json = {}
 
         theme = {
             'ID': int(data[0]),

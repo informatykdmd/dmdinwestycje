@@ -3608,7 +3608,8 @@ button.btn-get-started:hover {
 
 .offer-frame-details {
   padding: 10px;
-  border: #8c9191 solid 1px;
+  border: #393939 solid 1px;
+  border-radius: 3px;
 }
 
 .offer-frame-details li{
@@ -3617,5 +3618,5 @@ button.btn-get-started:hover {
 }
 
 .offer-frame-details li:hover {
-  border: #658892 solid 1px;
+  border: #ffffff solid 1px;
 }

@@ -51,6 +51,21 @@
                 });
             });
         });
+        
+        function openWindow(url) {
+            var features = "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=600,height=400";
+            var newWindow = window.open(url, "DemoWindow", features);
+        }
+
+        function openGoogleEarth(lat, lon) {
+            var features = "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=600,height=400";
+            var newWindow = window.open(`https://earth.google.com/web/@${lat},${lon},102.83373871a,0d,60y,333.15344169h,86.56713379t,0r`, "DemoWindow", features);
+        }
+
+        function openGoogleMaps(lat, lon) {
+            var features = "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=600,height=400";
+            var newWindow = window.open(`https://www.google.com/maps/dir//${lat},${lon}/@${lat},${lon},16z?entry=ttu`, "DemoWindow", features);
+        }
     </script>
 </body>
 </html>

@@ -58,7 +58,16 @@
                     </p>
                     <ul >
                         <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Rodzaj: </strong> {{secOffers['Rodzaj']}}</li>
-                        <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Lokalizacja: </strong> {{secOffers['Lokalizacja']}}</li>
+                        <li>
+                            <i class="bi bi-arrow-right-circle-fill orange-text"></i> 
+                            <strong class="white-text">Lokalizacja: </strong> {{secOffers['Lokalizacja']}} 
+                            <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                <i class="fa fa-map-marker red-text"></i>
+                            </a>
+                            <a href="javascript:void(0);" onClick="openGoogleMaps('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                <i class="fa fa-map-marker blue-text"></i>
+                            </a>
+                        </li>
                         <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Cena: </strong> {{secOffers['Cena']}}</li>
                         <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Metraz: </strong> {{secOffers['Metraz']}}</li>
                         <li><i class="bi bi-arrow-right-circle-fill orange-text"></i> <strong class="white-text">Liczba Pokoi: </strong> {{secOffers['LiczbaPokoi']}}</li>

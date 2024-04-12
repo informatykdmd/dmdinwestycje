@@ -70,6 +70,9 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
         try:
             if data[29] is not None:
                 gps_json = json.loads(data[29])
+                {"latitude": 52.229676, "longitude": 21.012229}
+                "https://earth.google.com/web/@52.25242614,20.83096693,100.96310044a,116.2153688d,35y,0h,0t,0r/data=OgMKATA" # nowrmal
+                "https://earth.google.com/web/@52.25250876,20.83139622,102.83373871a,0d,60y,333.15344169h,86.56713379t,0r" # 3D
             else:
                 raise ValueError("Dane są None, nie można przetworzyć JSON")
         except json.JSONDecodeError:
@@ -84,6 +87,7 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
         except Exception as e:
             print(f"Nieoczekiwany błąd: {e}")
             gps_json = {}
+            
 
         theme = {
             'ID': int(data[0]),
@@ -482,11 +486,20 @@ def ofertaSpecjalna():
             'GPS': {}
         }
 
+    {"latitude": 52.229676, "longitude": 21.012229}
+    if "latitude" in secOffers['GPS'] and "longitude" in secOffers['GPS']:
+        lat = secOffers['GPS']["latitude"]
+        lon = secOffers['GPS']["longitude"]
+    else:
+        lat = 'None'
+        lon = 'None'
+
     try: mainFoto = secOffers['Zdjecia'][0]
     except IndexError: mainFoto = ''
 
     return render_template(
         f'ofertaSpecjalna.html',
+        coordinates=[lat, lon],
         pageTitle=pageTitle,
         mainFoto=mainFoto,
         secOffers=secOffers

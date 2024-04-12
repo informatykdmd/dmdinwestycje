@@ -3390,6 +3390,14 @@ button.btn-get-started:hover {
 .blue-text {
   color: #32a9e1 !important;
 }
+
+.blue-text a {
+  color: #32a9e1 !important;
+}
+
+.blue-text a:hover {
+  color: #8bdaff !important;
+}
 .blue-border {
   border: 1px solid #32a9e1;
 }
@@ -3401,6 +3409,15 @@ button.btn-get-started:hover {
 .red-text {
   color: #e20101 !important;
 }
+
+.red-text a {
+  color: #ff0000 !important;
+}
+
+.red-text a:hover {
+  color: #ff6b6b !important;
+}
+
 .red-border {
   border: 1px solid #e20101;
 }

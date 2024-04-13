@@ -3768,17 +3768,17 @@ button.btn-get-started:hover {
 
 #specCena {
   top: 75%;
-  left: 100%;
+  left: 90%;
   /* right: 0; */
-  transform: translate(-50%, -50%);
+  transform: translate(-75%, -80%);
 }
 
 #specCena span {
   color:black; 
   /* background-color: black;  */
-  padding: 20px; 
-  font-weight: 800; 
-  font-size: 24pt; 
+  padding: 36px; 
+  font-weight: 900; 
+  font-size: 36pt; 
   display: inline-block; 
   text-align: right !important;
 }

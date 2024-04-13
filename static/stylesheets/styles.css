@@ -3704,15 +3704,15 @@ button.btn-get-started:hover {
 }
 
 .offer {
-  /* width: 200px;
-  height: 100px; */
+  width: 100%;
+  height: auto;
   position: absolute;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   /* background-color: white; */
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* border: 1px solid #ccc; */
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
 }
 
 #offer1 {

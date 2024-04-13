@@ -3768,8 +3768,8 @@ button.btn-get-started:hover {
 
 #specCena {
   top: 75%;
-  left: 90%;
-  /* right: 0; */
+  /* left: 90%; */
+  right: 10;
   transform: translate(-75%, -80%);
 }
 

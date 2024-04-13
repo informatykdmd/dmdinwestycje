@@ -3751,7 +3751,7 @@ button.btn-get-started:hover {
 #specTytul {
   top: 0;
   left: 0;
-  width: 90%;
+  width: 60%;
   transform: translate(5%, 5%);
   /* border-radius: 10%; */
 }
@@ -3766,11 +3766,21 @@ button.btn-get-started:hover {
   text-align: left !important;
 }
 
-#specRodzaj {
+#specCena {
   top: 50%;
   left: 50%;
   right: 0;
   transform: translate(-50%, -50%);
+}
+
+#specCena span {
+  color:black; 
+  /* background-color: black;  */
+  padding: 20px; 
+  font-weight: 800; 
+  font-size: 24pt; 
+  display: inline-block; 
+  text-align: right !important;
 }
 
 #specOpis {

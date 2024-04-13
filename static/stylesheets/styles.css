@@ -3710,7 +3710,7 @@ button.btn-get-started:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  /* background-color: white; */
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -3745,8 +3745,8 @@ button.btn-get-started:hover {
 #specTytul {
   top: 0;
   left: 0;
-  transform: translate(-5%, -8%);
-  border-radius: 3%;
+  transform: translate(5%, 5%);
+  border-radius: 10%;
 }
 
 #specRodzaj {

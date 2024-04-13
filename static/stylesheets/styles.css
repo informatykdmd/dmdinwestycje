@@ -3773,8 +3773,8 @@ button.btn-get-started:hover {
 }
 
 #specCena span {
-  color:black; 
-  /* background-color: black;  */
+  color:#00ff08; 
+  background-color: rgba(0, 0, 0, 0.7); 
   padding: 36px; 
   font-weight: 900; 
   font-size: 36pt; 

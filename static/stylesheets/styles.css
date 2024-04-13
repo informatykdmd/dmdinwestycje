@@ -3756,6 +3756,16 @@ button.btn-get-started:hover {
   /* border-radius: 10%; */
 }
 
+#specTytul span {
+  color:azure; 
+  background-color: black; 
+  padding: 20px; 
+  font-weight: 800; 
+  font-size: 24pt; 
+  display: inline-block; 
+  text-align: left !important;
+}
+
 #specRodzaj {
   top: 50%;
   left: 50%;

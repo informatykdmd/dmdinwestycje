@@ -3765,7 +3765,7 @@ button.btn-get-started:hover {
   /* display: inline-block;  */
   text-align: left !important;
 }
-#specTytul p {
+#specTytul div {
   color:azure; 
   background-color: rgba(0, 0, 0, 0.7); 
   padding: 10px; 

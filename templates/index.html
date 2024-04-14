@@ -475,10 +475,38 @@
                       <span>SEGMENT 215m2 IZABELIN k. Warszawa 215m2 Warszawa IZA BERLIN k. Warszawa SEGMENT 215m2</span>
                     </div>
                     <div class="row offer" id="specLoka">
-                      
+
+                      {% if secOffers['TelefonKontaktowy']!='' and secOffers['EmailKontaktowy']!='' %}
                       <div class="col-lg-6 col-sm-12">
-                        Lokalizacja
+                        <div>
+                            <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                            <span class="white-text font-size-very-small padding-left-5">Szybki Kontakt</span>
+                        </div>
+                        <div class="row" class="" style="text-align: center !important;">
+                            <div class="col href-contact-sidebar-email">
+                                <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 
+                                    <i class="bi bi-envelope font-contact-sidebar"></i> 
+                                </a>
+                            </div>
+                            <div class="col href-contact-sidebar-whatsapp">
+                                <a href="https://wa.me/{{secOffers['TelefonKontaktowy']}}">
+                                    <i class="bi bi-whatsapp font-contact-sidebar"></i> 
+                                </a>
+                            </div>
+                            <div class="col href-contact-sidebar-phone">
+                                <a href="tel:{{secOffers['TelefonKontaktowy']}}">
+                                    <i class="bi bi-phone-flip font-contact-sidebar"></i> 
+                                </a>
+                            </div>
+                            <div class="col href-contact-sidebar">
+                                <a href="/kontakt">
+                                    <i class="bi bi-person-lines-fill font-contact-sidebar"></i> 
+                                </a>
+                            </div>
+                        </div>
                       </div>
+                      {% endif %}
+                      
                       <div class="col-lg-6 col-sm-12">
                         Sprzedaż
                       </div>

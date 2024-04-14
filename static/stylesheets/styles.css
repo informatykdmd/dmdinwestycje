@@ -3768,7 +3768,7 @@ button.btn-get-started:hover {
 
 #specLoka {
   position: absolute;
-  top: 0;
+  top: 300px;
   right: 0; /* Zacznij od prawej krawędzi SpecialOfferArea */
   width: 100%; /* Szerokość względem SpecialOfferArea */
   background-color: rgba(0, 0, 0, 0.7); /* Czarne tło z 70% przeźroczystości */

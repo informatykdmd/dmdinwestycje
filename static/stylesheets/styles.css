@@ -3771,7 +3771,6 @@ button.btn-get-started:hover {
   top: 0;
   right: 0; /* Zacznij od prawej krawędzi SpecialOfferArea */
   width: 100%; /* Szerokość względem SpecialOfferArea */
-  height: 100%; /* Wysokość względem SpecialOfferArea */
   background-color: rgba(0, 0, 0, 0.7); /* Czarne tło z 70% przeźroczystości */
   padding: 10px;
   box-sizing: border-box; /* Uwzględnienie paddingu w wymiarach */

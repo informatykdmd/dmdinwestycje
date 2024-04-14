@@ -3769,7 +3769,7 @@ button.btn-get-started:hover {
 #specLoka {
   position: absolute;
   top: 20%;
-  right: 5%; /* Zacznij od prawej krawędzi SpecialOfferArea */
+  right: 2%; /* Zacznij od prawej krawędzi SpecialOfferArea */
   width: 40%; /* Szerokość względem SpecialOfferArea */
   background-color: rgba(0, 0, 0, 0.7); /* Czarne tło z 70% przeźroczystości */
   padding: 10px;

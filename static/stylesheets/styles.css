@@ -3759,13 +3759,20 @@ button.btn-get-started:hover {
 #specTytul span {
   color:azure; 
   background-color: rgba(0, 0, 0, 0.7); 
-  padding: 5px; 
+  padding: 10px; 
   font-weight: 800; 
   font-size: 24pt; 
   display: inline-block; 
   text-align: left !important;
 }
-
+#specTytul p {
+  color:azure; 
+  background-color: rgba(0, 0, 0, 0.7); 
+  padding: 10px; 
+  font-size: 8pt; 
+  display: inline-block; 
+  text-align: left !important;
+}
 #specCena {
   top: 75%;
   left: 90%;

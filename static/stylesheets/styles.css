@@ -3770,7 +3770,7 @@ button.btn-get-started:hover {
   top: 0;
   left: 0;
   width: 100%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 50%);
   /* border-radius: 10%; */
 }
 #specLoka div {

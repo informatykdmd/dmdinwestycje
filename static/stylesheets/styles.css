@@ -3713,7 +3713,7 @@ button.btn-get-started:hover {
   width: 100%;
   height: auto;
   position: absolute;
-  /* display: flex; */
+  display: flex;
   align-items: left;
   justify-content: left;
   /* background-color: white; */
@@ -3762,7 +3762,7 @@ button.btn-get-started:hover {
   padding: 10px; 
   font-weight: 800; 
   font-size: 24pt; 
-  display: inline-block; 
+  /* display: inline-block;  */
   text-align: left !important;
 }
 #specTytul p {
@@ -3770,7 +3770,7 @@ button.btn-get-started:hover {
   background-color: rgba(0, 0, 0, 0.7); 
   padding: 10px; 
   font-size: 8pt; 
-  display: inline-block; 
+  /* display: inline-block;  */
   text-align: left !important;
 }
 #specCena {

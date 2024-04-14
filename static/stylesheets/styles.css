@@ -3758,8 +3758,8 @@ button.btn-get-started:hover {
 
 #specTytul span {
   color:azure; 
-  background-color: black; 
-  padding: 20px; 
+  background-color: rgba(0, 0, 0, 0.7); 
+  padding: 5px; 
   font-weight: 800; 
   font-size: 24pt; 
   display: inline-block; 
@@ -3775,7 +3775,7 @@ button.btn-get-started:hover {
 #specCena span {
   color:#00ff08; 
   background-color: rgba(0, 0, 0, 0.7); 
-  padding: 36px; 
+  padding: 5px; 
   font-weight: 900; 
   font-size: 36pt; 
   display: inline-block; 

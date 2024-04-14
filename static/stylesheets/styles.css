@@ -3752,7 +3752,7 @@ button.btn-get-started:hover {
   top: 0;
   left: 0;
   width: 100%;
-  transform: translate(1%, 5%);
+  transform: translate(0, 0);
   /* border-radius: 10%; */
 }
 

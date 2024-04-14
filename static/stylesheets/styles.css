@@ -3767,20 +3767,23 @@ button.btn-get-started:hover {
 }
 
 #specLoka {
+  position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  transform: translate(-50%, 50%);
-  /* border-radius: 10%; */
+  right: 0; /* Zacznij od prawej krawędzi SpecialOfferArea */
+  width: 100%; /* Szerokość względem SpecialOfferArea */
+  height: 100%; /* Wysokość względem SpecialOfferArea */
+  background-color: rgba(0, 0, 0, 0.7); /* Czarne tło z 70% przeźroczystości */
+  padding: 10px;
+  box-sizing: border-box; /* Uwzględnienie paddingu w wymiarach */
+  text-align: left; /* Tekst wyrównany do lewej */
 }
+
 #specLoka div {
-  color:azure; 
-  background-color: rgba(0, 0, 0, 0.7); 
-  padding: 10px; 
-  font-size: 8pt; 
-  /* display: inline-block;  */
-  text-align: left !important;
+  color: azure; 
+  font-size: 8pt;
+  /* Dodatkowe style dla tekstu, jeśli są potrzebne */
 }
+
 #specCena {
   top: 75%;
   left: 90%;

@@ -3691,9 +3691,9 @@ button.btn-get-started:hover {
 }
 
 .special-offer-homepage {
-  border: #000064 dashed 2px;
-  font-weight: bold;
-  color: #000064;
+  border: none;
+  /* font-weight: bold; */
+  /* color: #000064; */
 }
 
 #SpecialOfferArea {
@@ -3713,7 +3713,7 @@ button.btn-get-started:hover {
   width: 100%;
   height: auto;
   position: absolute;
-  display: flex;
+  /* display: flex; */
   align-items: left;
   justify-content: left;
   /* background-color: white; */

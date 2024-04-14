@@ -412,11 +412,61 @@ def index():
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
 
+    try: secOffers = generator_specialOffert()[0]
+    except IndexError: secOffers = {
+            'ID': 0,
+            'Tytul': 'Brak danych o tytule',
+            'Opis': 'Brak danych o opisie',
+            'Cena': 'Brak danych o cenie',
+            'Lokalizacja':'Brak danych o lokalizacji',
+            'LiczbaPokoi': 'Brak danych!',
+            'Metraz': 'Brak danych!',
+            'Zdjecia': [],
+            'Status': 'Brak danych!',
+            'Rodzaj': 'Brak danych!',
+            'DataRozpoczecia': 'Brak danych!',
+            'DataZakonczenia': 'Brak danych!',
+            'DataUtworzenia': 'Brak danych!',
+            'DataAktualizacji': 'Brak danych!',
+            'Kaucja': 'Brak danych!',
+            'Czynsz': 'Brak danych!',
+            'Umeblowanie': 'Brak danych!',
+            'LiczbaPieter': 'Brak danych!',
+            'PowierzchniaDzialki': 'Brak danych!',
+            'TechBudowy': 'Brak danych!',
+            'FormaKuchni': 'Brak danych!',
+            'TypDomu': 'Brak danych!',
+            'StanWykonczenia': 'Brak danych!',
+            'RokBudowy': 'Brak danych!',
+            'NumerKW': 'Brak danych!',
+            'InformacjeDodatkowe': 'Brak danych!',
+            'Rynek': 'Brak danych!',
+            'PrzeznaczenieLokalu': 'Brak danych!',
+            'Poziom': 'None',
+            'GPS': {},
+            'TelefonKontaktowy': 'Brak danych!',
+            'EmailKontaktowy': 'Brak danych!'
+        }
+
+    {"latitude": 52.229676, "longitude": 21.012229}
+    if "latitude" in secOffers['GPS'] and "longitude" in secOffers['GPS']:
+        lat = secOffers['GPS']["latitude"]
+        lon = secOffers['GPS']["longitude"]
+    else:
+        lat = 'None'
+        lon = 'None'
+
+    try: mainFoto = secOffers['Zdjecia'][0]
+    except IndexError: mainFoto = ''
+
     return render_template(
         f'index.html', 
         pageTitle=pageTitle,
         fourListTeam=fourListTeam, 
-        blog_post_three=blog_post_three
+        blog_post_three=blog_post_three,
+        coordinates=[lat, lon],
+        mainFoto=mainFoto,
+        secOffers=secOffers
         )
 
 @app.route('/oferta-inwestycyjna')

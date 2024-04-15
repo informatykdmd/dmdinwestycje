@@ -3753,7 +3753,6 @@ button.btn-get-started:hover {
   left: 0;
   width: 100%;
   transform: translate(0, 0);
-  /* border-radius: 10%; */
 }
 
 #specTytul span {
@@ -3771,8 +3770,6 @@ button.btn-get-started:hover {
   top: 20%;
   right: 2%; /* Zacznij od prawej krawędzi SpecialOfferArea */
   width: 40%; /* Szerokość względem SpecialOfferArea */
-  /* background-color: rgba(0, 0, 0, 0.7);  */
-  /* Czarne tło z 70% przeźroczystości */
   padding: 10px;
   box-sizing: border-box; /* Uwzględnienie paddingu w wymiarach */
   text-align: left; /* Tekst wyrównany do lewej */
@@ -3789,7 +3786,7 @@ button.btn-get-started:hover {
   border: #393939 solid 1px;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 8px;
-  margin: 5px;
+  margin: 2px;
 }
 .specLoka-details:hover {
   border: #ffffff dotted 1px;
@@ -3797,17 +3794,7 @@ button.btn-get-started:hover {
 }
 
 #specCena {
-  /* position: absolute;
-  top: 80%;
-  right: 2%;  */
-  /* Zacznij od prawej krawędzi SpecialOfferArea */
-  /* width: 40%;  */
-  /* Szerokość względem SpecialOfferArea */
-  /* background-color: rgba(0, 0, 0, 0.7);  */
-  /* Czarne tło z 70% przeźroczystości */
   padding: 5px;
-  /* box-sizing: border-box;  */
-  /* Uwzględnienie paddingu w wymiarach */
 }
 
 #specCena span {
@@ -3816,11 +3803,4 @@ button.btn-get-started:hover {
   font-size: 36pt; 
   display: inline-block; 
   text-align: right !important;
-}
-
-#specOpis {
-  top: 0;
-  left: 100%;
-  transform: translate(-50%, -50%);
-  z-index: 4;
 }

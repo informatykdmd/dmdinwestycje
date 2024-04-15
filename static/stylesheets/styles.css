@@ -3797,17 +3797,20 @@ button.btn-get-started:hover {
 }
 
 #specCena {
-  position: absolute;
+  /* position: absolute;
   top: 80%;
-  right: 2%; /* Zacznij od prawej krawędzi SpecialOfferArea */
-  width: 40%; /* Szerokość względem SpecialOfferArea */
-  background-color: rgba(0, 0, 0, 0.7); /* Czarne tło z 70% przeźroczystości */
-  padding: 10px;
-  box-sizing: border-box; /* Uwzględnienie paddingu w wymiarach */
+  right: 2%;  */
+  /* Zacznij od prawej krawędzi SpecialOfferArea */
+  /* width: 40%;  */
+  /* Szerokość względem SpecialOfferArea */
+  /* background-color: rgba(0, 0, 0, 0.7);  */
+  /* Czarne tło z 70% przeźroczystości */
+  padding: 5px;
+  /* box-sizing: border-box;  */
+  /* Uwzględnienie paddingu w wymiarach */
 }
 
 #specCena span {
-  color:#00ff08; 
   padding: 5px; 
   font-weight: 900; 
   font-size: 36pt; 

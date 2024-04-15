@@ -508,17 +508,69 @@
                       {% endif %}
                       
                       <div class="col-lg-3 col-sm-12">
-                        Sprzedaż
+                        <div>
+                          <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                          <span class="white-text font-size-very-small padding-left-5">Rodzaj Oferty</span>
+                        </div>
+                        <div class="padding-left-10">
+                            <i class="bi bi-house-check white-gray"></i> 
+                            {% if secOffers['Rodzaj'] == 'sprzedaz' %}
+                                Oferta Sprzedaży
+                            {% elif secOffers['Rodzaj'] == 'zakup' %}
+                                Oferta Kupna
+                            {% elif secOffers['Rodzaj'] == 'wynajem' %}
+                                Oferta Wynajmu
+                            {% endif %}
+                        </div>
                       </div>
+
+                      {% if secOffers['Lokalizacja']!='' %}
                       <div class="col-lg-3 col-sm-12">
-                        Lokalizacja
+                        <div>
+                          <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                          <span class="white-text font-size-very-small padding-left-5">Lokalizacja</span>
+                        </div>
+                        <div class="padding-left-10">
+                            <strong class="green-text"><i class="bi bi-geo"></i> </strong> {{secOffers['Lokalizacja']}} 
+                            {% if coordinates[0]!='None' or coordinates[1]!='None' %}
+                            <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                <i class="fa fa-map-marker red-text"></i>
+                            </a>
+                            <a href="javascript:void(0);" onClick="openGoogleMaps('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                <i class="fa fa-map-marker blue-text"></i>
+                            </a>
+                            {% endif %}
+                        </div>
                       </div>
+                      {% endif %}
+
+                      {% if secOffers['Metraz']!=0 %}
                       <div class="col-lg-3 col-sm-12">
-                        Sprzedaż
+                        <div>
+                          <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                          <span class="white-text font-size-very-small padding-left-5">Metraż</span>
+                        </div>
+                        <div class="padding-left-10">
+                            <i class="bi bi-house-check white-gray"></i> {{secOffers['Metraz']}} m&sup2;
+                        </div>
                       </div>
+                      {% endif %}
+
+
+                      {% if secOffers['TypDomu']!="" %}
                       <div class="col-lg-3 col-sm-12">
-                        Lokalizacja
+                        <div>
+                          <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                          <span class="white-text font-size-very-small padding-left-5">Typ Domu</span>
+                        </div>
+                        <div class="padding-left-10">
+                            <i class="bi bi-house white-gray"></i> {{secOffers['TypDomu']}}
+                        </div>
                       </div>
+                      {% endif %}
+
+
+
                       <div class="col-lg-6 col-sm-12">
                         Sprzedaż
                       </div>

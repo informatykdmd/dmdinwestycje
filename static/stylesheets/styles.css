@@ -3810,6 +3810,7 @@ button.btn-get-started:hover {
   padding: 10px;
   min-width: 250px;
   border-radius: 5px;
+  font-size: 36pt; 
   border: #8c9191 solid 1px;
   color: #8c9191;
 }

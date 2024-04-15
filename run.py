@@ -387,6 +387,8 @@ def smart_truncate(content, length=200):
 ##      ######           ###
 ############################
 
+session['spcOfferON']=False
+
 @app.route('/')
 def index():
     session['page'] = 'index'

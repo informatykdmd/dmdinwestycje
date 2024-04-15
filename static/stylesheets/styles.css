@@ -3785,12 +3785,12 @@ button.btn-get-started:hover {
 
 .specLoka-details {
   padding: 10px;
-  border: #393939 solid 1px;
+  /* border: #393939 solid 1px; */
   border-radius: 5px;
 }
 .specLoka-details:hover {
   border: #ffffff dotted 1px;
-  background-color: #282828;
+  background-color: rgba(40, 40, 40, 0.7);
 }
 
 #specCena {

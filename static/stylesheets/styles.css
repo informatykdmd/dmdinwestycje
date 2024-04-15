@@ -3788,7 +3788,7 @@ button.btn-get-started:hover {
   border: #393939 solid 1px;
   border-radius: 5px;
 }
-.specLoka-details div:hover {
+.specLoka-details:hover {
   border: #ffffff dotted 1px;
   background-color: #282828;
 }

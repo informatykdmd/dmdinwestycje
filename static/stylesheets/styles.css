@@ -3788,7 +3788,8 @@ button.btn-get-started:hover {
   padding: 10px;
   border: #393939 solid 1px;
   background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 5%;
+  border-radius: 8px;
+  margin: 5px;
 }
 .specLoka-details:hover {
   border: #ffffff dotted 1px;

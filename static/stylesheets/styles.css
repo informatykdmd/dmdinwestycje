@@ -3808,12 +3808,15 @@ button.btn-get-started:hover {
 .spec-Button {
   background-color: rgba(0, 0, 0, 0.7);
   padding: 10px;
+  min-width: 250px;
   border-radius: 5px;
   border: #8c9191 solid 1px;
+  color: #8c9191;
 }
 
 .spec-Button:hover {
-  background-color: rgba(40, 40, 40, 0.7);
-  border: #ffffff solid 1px;
+  background-color: rgb(210, 210, 210);
+  border: #adadad solid 1px;
+  color: #141414;
 }
 

@@ -3783,6 +3783,16 @@ button.btn-get-started:hover {
   /* Dodatkowe style dla tekstu, jeśli są potrzebne */
 }
 
+.specLoka-details div {
+  padding: 10px;
+  border: #393939 solid 1px;
+  border-radius: 5px;
+}
+.specLoka-details div:hover {
+  border: #ffffff dotted 1px;
+  background-color: #282828;
+}
+
 #specCena {
   position: absolute;
   top: 80%;

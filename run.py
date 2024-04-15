@@ -387,7 +387,6 @@ def smart_truncate(content, length=200):
 ##      ######           ###
 ############################
 
-session['spcOfferON']=False
 
 @app.route('/')
 def index():
@@ -453,6 +452,9 @@ def ofertaInwestycyjna():
     session['page'] = 'ofertaInwestycyjna'
     pageTitle = 'Oferta Inwestycyjna'
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+
     return render_template(
         f'ofertaInwestycyjna.html',
         pageTitle=pageTitle,
@@ -463,6 +465,9 @@ def ofertaInwestycyjna():
 def ofertaNajmu():
     session['page'] = 'ofertaNajmu'
     pageTitle = 'Oferta Najmu'
+
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     return render_template(
         f'ofertaNajmu.html',
@@ -475,6 +480,9 @@ def ofertaSprzedazy():
     session['page'] = 'ofertaSprzedazy'
     pageTitle = 'Oferta Sprzedaży'
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+
     return render_template(
         f'ofertaSprzedazy.html',
         pageTitle=pageTitle,
@@ -485,6 +493,9 @@ def ofertaSprzedazy():
 def ofertaSpecjalna():
     session['page'] = 'ofertaSpecjalna'
     pageTitle = 'Ofeta Specjalna'
+
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     try: secOffers = generator_specialOffert()[0]
     except IndexError: secOffers = {
@@ -546,6 +557,9 @@ def myJestesmy():
     session['page'] = 'myJestesmy'
     pageTitle = 'O nas'
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+
     return render_template(
         f'myJestesmy.html',
         pageTitle=pageTitle,
@@ -556,6 +570,9 @@ def myJestesmy():
 def myZespol():
     session['page'] = 'myZespol'
     pageTitle = 'Zespół'
+
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     if f'TEAM-ALL' not in session:
         team_list = generator_teamDB()
@@ -579,6 +596,9 @@ def myPartnerzy():
     session['page'] = 'myPartnerzy'
     pageTitle = 'Partnerzy'
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+
     return render_template(
         f'myPartnerzy.html',
         pageTitle=pageTitle,
@@ -589,6 +609,9 @@ def myPartnerzy():
 def inwestycjeOdkup():
     session['page'] = 'inwestycjeOdkup'
     pageTitle = 'Odkup Działki'
+
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     return render_template(
         f'inwestycjeOdkup.html',
@@ -601,6 +624,9 @@ def inwestycjeWspolne():
     session['page'] = 'inwestycjeWspolne'
     pageTitle = 'Inwestycja Wspólna'
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+
     return render_template(
         f'inwestycjeWspolne.html',
         pageTitle=pageTitle,
@@ -611,6 +637,9 @@ def inwestycjeWspolne():
 def inwestycjePomoc():
     session['page'] = 'inwestycjePomoc'
     pageTitle = 'Pomoc Prawna'
+
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     return render_template(
         f'inwestycjePomoc.html',
@@ -623,6 +652,9 @@ def inwestycjeProjekt():
     session['page'] = 'inwestycjeProjekt'
     pageTitle = 'Projekt Inwestycju'
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+
     return render_template(
         f'inwestycjeProjekt.html',
         pageTitle=pageTitle,
@@ -633,6 +665,9 @@ def inwestycjeProjekt():
 def inwestycjeBudowa():
     session['page'] = 'inwestycjeBudowa'
     pageTitle = 'Kompleksowa Budowa'
+
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     return render_template(
         f'inwestycjeBudowa.html',
@@ -645,6 +680,9 @@ def inwestycjeMaksymalizacja():
     session['page'] = 'inwestycjeMaksymalizacja'
     pageTitle = 'Maksymalizacja Wartości'
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+
     return render_template(
         f'inwestycjeMaksymalizacja.html',
         pageTitle=pageTitle,
@@ -655,6 +693,9 @@ def inwestycjeMaksymalizacja():
 def blogs():
     session['page'] = 'blogs'
     pageTitle = 'Blog'
+
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     blog_post = generator_daneDBList()
 
@@ -709,6 +750,8 @@ def blogOne():
         }
         recentPosts.append(theme)
     
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     return render_template(
         f'blogOne.html',
@@ -724,6 +767,9 @@ def kontakt():
     session['page'] = 'kontakt'
     pageTitle = 'Kontakt z Nami'
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+
     return render_template(
         f'kontakt.html',
         pageTitle=pageTitle,
@@ -735,6 +781,9 @@ def politykaPrv():
     session['page'] = 'politykaPrv'
     pageTitle = 'Polityka prywatności'
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+
     return render_template(
         f'politykaPrv.html',
         pageTitle=pageTitle,
@@ -745,6 +794,9 @@ def politykaPrv():
 def rulez():
     session['page'] = 'rulez'
     pageTitle = 'Zasady witryny'
+    
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     return render_template(
         f'rulez.html',
@@ -756,6 +808,9 @@ def rulez():
 def help():
     session['page'] = 'help'
     pageTitle = 'Pomoc'
+
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     return render_template(
         f'help.html',
@@ -824,6 +879,9 @@ def findByCategory():
 
     # Pobierz tylko odpowiednią ilość postów na aktualnej stronie
     posts = searchResults[offset: offset + per_page]
+
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
 
     return render_template(
         "searchBlog.html",
@@ -902,6 +960,9 @@ def searchBlog():
     # Pobierz tylko odpowiednią ilość postów na aktualnej stronie
     posts = searchResults[offset: offset + per_page]
 
+    if f'spcOfferON' not in session:
+        session['spcOfferON']=False
+        
     return render_template(
         "searchBlog.html",
         pageTitle=pageTitle,

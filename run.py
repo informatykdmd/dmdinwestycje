@@ -547,6 +547,7 @@ def ofertaSpecjalna():
 
     return render_template(
         f'ofertaSpecjalna.html',
+        pcOfferON=False,
         coordinates=[lat, lon],
         pageTitle=pageTitle,
         mainFoto=mainFoto,

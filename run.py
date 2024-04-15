@@ -435,6 +435,7 @@ def index():
 
     try: mainFoto = secOffers['Zdjecia'][0]
     except IndexError: mainFoto = ''
+    except KeyError: mainFoto = ''
 
     return render_template(
         f'index.html', 
@@ -962,7 +963,7 @@ def searchBlog():
 
     if f'spcOfferON' not in session:
         session['spcOfferON']=False
-        
+
     return render_template(
         "searchBlog.html",
         pageTitle=pageTitle,

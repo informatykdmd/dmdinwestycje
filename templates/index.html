@@ -693,3 +693,18 @@
       </div>
     </section><!-- End Recent Blog Posts Section -->
 {% endblock %}
+{% block bottom_scripts %}
+<script>
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var priceElement = document.getElementById("price");
+    var price = parseFloat(priceElement.innerText).toLocaleString('pl-PL', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    priceElement.innerText = price;
+    });
+
+</script>
+
+{% endblock %}

@@ -469,11 +469,11 @@
             <div class="col-lg-12 text-center">
                 <div class="special-offer-homepage">
                   <div id="SpecialOfferArea" >
-                    <img src="{{mainFoto}}" alt="" class="object-fit-cover border rounded" />
+                    <img src="{{mainFoto}}" alt="" class="object-fit-cover border rounded" onClick="goToSpecOffer()" />
 
                     <div class="row offer" id="specLoka">
 
-                      <div class="col-lg-12 col-sm-12 specLoka-details">
+                      <div class="col-lg-12 col-sm-12 specLoka-details" onClick="goToSpecOffer()">
                         <div>
 
                           <span class="white-text font-size-very-small padding-left-5">Oferta Specjalna</span>
@@ -514,7 +514,7 @@
                       </div>
                       {% endif %}
                       
-                      <div class="col-lg-12 col-sm-12 specLoka-details">
+                      <div class="col-lg-12 col-sm-12 specLoka-details" onClick="goToSpecOffer()">
                         <div>
                           <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                           <span class="white-text font-size-very-small padding-left-5">Rodzaj Oferty</span>
@@ -552,7 +552,7 @@
                       {% endif %}
 
                       {% if secOffers['Metraz']!=0 %}
-                      <div class="col-lg-3 col-sm-12 specLoka-details">
+                      <div class="col-lg-3 col-sm-12 specLoka-details" onClick="goToSpecOffer()">
                         <div>
                           <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                           <span class="white-text font-size-very-small padding-left-5">Metraż</span>
@@ -565,7 +565,7 @@
 
 
                       {% if secOffers['TypDomu']!="" %}
-                      <div class="col-lg-3 col-sm-12 specLoka-details">
+                      <div class="col-lg-3 col-sm-12 specLoka-details" onClick="goToSpecOffer()">
                         <div>
                           <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                           <span class="white-text font-size-very-small padding-left-5">Typ Domu</span>
@@ -577,7 +577,7 @@
                       {% endif %}
 
                       {% if secOffers['InformacjeDodatkowe']!="" %}
-                      <div class="col-lg-12 col-sm-12 specLoka-details">
+                      <div class="col-lg-12 col-sm-12 specLoka-details" onClick="goToSpecOffer()">
                         <div>
                           <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                            <span class="white-text font-size-very-small padding-left-5">Informacje Dodatkowe </span> <i class="bi bi-info-lg green-text"></i>
@@ -589,7 +589,7 @@
                       {% endif %}
 
 
-                      <div class="col-lg-12 col-sm-12 specLoka-details m-b30">
+                      <div class="col-lg-12 col-sm-12 specLoka-details" onClick="goToSpecOffer()">
                         <div>
                            <span class="white-text font-size-very-small padding-left-5">Cena</span> <i class="bi bi-info-lg green-text"></i>
                         </div>
@@ -598,9 +598,7 @@
                         </div>
                       </div>
 
-                      <div class="col-lg-12 text-right">
-                          <span><a class="spec-Button" href="/oferta-specjalna">Sprawdź to!</a></span>
-                      </div>
+
                     </div>
                     
                   </div>
@@ -667,6 +665,9 @@
     priceElement.innerText = price;
     });
 
+    function goToSpecOffer (){
+      window.location.href = '/oferta-specjalna';
+    }
 </script>
 
 {% endblock %}

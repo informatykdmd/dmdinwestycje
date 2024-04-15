@@ -412,49 +412,25 @@ def index():
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
 
-    try: secOffers = generator_specialOffert()[0]
-    except IndexError: secOffers = {
-            'ID': 0,
-            'Tytul': 'Brak danych o tytule',
-            'Opis': 'Brak danych o opisie',
-            'Cena': 'Brak danych o cenie',
-            'Lokalizacja':'Brak danych o lokalizacji',
-            'LiczbaPokoi': 'Brak danych!',
-            'Metraz': 'Brak danych!',
-            'Zdjecia': [],
-            'Status': 'Brak danych!',
-            'Rodzaj': 'Brak danych!',
-            'DataRozpoczecia': 'Brak danych!',
-            'DataZakonczenia': 'Brak danych!',
-            'DataUtworzenia': 'Brak danych!',
-            'DataAktualizacji': 'Brak danych!',
-            'Kaucja': 'Brak danych!',
-            'Czynsz': 'Brak danych!',
-            'Umeblowanie': 'Brak danych!',
-            'LiczbaPieter': 'Brak danych!',
-            'PowierzchniaDzialki': 'Brak danych!',
-            'TechBudowy': 'Brak danych!',
-            'FormaKuchni': 'Brak danych!',
-            'TypDomu': 'Brak danych!',
-            'StanWykonczenia': 'Brak danych!',
-            'RokBudowy': 'Brak danych!',
-            'NumerKW': 'Brak danych!',
-            'InformacjeDodatkowe': 'Brak danych!',
-            'Rynek': 'Brak danych!',
-            'PrzeznaczenieLokalu': 'Brak danych!',
-            'Poziom': 'None',
-            'GPS': {},
-            'TelefonKontaktowy': 'Brak danych!',
-            'EmailKontaktowy': 'Brak danych!'
-        }
+    try:
+        spcOfferON = True 
+        secOffers = generator_specialOffert()[0]
+    except IndexError: 
+        spcOfferON = False
+        secOffers = {}
 
-    {"latitude": 52.229676, "longitude": 21.012229}
-    if "latitude" in secOffers['GPS'] and "longitude" in secOffers['GPS']:
-        lat = secOffers['GPS']["latitude"]
-        lon = secOffers['GPS']["longitude"]
+    session['spcOfferON']=spcOfferON
+
+    if 'GPS' in secOffers:
+        if "latitude" in secOffers['GPS'] and "longitude" in secOffers['GPS']:
+            lat = secOffers['GPS']["latitude"]
+            lon = secOffers['GPS']["longitude"]
+        else:
+            lat = 'None'
+            lon = 'None'
     else:
-        lat = 'None'
-        lon = 'None'
+            lat = 'None'
+            lon = 'None'
 
     try: mainFoto = secOffers['Zdjecia'][0]
     except IndexError: mainFoto = ''
@@ -462,6 +438,7 @@ def index():
     return render_template(
         f'index.html', 
         pageTitle=pageTitle,
+        spcOfferON=spcOfferON,
         fourListTeam=fourListTeam, 
         blog_post_three=blog_post_three,
         coordinates=[lat, lon],
@@ -477,6 +454,7 @@ def ofertaInwestycyjna():
     return render_template(
         f'ofertaInwestycyjna.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/oferta-najmu')
@@ -487,6 +465,7 @@ def ofertaNajmu():
     return render_template(
         f'ofertaNajmu.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/oferta-sprzedazy')
@@ -497,6 +476,7 @@ def ofertaSprzedazy():
     return render_template(
         f'ofertaSprzedazy.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/oferta-specjalna')
@@ -567,6 +547,7 @@ def myJestesmy():
     return render_template(
         f'myJestesmy.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/my-zespol')
@@ -587,6 +568,7 @@ def myZespol():
     return render_template(
         f'myZespol.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON'],
         fullListTeam=fullListTeam
         )
 
@@ -598,6 +580,7 @@ def myPartnerzy():
     return render_template(
         f'myPartnerzy.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/inwestycje-odkup')
@@ -608,6 +591,7 @@ def inwestycjeOdkup():
     return render_template(
         f'inwestycjeOdkup.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/inwestycje-wspolne')
@@ -618,6 +602,7 @@ def inwestycjeWspolne():
     return render_template(
         f'inwestycjeWspolne.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/inwestycje-pomoc')
@@ -628,6 +613,7 @@ def inwestycjePomoc():
     return render_template(
         f'inwestycjePomoc.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/inwestycje-projekt')
@@ -638,6 +624,7 @@ def inwestycjeProjekt():
     return render_template(
         f'inwestycjeProjekt.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/inwestycje-budowa')
@@ -648,6 +635,7 @@ def inwestycjeBudowa():
     return render_template(
         f'inwestycjeBudowa.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/inwestycje-maksymalizacja')
@@ -658,6 +646,7 @@ def inwestycjeMaksymalizacja():
     return render_template(
         f'inwestycjeMaksymalizacja.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/blogs')
@@ -678,6 +667,7 @@ def blogs():
     return render_template(
         f'blogs.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON'],
         pagination=pagination,
         posts=posts
         )
@@ -720,6 +710,7 @@ def blogOne():
 
     return render_template(
         f'blogOne.html',
+        spcOfferON=session['spcOfferON'],
         choiced=choiced,
         pre_next=pre_next,
         cat_dict=cat_dict,
@@ -734,6 +725,7 @@ def kontakt():
     return render_template(
         f'kontakt.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/polityka-prv')
@@ -744,6 +736,7 @@ def politykaPrv():
     return render_template(
         f'politykaPrv.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/rulez')
@@ -754,6 +747,7 @@ def rulez():
     return render_template(
         f'rulez.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.route('/help')
@@ -764,6 +758,7 @@ def help():
     return render_template(
         f'help.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON']
         )
 
 @app.errorhandler(404)
@@ -831,6 +826,7 @@ def findByCategory():
     return render_template(
         "searchBlog.html",
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON'],
         posts=posts,
         found=found,
         pagination=pagination,
@@ -907,6 +903,7 @@ def searchBlog():
     return render_template(
         "searchBlog.html",
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON'],
         posts=posts,
         found=found,
         pagination=pagination,

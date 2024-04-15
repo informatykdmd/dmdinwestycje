@@ -11,7 +11,11 @@
               <li><a href="/oferta-inwestycyjna">Inwestycyjna</a></li>
               <li><a href="/oferta-najmu">Najmu</a></li>
               <li><a href="/oferta-sprzedazy">Sprzedaży</a></li>
-              <li><a href="/oferta-specjalna">Specjalna</a></li>
+              {% if spcOfferON %} 
+              <li class="blue-bg">
+                <a href="/oferta-specjalna">Specjalna</a>
+              </li>
+              {% endif %}
             </ul>
           </li>
           <!-- <li><a href="about.html">O Nas</a></li> -->

@@ -166,7 +166,7 @@ def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
             'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
             'Opis': data[2] if lang=='pl' else getLangText(data[2]),
             'Cena': data[3],
-            'Kaucja': data[4],
+            'Kaucja': 0 if data[4] is None else data[4],
             'Lokalizacja': data[5],
             'LiczbaPokoi': '' if data[6] is None else data[6],
             'Metraz': '' if data[7] is None else data[7],

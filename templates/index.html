@@ -512,7 +512,7 @@
                           <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                           <span class="white-text font-size-very-small padding-left-5">Rodzaj Oferty</span>
                         </div>
-                        <div class="padding-left-10">
+                        <div class="padding-left-10 white-gray font-size-small">
                             <i class="bi bi-house-check white-gray"></i> 
                             {% if secOffers['Rodzaj'] == 'sprzedaz' %}
                                 Oferta Sprzedaży
@@ -530,7 +530,7 @@
                           <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                           <span class="white-text font-size-very-small padding-left-5">Lokalizacja</span>
                         </div>
-                        <div class="padding-left-10">
+                        <div class="padding-left-10 white-gray font-size-small">
                             <strong class="green-text"><i class="bi bi-geo"></i> </strong> {{secOffers['Lokalizacja']}} 
                             {% if coordinates[0]!='None' or coordinates[1]!='None' %}
                             <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
@@ -550,7 +550,7 @@
                           <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                           <span class="white-text font-size-very-small padding-left-5">Metraż</span>
                         </div>
-                        <div class="padding-left-10">
+                        <div class="padding-left-10 white-gray font-size-small">
                             <i class="bi bi-house-check white-gray"></i> {{secOffers['Metraz']}} m&sup2;
                         </div>
                       </div>
@@ -563,7 +563,7 @@
                           <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                           <span class="white-text font-size-very-small padding-left-5">Typ Domu</span>
                         </div>
-                        <div class="padding-left-10">
+                        <div class="padding-left-10 white-gray font-size-small">
                             <i class="bi bi-house white-gray"></i> {{secOffers['TypDomu']}}
                         </div>
                       </div>

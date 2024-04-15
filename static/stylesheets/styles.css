@@ -3783,7 +3783,7 @@ button.btn-get-started:hover {
   /* Dodatkowe style dla tekstu, jeśli są potrzebne */
 }
 
-.specLoka-details div {
+.specLoka-details {
   padding: 10px;
   border: #393939 solid 1px;
   border-radius: 5px;

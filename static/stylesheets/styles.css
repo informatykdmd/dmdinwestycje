@@ -3771,7 +3771,8 @@ button.btn-get-started:hover {
   top: 20%;
   right: 2%; /* Zacznij od prawej krawędzi SpecialOfferArea */
   width: 40%; /* Szerokość względem SpecialOfferArea */
-  background-color: rgba(0, 0, 0, 0.7); /* Czarne tło z 70% przeźroczystości */
+  /* background-color: rgba(0, 0, 0, 0.7);  */
+  /* Czarne tło z 70% przeźroczystości */
   padding: 10px;
   box-sizing: border-box; /* Uwzględnienie paddingu w wymiarach */
   text-align: left; /* Tekst wyrównany do lewej */
@@ -3785,8 +3786,9 @@ button.btn-get-started:hover {
 
 .specLoka-details {
   padding: 10px;
-  /* border: #393939 solid 1px; */
-  border-radius: 5px;
+  border: #393939 solid 1px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5%;
 }
 .specLoka-details:hover {
   border: #ffffff dotted 1px;

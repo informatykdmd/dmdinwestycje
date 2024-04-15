@@ -3804,3 +3804,16 @@ button.btn-get-started:hover {
   display: inline-block; 
   text-align: right !important;
 }
+
+.spec-Button {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  border: #8c9191 solid 1px;
+}
+
+.spec-Button:hover {
+  background-color: rgba(40, 40, 40, 0.7);
+  border: #ffffff solid 1px;
+}
+

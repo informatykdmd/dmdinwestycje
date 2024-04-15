@@ -558,7 +558,7 @@
 
 
                       {% if secOffers['TypDomu']!="" %}
-                      <div class="col-lg-4 col-sm-12">
+                      <div class="col-lg-12 col-sm-12">
                         <div>
                           <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
                           <span class="white-text font-size-very-small padding-left-5">Typ Domu</span>
@@ -569,41 +569,21 @@
                       </div>
                       {% endif %}
 
+                      {% if secOffers['InformacjeDodatkowe']!="" %}
+                      <div class="col-lg-12 col-sm-12">
+                        <div>
+                          <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                           <span class="white-text font-size-very-small padding-left-5">Informacje Dodatkowe </span> <i class="bi bi-info-lg green-text"></i>
+                        </div>
+                        <div class="padding-left-10">
+                            {{secOffers['InformacjeDodatkowe']}}
+                        </div>
+                      </div>
+                      {% endif %}
 
 
-                      <div class="col-lg-6 col-sm-12">
-                        Sprzedaż
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Lokalizacja
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Sprzedaż
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Lokalizacja
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Sprzedaż
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Lokalizacja
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Sprzedaż
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Lokalizacja
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Sprzedaż
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Lokalizacja
-                      </div>
-                      <div class="col-lg-6 col-sm-12">
-                        Sprzedaż
-                      </div>
+
+                      
 
                     </div>
                     <div class="offer" id="specCena"> 

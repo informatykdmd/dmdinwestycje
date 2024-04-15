@@ -131,6 +131,73 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
             specOffer.append(theme)
     return specOffer
 
+def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystkie'
+    took_rentOffer = take_data_table('*', 'OfertyNajmu')
+    
+    rentOffer = []
+    for data in took_rentOffer:
+        try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[8])[0][1:-1]
+        except IndexError: fotoList = []
+
+        try:
+            if data[27] is not None:
+                gps_json = json.loads(data[27])
+                {"latitude": 52.229676, "longitude": 21.012229}
+                "https://earth.google.com/web/@52.25242614,20.83096693,100.96310044a,116.2153688d,35y,0h,0t,0r/data=OgMKATA" # nowrmal
+                "https://earth.google.com/web/@52.25250876,20.83139622,102.83373871a,0d,60y,333.15344169h,86.56713379t,0r" # 3D
+            else:
+                raise ValueError("Dane są None, nie można przetworzyć JSON")
+        except json.JSONDecodeError:
+            print("Błąd: Podane dane nie są poprawnym JSON-em")
+            gps_json = {}
+        except IndexError:
+            print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+            gps_json = {}
+        except TypeError as e:
+            print(f"Błąd typu danych: {e}")
+            gps_json = {}
+        except Exception as e:
+            print(f"Nieoczekiwany błąd: {e}")
+            gps_json = {}
+            
+
+        theme = {
+            'ID': int(data[0]),
+            'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
+            'Opis': data[2] if lang=='pl' else getLangText(data[2]),
+            'Cena': data[3],
+            'Kaucja': data[4],
+            'Lokalizacja': data[5],
+            'LiczbaPokoi': '' if data[6] is None else data[6],
+            'Metraz': '' if data[7] is None else data[7],
+            'Zdjecia': [foto for foto in fotoList if foto is not None],
+            'DataPublikacjiOlx': format_date(data[9]),
+            'DataPublikacjiAllegro': format_date(data[10]),
+            'DataPublikacjiOtoDom': format_date(data[11]),
+            'DataPublikacjiMarketplace': format_date(data[12]),
+            'DataUtworzenia': format_date(data[13]),
+            'DataAktualizacji': format_date(data[14]),
+            'RodzajZabudowy': '' if data[15] is None else data[15],
+            'Czynsz': 0.00 if data[16] is None else data[16],
+            'Umeblowanie': '' if data[17] is None else data[17],
+            'LiczbaPieter': 0 if data[18] is None else data[18],
+            'PowierzchniaDzialki': 0.00 if data[19] is None else data[19],
+            'TechBudowy': '' if data[20] is None else data[20],
+            'FormaKuchni': '' if data[21] is None else data[21],
+            'TypDomu': '' if data[22] is None else data[22],
+            'StanWykonczenia': '' if data[23] is None else data[23],
+            'RokBudowy': 0 if data[24] is None else data[24],
+            'NumerKW': '' if data[25] is None else data[25],
+            'InformacjeDodatkowe': '' if data[26] is None else data[26],
+            'GPS': gps_json,
+            'TelefonKontaktowy': '' if data[28] is None else data[28],
+            'EmailKontaktowy': '' if data[29] is None else data[29]
+        }
+
+
+        rentOffer.append(theme)
+    return rentOffer
+
 def generator_teamDB(lang='pl'):
     took_teamD = take_data_table('*', 'workers_team')
     teamData = []
@@ -478,16 +545,17 @@ def ofertaNajmu():
     if f'spcOfferON' not in session:
         try:
             spcOfferON = True 
-            secOffers = generator_specialOffert()[0]
+            generator_specialOffert()[0]
             session['spcOfferON']=spcOfferON
         except IndexError: 
             spcOfferON = False
-            secOffers = {}
             session['spcOfferON']=spcOfferON
+    rentOffer = generator_rentOffert()
 
     return render_template(
         f'ofertaNajmu.html',
         pageTitle=pageTitle,
+        rentOffer=rentOffer,
         spcOfferON=session['spcOfferON']
         )
 

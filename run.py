@@ -317,7 +317,7 @@ def generator_sellOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
     return rentOffer
 
 def sellOffer_where_ID(idOffer, lang='pl'): #
-    try: data = take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+    try: data = take_data_where_ID('*', 'OfertySprzedazy', 'ID', idOffer)[0]
     except IndexError: return {}
 
     gps_json = {}

@@ -198,6 +198,65 @@ def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
 
     return rentOffer
 
+def rentOffer_where_ID(idOffer, lang='pl'): #
+    data = take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+    
+    try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[8])[0][1:-1]
+    except IndexError: fotoList = []
+
+    try:
+        if data[27] is not None:
+            gps_json = json.loads(data[27])
+            raise ValueError("Dane są None, nie można przetworzyć JSON")
+    except json.JSONDecodeError:
+        print("Błąd: Podane dane nie są poprawnym JSON-em")
+        gps_json = {}
+    except IndexError:
+        print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+        gps_json = {}
+    except TypeError as e:
+        print(f"Błąd typu danych: {e}")
+        gps_json = {}
+    except Exception as e:
+        print(f"Nieoczekiwany błąd: {e}")
+        gps_json = {}
+        
+
+    theme = {
+        'ID': int(data[0]),
+        'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
+        'Opis': data[2] if lang=='pl' else getLangText(data[2]),
+        'Cena': data[3],
+        'Kaucja': 0 if data[4] is None else data[4],
+        'Lokalizacja': data[5],
+        'LiczbaPokoi': '' if data[6] is None else data[6],
+        'Metraz': '' if data[7] is None else data[7],
+        'Zdjecia': [foto for foto in fotoList if foto is not None],
+        'DataPublikacjiOlx': format_date(data[9]),
+        'DataPublikacjiAllegro': format_date(data[10]),
+        'DataPublikacjiOtoDom': format_date(data[11]),
+        'DataPublikacjiMarketplace': format_date(data[12]),
+        'DataUtworzenia': format_date(data[13]),
+        'DataAktualizacji': format_date(data[14]),
+        'RodzajZabudowy': '' if data[15] is None else data[15],
+        'Czynsz': 0.00 if data[16] is None else data[16],
+        'Umeblowanie': '' if data[17] is None else data[17],
+        'LiczbaPieter': 0 if data[18] is None else data[18],
+        'PowierzchniaDzialki': 0.00 if data[19] is None else data[19],
+        'TechBudowy': '' if data[20] is None else data[20],
+        'FormaKuchni': '' if data[21] is None else data[21],
+        'TypDomu': data[22],
+        'StanWykonczenia': '' if data[23] is None else data[23],
+        'RokBudowy': 0 if data[24] is None else data[24],
+        'NumerKW': '' if data[25] is None else data[25],
+        'InformacjeDodatkowe': '' if data[26] is None else data[26],
+        'GPS': gps_json,
+        'TelefonKontaktowy': '' if data[28] is None else data[28],
+        'EmailKontaktowy': '' if data[29] is None else data[29]
+    }
+
+    return theme
+
 def generator_teamDB(lang='pl'):
     took_teamD = take_data_table('*', 'workers_team')
     teamData = []
@@ -591,7 +650,8 @@ def ofertaNajmuDetails():
         idOffer = None
 
     if idOffer:
-        try: rentOffers = take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+        try: rentOffers = rentOffer_where_ID(idOffer) #take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+
         except IndexError: rentOffers = {
                 'ID': 0, 'Tytul': 'Brak danych!', 'Opis': 'Brak danych!', 'Cena': 'Brak danych!', 'Kaucja': 'Brak danych!',
                 'Lokalizacja': 'Brak danych!','LiczbaPokoi': 'Brak danych!', 'Metraz': 'Brak danych!', 'Zdjecia': [],

@@ -559,7 +559,7 @@ def ofertaNajmu():
             categoryOffer[offerData['TypDomu']] = f'.Class_Offer_{i}'
     detailOffer = []
     for offerData in rentOffer:
-        offerData['class'] = categoryOffer[offerData['TypDomu']]
+        offerData['class'] = categoryOffer[offerData['TypDomu']][1:]
         detailOffer.append(offerData)
 
 

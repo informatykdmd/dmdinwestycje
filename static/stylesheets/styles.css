@@ -1932,6 +1932,90 @@ button:focus:not(:focus-visible){
   color: #9b9b9b;
 }
 
+.offers .content h3 {
+  font-weight: 400;
+  font-size: 34px;
+}
+
+.offers .content h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.offers .content p {
+  font-size: 15px;
+  color: #6c757d;
+}
+
+.offers .accordion-item {
+  border: 0;
+  margin-bottom: 20px;
+  border-radius: 50px;
+  background-color: #2b2b2b;
+}
+
+.offers .accordion-item:last-child {
+  margin-bottom: 0;
+}
+
+.offers .accordion-button:after {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: url(../images/icons/down-arrow.svg);
+}
+
+.offers .accordion-collapse {
+  border: 0;
+}
+
+.offers .accordion-button {
+  padding: 20px 50px 20px 20px;
+  color: var(--color-primary);
+  text-align: left;
+  border-radius: 0;
+  background: #2b2b2b;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  border-color: transparent;
+}
+
+
+.offers .accordion-button:focus {
+  border-color: transparent;
+  border: 0px;
+  box-shadow: none;
+}
+
+.offers .accordion-button .num {
+  padding-right: 10px;
+  font-size: 30px;
+  line-height: 0;
+  color: var(--color-primary);
+}
+
+.offers .accordion-button:not(.collapsed) {
+  color: var(--color-primary);
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+.offers .accordion-button:after {
+  position: absolute;
+  right: 20px;
+  fill: #fff;
+}
+
+.offers .accordion-body {
+  padding: 10px;
+  border: 0;
+  border-radius: 0;
+  background: #2b2b2b;
+  box-shadow: none;
+  color: #9b9b9b;
+}
+
 /*--------------------------------------------------------------
 # Recent Blog Posts Section
 --------------------------------------------------------------*/

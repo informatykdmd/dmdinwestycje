@@ -184,7 +184,7 @@ def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
             'PowierzchniaDzialki': 0.00 if data[19] is None else data[19],
             'TechBudowy': '' if data[20] is None else data[20],
             'FormaKuchni': '' if data[21] is None else data[21],
-            'TypDomu': '' if data[22] is None else data[22],
+            'TypDomu': data[22],
             'StanWykonczenia': '' if data[23] is None else data[23],
             'RokBudowy': 0 if data[24] is None else data[24],
             'NumerKW': '' if data[25] is None else data[25],
@@ -195,7 +195,7 @@ def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
         }
 
         rentOffer.append(theme)
-        
+
     return rentOffer
 
 def generator_teamDB(lang='pl'):
@@ -551,10 +551,15 @@ def ofertaNajmu():
             spcOfferON = False
             session['spcOfferON']=spcOfferON
     rentOffer = generator_rentOffert()
+    categoryOffer = set()
+    for offerData in rentOffer:
+        categoryOffer.add(offerData['TypDomu'])
+
 
     return render_template(
         f'ofertaNajmu.html',
         pageTitle=pageTitle,
+        categoryOffer=categoryOffer,
         rentOffer=rentOffer,
         spcOfferON=session['spcOfferON']
         )

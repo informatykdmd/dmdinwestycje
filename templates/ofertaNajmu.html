@@ -40,7 +40,7 @@
         </div>
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
             <div>
-                {{categoryOffer}}
+                {{detailOffer}}
                 <ul class="portfolio-flters">
                     <li data-filter="*" class="filter-active">Wszystkie</li>
                     {% for cat, OferClass in categoryOffer.items() %}
@@ -53,24 +53,27 @@
                 </ul><!-- End Portfolio Filters -->
             </div>
             <div class="row gy-4 portfolio-container">
-                <div class="col-xl-4 col-md-6 portfolio-item Project-canada">
+                {% for item in detailOffer %}
+                <div class="col-xl-4 col-md-6 portfolio-item {{item['class']}}">
                     <div class="portfolio-wrap" data-aos="fade-up" data-aos-delay="100">
-                    <a href="{{rentOffer[0]['Zdjecia'][0]}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{rentOffer[0]['Zdjecia'][0]}}" class="img-fluid" alt=""></a>
+                    <a href="{{item['Zdjecia'][0]}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{item['Zdjecia'][0]}}" class="img-fluid" alt=""></a>
                         <div class="portfolio-info">
-                            <h4><a href="/oferta-najmu-details?offerid=" title="More Details" id="title_0">{{rentOffer[0]['Tytul']}}</a></h4>
+                            <h4><a href="/oferta-najmu-details?offerid={{item['ID']}}" title="More Details" id="title_{{item['ID']}}">{{item['Tytul']}}</a></h4>
                             <script>
                                 window.onload = function() {
-                                    typeWriterEffect('title_0');
+                                    typeWriterEffect("title_{{item['ID']}}");
                                 };
                             </script>
                             <div class="project-deatils-aside">
                                 <div class="project-btn">
-                                    <a href="/oferta-najmu-details?offerid=" class="fill-btn">View Project</a>
+                                    <a href="/oferta-najmu-details?offerid={{item['ID']}}" class="fill-btn">Sprawdź Szczegóły Oferty</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div><!-- End Portfolio Item -->
+                </div>
+                <!-- End Portfolio Item -->
+                {% endfor %}
 
                 <div class="col-xl-4 col-md-6 portfolio-item Project-dubai">
                     <div class="portfolio-wrap" data-aos="fade-up" data-aos-delay="500">

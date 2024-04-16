@@ -557,13 +557,17 @@ def ofertaNajmu():
             categoryOffer[offerData['TypDomu']] 
         except KeyError:
             categoryOffer[offerData['TypDomu']] = f'.Class_Offer_{i}'
+    detailOffer = []
+    for offerData in rentOffer:
+        offerData['class'] = categoryOffer[offerData['TypDomu']]
+        detailOffer.append(offerData)
 
 
     return render_template(
         f'ofertaNajmu.html',
         pageTitle=pageTitle,
         categoryOffer=categoryOffer,
-        rentOffer=rentOffer,
+        detailOffer=detailOffer,
         spcOfferON=session['spcOfferON']
         )
 

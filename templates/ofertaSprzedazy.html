@@ -57,7 +57,7 @@
                 {% for item in detailOffer %}
                 <div class="col-xl-4 col-md-6 portfolio-item {{item['class']}}">
                     <div class="portfolio-wrap" data-aos="fade-up" data-aos-delay="100">
-                        <a href="{{item['Zdjecia'][0]}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{item['Zdjecia'][0]}}" class="img-fluid" alt=""></a>
+                        <a href="{{item['mainFoto']}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{item['mainFoto']}}" class="img-fluid" alt=""></a>
                         <div class="portfolio-info">
                             <h4>
                                 <a href="/oferta-sprzedazy-details?offerid={{item['ID']}}" title="More Details" id="title_{{item['ID']}}" data-text="{{item['Tytul']}}">{{item['Tytul']}}</a>

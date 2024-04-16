@@ -736,7 +736,13 @@ def ofertaNajmu():
     detailOffer = []
     for offerData in rentOffer:
         offerData['class'] = categoryOffer[offerData['TypDomu']][1:]
+        
+        try: mainFoto = offerData['Zdjecia'][0]
+        except IndexError: mainFoto = ''
+        except KeyError: mainFoto = ''
+        offerData['mainFoto'] = mainFoto
         detailOffer.append(offerData)
+
 
 
     return render_template(
@@ -826,7 +832,13 @@ def ofertaSprzedazy():
     detailOffer = []
     for offerData in sellOffer:
         offerData['class'] = categoryOffer[offerData['TypNieruchomosci']][1:]
+        try: mainFoto = offerData['Zdjecia'][0]
+        except IndexError: mainFoto = ''
+        except KeyError: mainFoto = ''
+        offerData['mainFoto'] = mainFoto
         detailOffer.append(offerData)
+
+    
 
     return render_template(
         f'ofertaSprzedazy.html',

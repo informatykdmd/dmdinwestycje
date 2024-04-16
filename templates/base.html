@@ -75,21 +75,44 @@
 
         function typeWriterEffect(elementId) {
             const element = document.getElementById(elementId);
-            const text = element.innerHTML; // Pobranie tekstu z elementu
-            element.innerHTML = ''; // Wyczyszczenie elementu przed rozpoczęciem pisania
-            element.style.whiteSpace = 'pre-line';
+            if (!element || element.getAttribute('data-typing') === 'true') return; // Zapobiegaj ponownemu uruchamianiu animacji
+
+            const text = element.getAttribute('data-text'); // Użyj atrybutu do przechowywania tekstu
+            element.innerHTML = ''; // Wyczyszcz element
+            element.setAttribute('data-typing', 'true'); // Oznacz element jako 'w trakcie pisania'
+
             let i = 0;
-    
             function typeWriter() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 1000); // Możesz dostosować szybkość pisania tutaj
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                } else {
+                    element.setAttribute('data-typing', 'false'); // Resetuj flagę po zakończeniu pisania
+                }
             }
-            }
-    
+
             typeWriter();
         }
+
+        // Old Version
+        // function typeWriterEffect(elementId) {
+        //     const element = document.getElementById(elementId);
+        //     const text = element.innerHTML; // Pobranie tekstu z elementu
+        //     element.innerHTML = ''; // Wyczyszczenie elementu przed rozpoczęciem pisania
+        //     element.style.whiteSpace = 'pre-line';
+        //     let i = 0;
+    
+        //     function typeWriter() {
+        //     if (i < text.length) {
+        //         element.innerHTML += text.charAt(i);
+        //         i++;
+        //         setTimeout(typeWriter, 100); // Możesz dostosować szybkość pisania tutaj
+        //     }
+        //     }
+    
+        //     typeWriter();
+        // }
         // Przykład użycia:
         // Upewnij się, że w divie o id 'typing' znajduje się początkowy tekst:
         // <div id="typing">Tutaj wpisz swój tekst...</div>

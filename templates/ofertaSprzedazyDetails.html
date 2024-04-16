@@ -1,0 +1,418 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- - - - - - - - -  Hero Section - - - - - - - -  -->
+<section id="hero" class="page-hero-1">
+    <div class="container position-relative">
+        <div class="row gy-5" data-aos="fade-in">
+        <div class="col-lg-12  order-lg-1 d-flex flex-column align-items-left justify-content-start text-left caption">
+            <h2>{{sellOffers['Tytul']}}</h2>
+            <p>Oferta Specjalna</p>
+        </div>
+        </div>
+        <div class="breadcrumb">
+        <ul>
+            <li><strong>Nawigacja:</strong></li>
+            <li><a href="/">Strona Główna</a></li>
+            <li><i class="bi bi-chevron-double-right"></i></li>
+            <li>{{pageTitle}}</li>
+        </ul>
+        </div>
+    </div>
+</section>
+<!-- End Hero Section -->
+<main id="main" class="single-page">
+    <section class="single-page">
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <h2 class="white-text">{{sellOffers['Tytul']}}</h2>
+                    <img src="{{mainFoto}}" alt="" class="img-fluid gallery-img-main rounded-2" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                    <h4 class="white-text">Opis</h4>
+                    <p>
+                        {{sellOffers['Opis']}}
+                    </p>
+                    <!-- <p>
+                        {{sellOffers}}
+                    </p> -->
+                    
+                    <div class="row">
+                        <div id="gallery-container">
+                            {% for foto in sellOffers['Zdjecia'] %}
+                                <img src="{{foto}}" alt="" class="gallery-img object-fit-cover rounded" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <br />
+
+                    <h3 class="white-text">Zapraszamy do skorzystania z oferty</h3>
+                    <p>
+                        Nie czekaj – dołącz do grona naszych zadowolonych klientów. Skontaktuj się z nami już dziś, aby dowiedzieć się więcej 
+                        o tej lub innej naszej ofercie.
+                    </p>
+                </div>
+                <div class="col-lg-4 content ps-0" data-aos="fade-left" data-aos-delay="500" >
+                    <p class="white-text font-size-very-large" style="font-weight: 900; padding-left: 15px;">
+                        <strong><span id="price">{{sellOffers['Cena']}}</span> PLN</strong>
+                    </p>
+                    <div class="offer-frame-details">
+
+                        <ul >
+                            {% if sellOffers['TelefonKontaktowy']!='' and sellOffers['EmailKontaktowy']!='' %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Szybki Kontakt</span>
+                                    </div>
+                                    <div class="row" class="" style="text-align: center !important;">
+                                        <div class="col href-contact-sidebar-email">
+                                            <a href="mailto:{{sellOffers['EmailKontaktowy']}}"> 
+                                                <i class="bi bi-envelope font-contact-sidebar"></i> 
+                                            </a>
+                                        </div>
+                                        <div class="col href-contact-sidebar-whatsapp">
+                                            <a href="https://wa.me/{{sellOffers['TelefonKontaktowy']}}">
+                                                <i class="bi bi-whatsapp font-contact-sidebar"></i> 
+                                            </a>
+                                        </div>
+                                        <div class="col href-contact-sidebar-phone">
+                                            <a href="tel:{{sellOffers['TelefonKontaktowy']}}">
+                                                <i class="bi bi-phone-flip font-contact-sidebar"></i> 
+                                            </a>
+                                        </div>
+                                        <div class="col href-contact-sidebar">
+                                            <a href="/kontakt">
+                                                <i class="bi bi-person-lines-fill font-contact-sidebar"></i> 
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% else %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Szybki Kontakt</span>
+                                    </div>
+                                    <div class="row" class="" style="text-align: center !important;">
+                                        <div class="col href-contact-sidebar-email">
+                                            <a href="mailto:biuro@dmdinwestycje.pl"> 
+                                                <i class="bi bi-envelope font-contact-sidebar"></i> 
+                                            </a>
+                                        </div>
+                                        <div class="col href-contact-sidebar-whatsapp">
+                                            <a href="https://wa.me/+48600202480">
+                                                <i class="bi bi-whatsapp font-contact-sidebar"></i> 
+                                            </a>
+                                        </div>
+                                        <div class="col href-contact-sidebar-phone">
+                                            <a href="tel:+48600202480">
+                                                <i class="bi bi-phone-flip font-contact-sidebar"></i> 
+                                            </a>
+                                        </div>
+                                        <div class="col href-contact-sidebar">
+                                            <a href="/kontakt">
+                                                <i class="bi bi-person-lines-fill font-contact-sidebar"></i> 
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Rodzaj Oferty</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-check white-gray"></i> 
+                                            Oferta Wynajmu
+                                    </div>
+                                </div>
+                            </li>
+                            {% if sellOffers['Lokalizacja']!='' %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Lokalizacja</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <strong class="green-text"><i class="bi bi-geo"></i> </strong> {{sellOffers['Lokalizacja']}} 
+                                        {% if coordinates[0]!='None' or coordinates[1]!='None' %}
+                                        <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                            <i class="fa fa-map-marker red-text"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" onClick="openGoogleMaps('{{coordinates[0]}}','{{coordinates[1]}}');">
+                                            <i class="fa fa-map-marker blue-text"></i>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            
+                            {% if sellOffers['Metraz']!=0 %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Metraż</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-check white-gray"></i> {{sellOffers['Metraz']}} m&sup2;
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['LiczbaPokoi']!=0 %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Liczba Pokoi</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-check orange-text"></i> {{sellOffers['LiczbaPokoi']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['Kaucja']!=0 %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Kaucja</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-cash orange-text"></i> {{sellOffers['Kaucja']}} PLN
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['Czynsz']!=0 %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Czynsz</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-cash green-text"></i> {{sellOffers['Czynsz']}} PLN
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['LiczbaPieter']!=0 %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Liczba Pięter</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-up geen-text"></i> {{sellOffers['LiczbaPieter']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['PowierzchniaDzialki']!=0 %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                         <strong class="white-text font-size-very-small">Powierzchnia Dzialki</strong>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-app-indicator white-text"></i> {{sellOffers['PowierzchniaDzialki']}} m&sup2;
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['TechBudowy']!='' %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Technologia Budowy</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-gear green-text"></i> {{sellOffers['TechBudowy']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['FormaKuchni']!="" %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Forma Kuchni</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-heart white-gray"></i> {{sellOffers['FormaKuchni']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['TypDomu']!="" %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Rodzaj Nieruchomości</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house white-gray"></i> {{sellOffers['TypDomu']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['StanWykonczenia']!="" %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Stan Wykończenia</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-check white-gray"></i> {{sellOffers['StanWykonczenia']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['RokBudowy']!=0 %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">RokBudowy</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-calendar3 white-gray"></i> {{sellOffers['RokBudowy']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['NumerKW']!='' %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                         <strong class="white-text font-size-very-small">Numer KW</strong>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-journal-text green-text"></i> {{sellOffers['NumerKW']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if sellOffers['RodzajZabudowy']!='' %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                         <span class="white-text font-size-very-small padding-left-5">Rodzaj Zabudowy</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-stack orange-text"></i> {{sellOffers['RodzajZabudowy']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['InformacjeDodatkowe']!="" %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                         <span class="white-text font-size-very-small padding-left-5">Informacje Dodatkowe </span> <i class="bi bi-info-lg green-text"></i>
+                                    </div>
+                                    <div class="padding-left-10">
+                                         {{sellOffers['InformacjeDodatkowe']}}
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <br />
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block end_of_body %}
+<!-- Modal z karuzelą -->
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content bg-dark ">
+            <div class="modal-body">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <!-- Wnętrze karuzeli z elementami -->
+                <div class="carousel-inner">
+                    {% for foto in sellOffers['Zdjecia'] %}
+                        {% if loop.first %}
+                        <!-- active -->
+                        <div class="carousel-item active">
+                            <img src="{{foto}}" class="object-fit-cover rounded d-block w-100" alt="">
+                        </div>
+                        {% else %}
+                        <div class="carousel-item">
+                            <img src="{{foto}}" class="object-fit-cover rounded d-block w-100" alt="">
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <!-- <div class="carousel-item">
+                        <img src="images\our-work\full\2.jpg" class="object-fit-cover rounded d-block w-100" alt="Opis zdjęcia 2">
+                    </div> -->
+                    <!-- Dodaj więcej elementów karuzeli według wzoru -->
+                </div>
+                <!-- Przyciski nawigacyjne -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Poprzedni</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Następny</span>
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block bottom_scripts %}
+<script>
+    document.querySelectorAll('.gallery-img').forEach((item, index) => {
+    item.addEventListener('click', () => {
+      const carouselInner = document.querySelector('.carousel-inner');
+      Array.from(carouselInner.children).forEach((carouselItem, idx) => {
+        carouselItem.classList.remove('active');
+        if (idx === index) {
+          carouselItem.classList.add('active');
+        }
+      });
+    });
+  });    
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var priceElement = document.getElementById("price");
+    var price = parseFloat(priceElement.innerText).toLocaleString('pl-PL', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    priceElement.innerText = price;
+    });
+
+</script>
+
+{% endblock %}

@@ -220,8 +220,6 @@ def rentOffer_where_ID(idOffer, lang='pl'): #
     except Exception as e:
         print(f"Nieoczekiwany błąd: {e}")
 
-        
-
     theme = {
         'ID': int(data[0]),
         'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
@@ -253,6 +251,125 @@ def rentOffer_where_ID(idOffer, lang='pl'): #
         'GPS': gps_json,
         'TelefonKontaktowy': '' if data[28] is None else data[28],
         'EmailKontaktowy': '' if data[29] is None else data[29]
+    }
+
+    return theme
+
+def generator_sellOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystkie'
+    took_rentOffer = take_data_table('*', 'OfertySprzedazy')
+    
+    rentOffer = []
+    for data in took_rentOffer:
+        try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[9])[0][1:-1]
+        except IndexError: fotoList = []
+        gps_json = {}
+        try:
+            if data[27] is not None:
+                gps_json = json.loads(data[28])
+                {"latitude": 52.229676, "longitude": 21.012229}
+            else:
+                raise ValueError("Dane są None, nie można przetworzyć JSON")
+        except json.JSONDecodeError:
+            print("Błąd: Podane dane nie są poprawnym JSON-em")
+        except IndexError:
+            print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+        except TypeError as e:
+            print(f"Błąd typu danych: {e}")
+        except Exception as e:
+            print(f"Nieoczekiwany błąd: {e}")
+
+        theme = {
+            'ID': int(data[0]),
+            'TypNieruchomosci': data[1] if lang=='pl' else getLangText(data[1]),
+            'Tytul': data[2] if lang=='pl' else getLangText(data[2]),
+            'Rodzaj': data[3] if data[3] is not None and lang == 'pl' else getLangText(data[3]) if data[3] is not None else '',
+            'Opis': data[4] if lang=='pl' else getLangText(data[4]),
+            'Cena': data[5],
+            'Lokalizacja': data[6],
+            'LiczbaPokoi': 0 if data[7] is None else data[7],
+            'Metraz': 0 if data[8] is None else data[8],
+            'Zdjecia': [foto for foto in fotoList if foto is not None],
+            'DataPublikacjiOlx': format_date(data[10]),
+            'DataPublikacjiAllegro': format_date(data[11]),
+            'DataPublikacjiOtoDom': format_date(data[12]),
+            'DataPublikacjiMarketplace': format_date(data[13]),
+            'DataUtworzenia': format_date(data[14]),
+            'DataAktualizacji': format_date(data[15]),
+            'RodzajZabudowy': '' if data[16] is None else data[16],
+            'Rynek': '' if data[17] is None else data[17],
+            'LiczbaPieter': 0 if data[18] is None else data[18],
+            'PrzeznaczenieLokalu': '' if data[19] is None else data[19],
+            'Poziom': 'None' if data[20] is None else data[20],
+            'TechBudowy': '' if data[21] is None else data[21],
+            'FormaKuchni': '' if data[22] is None else data[22],
+            'TypDomu': data[23],
+            'StanWykonczenia': '' if data[24] is None else data[24],
+            'RokBudowy': 0 if data[25] is None else data[25],
+            'NumerKW': '' if data[26] is None else data[26],
+            'InformacjeDodatkowe': '' if data[27] is None else data[27],
+            'GPS': gps_json,
+            'TelefonKontaktowy': '' if data[29] is None else data[29],
+            'EmailKontaktowy': '' if data[30] is None else data[30]
+        }
+
+        rentOffer.append(theme)
+
+    return rentOffer
+
+def sellOffer_where_ID(idOffer, lang='pl'): #
+    try: data = take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+    except IndexError: return {}
+
+    gps_json = {}
+
+    try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[9])[0][1:-1]
+    except IndexError: fotoList = []
+
+    try:
+        if data[27] is not None:
+            gps_json = json.loads(data[28])
+            raise ValueError("Dane są None, nie można przetworzyć JSON")
+    except json.JSONDecodeError:
+        print("Błąd: Podane dane nie są poprawnym JSON-em")
+    except IndexError:
+        print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+    except TypeError as e:
+        print(f"Błąd typu danych: {e}")
+    except Exception as e:
+        print(f"Nieoczekiwany błąd: {e}")
+
+    theme = {
+        'ID': int(data[0]),
+        'TypNieruchomosci': data[1] if lang=='pl' else getLangText(data[1]),
+        'Tytul': data[2] if lang=='pl' else getLangText(data[2]),
+        'Rodzaj': data[3] if data[3] is not None and lang == 'pl' else getLangText(data[3]) if data[3] is not None else '',
+        'Opis': data[4] if lang=='pl' else getLangText(data[4]),
+        'Cena': data[5],
+        'Lokalizacja': data[6],
+        'LiczbaPokoi': 0 if data[7] is None else data[7],
+        'Metraz': 0 if data[8] is None else data[8],
+        'Zdjecia': [foto for foto in fotoList if foto is not None],
+        'DataPublikacjiOlx': format_date(data[10]),
+        'DataPublikacjiAllegro': format_date(data[11]),
+        'DataPublikacjiOtoDom': format_date(data[12]),
+        'DataPublikacjiMarketplace': format_date(data[13]),
+        'DataUtworzenia': format_date(data[14]),
+        'DataAktualizacji': format_date(data[15]),
+        'RodzajZabudowy': '' if data[16] is None else data[16],
+        'Rynek': '' if data[17] is None else data[17],
+        'LiczbaPieter': 0 if data[18] is None else data[18],
+        'PrzeznaczenieLokalu': '' if data[19] is None else data[19],
+        'Poziom': 'None' if data[20] is None else data[20],
+        'TechBudowy': '' if data[21] is None else data[21],
+        'FormaKuchni': '' if data[22] is None else data[22],
+        'TypDomu': data[23],
+        'StanWykonczenia': '' if data[24] is None else data[24],
+        'RokBudowy': 0 if data[25] is None else data[25],
+        'NumerKW': '' if data[26] is None else data[26],
+        'InformacjeDodatkowe': '' if data[27] is None else data[27],
+        'GPS': gps_json,
+        'TelefonKontaktowy': '' if data[29] is None else data[29],
+        'EmailKontaktowy': '' if data[30] is None else data[30]
     }
 
     return theme
@@ -693,16 +810,84 @@ def ofertaSprzedazy():
     if f'spcOfferON' not in session:
         try:
             spcOfferON = True 
-            secOffers = generator_specialOffert()[0]
+            generator_specialOffert()[0]
             session['spcOfferON']=spcOfferON
         except IndexError: 
             spcOfferON = False
-            secOffers = {}
             session['spcOfferON']=spcOfferON
+
+    sellOffer = generator_sellOffert()
+    categoryOffer = {}
+    for i, offerData in enumerate(sellOffer):
+        try: 
+            categoryOffer[offerData['TypDomu']] 
+        except KeyError:
+            categoryOffer[offerData['TypDomu']] = f'.Class_sellOffer_{i}'
+    detailOffer = []
+    for offerData in sellOffer:
+        offerData['class'] = categoryOffer[offerData['TypDomu']][1:]
+        detailOffer.append(offerData)
 
     return render_template(
         f'ofertaSprzedazy.html',
         pageTitle=pageTitle,
+        spcOfferON=session['spcOfferON'],
+        categoryOffer=categoryOffer,
+        detailOffer=detailOffer
+        )
+
+@app.route('/oferta-sprzedazy-details', methods=['GET'])
+def ofertaSprzedazyDetails():
+    session['page'] = 'ofertaSprzedazy'
+    pageTitle = 'Oferta Sprzedaży'
+
+    if f'spcOfferON' not in session:
+        try:
+            spcOfferON = True 
+            generator_specialOffert()[0]
+            session['spcOfferON']=spcOfferON
+        except IndexError: 
+            spcOfferON = False
+            session['spcOfferON']=spcOfferON
+
+    if 'offerid' in request.args:
+        idOffer = request.args.get('offerid')
+    else:
+        idOffer = None
+
+    if idOffer:
+        try: sellOffers = sellOffer_where_ID(idOffer) #take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+
+        except IndexError: sellOffers = {
+                'ID': 0, 'Tytul': 'Brak danych!', 'Opis': 'Brak danych!', 'Cena': 'Brak danych!', 'Kaucja': 'Brak danych!',
+                'Lokalizacja': 'Brak danych!','LiczbaPokoi': 'Brak danych!', 'Metraz': 'Brak danych!', 'Zdjecia': [],
+                'DataPublikacjiOlx': 'Brak danych!','DataPublikacjiAllegro': 'Brak danych!','DataPublikacjiOtoDom': 'Brak danych!',
+                'DataPublikacjiMarketplace': 'Brak danych!', 'DataUtworzenia': 'Brak danych!', 'DataAktualizacji': 'Brak danych!',
+                'RodzajZabudowy': 'Brak danych!', 'Czynsz': 'Brak danych!', 'Umeblowanie': 'Brak danych!', 'LiczbaPieter': 'Brak danych!',
+                'PowierzchniaDzialki': 'Brak danych!', 'TechBudowy': 'Brak danych!', 'FormaKuchni': 'Brak danych!', 'TypDomu': 'Brak danych!',
+                'StanWykonczenia': 'Brak danych!', 'RokBudowy': 'Brak danych!', 'NumerKW': 'Brak danych!', 'InformacjeDodatkowe': 'Brak danych!',
+                'GPS': {}, 'TelefonKontaktowy': 'Brak danych!', 'EmailKontaktowy': 'Brak danych!'
+            }
+
+        {"latitude": 52.229676, "longitude": 21.012229}
+        print(sellOffers)
+        if "latitude" in sellOffers['GPS'] and "longitude" in sellOffers['GPS']:
+            lat = sellOffers['GPS']["latitude"]
+            lon = sellOffers['GPS']["longitude"]
+        else:
+            lat = 'None'
+            lon = 'None'
+
+        try: mainFoto = sellOffers['Zdjecia'][0]
+        except IndexError: mainFoto = ''
+        except KeyError: mainFoto = ''
+
+    return render_template(
+        f'ofertaSprzedazyDetails.html',
+        pageTitle=pageTitle,
+        coordinates=[lat, lon],
+        mainFoto=mainFoto,
+        sellOffers=sellOffers,
         spcOfferON=session['spcOfferON']
         )
 

@@ -1,5 +1,86 @@
 {% extends 'base.html' %}
 
+{% block head_scripts %}
+<script>
+    var readyCallbacks = [];
+    function addReadyCallback(fn) {
+        readyCallbacks.push(fn);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        readyCallbacks.forEach(function(fn) { fn(); });
+    });
+</script>
+{% endblock %}
+
 {% block content %}
 
+<!-- - - - - - - - -  Hero Section - - - - - - - -  -->
+<section id="hero" class="page-hero-1">
+    <div class="container position-relative">
+        <div class="row gy-5" data-aos="fade-in">
+        <div class="col-lg-12  order-lg-1 d-flex flex-column align-items-left justify-content-start text-left caption">
+            <h2>Oferty Najmu</h2>
+            <p>Zapraszamy do zapoznania się z naszymi ofertami najmu.</p>
+        </div>
+        </div>
+        <div class="breadcrumb">
+        <ul>
+            <li><strong>Nawigacja:</strong></li>
+            <li><a href="/">Strona Główna</a></li>
+            <li><i class="bi bi-chevron-double-right"></i></li>
+            <li>{{pageTitle}}</li>
+        </ul>
+        </div>
+    </div>
+</section>
+
+<!--Portfolio Section -->
+<section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <div>
+                <h2 class="white-text">Oferta najmu | <span class="white-gray">Sprawdź naszą gorącą ofertę</span></h2>
+            </div>
+        </div>
+        <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+            <div>
+                <!-- {{detailOffer}} -->
+                <ul class="portfolio-flters">
+                    <li data-filter="*" class="filter-active">Wszystkie</li>
+                    {% for cat, OferClass in categoryOffer.items() %}
+                        <li data-filter="{{OferClass}}">{{cat}}</li>
+                    {% endfor %}
+                </ul><!-- End Portfolio Filters -->
+            </div>
+            <div class="row gy-4 portfolio-container">
+                {% for item in detailOffer %}
+                <div class="col-xl-4 col-md-6 portfolio-item {{item['class']}}">
+                    <div class="portfolio-wrap" data-aos="fade-up" data-aos-delay="100">
+                        <a href="{{item['Zdjecia'][0]}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{item['Zdjecia'][0]}}" class="img-fluid" alt=""></a>
+                        <div class="portfolio-info">
+                            <h4>
+                                <a href="/oferta-najmu-details?offerid={{item['ID']}}" title="More Details" id="title_{{item['ID']}}" data-text="{{item['Tytul']}}">{{item['Tytul']}}</a>
+                            </h4>
+                            <div class="project-deatils-aside">
+                                <div class="project-btn">
+                                    <a href="/oferta-najmu-details?offerid={{item['ID']}}" class="fill-btn">Sprawdź Szczegóły Oferty</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Portfolio Item -->
+                {% endfor %}
+                <script>
+                    document.querySelectorAll('.portfolio-info h4 a').forEach(function(element) {
+                        element.addEventListener('mouseenter', function() {
+                            typeWriterEffect(this.id);
+                        });
+                    });
+                </script>
+            </div><!-- End Portfolio Container -->
+        </div>
+    </div>
+</section><!-- End Portfolio Section -->
 {% endblock %}

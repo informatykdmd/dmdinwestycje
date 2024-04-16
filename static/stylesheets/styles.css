@@ -2008,7 +2008,7 @@ button:focus:not(:focus-visible){
 }
 
 .offers .accordion-body {
-  padding: 10px;
+  /* padding: 10px; */
   border: 0;
   border-radius: 0;
   background: #2b2b2b;

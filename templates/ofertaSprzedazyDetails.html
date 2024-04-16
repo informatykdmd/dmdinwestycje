@@ -8,7 +8,7 @@
         <div class="row gy-5" data-aos="fade-in">
         <div class="col-lg-12  order-lg-1 d-flex flex-column align-items-left justify-content-start text-left caption">
             <h2>{{sellOffers['Tytul']}}</h2>
-            <p>Oferta Specjalna</p>
+            <p>Oferta Sprzedaży</p>
         </div>
         </div>
         <div class="breadcrumb">
@@ -131,7 +131,7 @@
                                     </div>
                                     <div class="padding-left-10">
                                         <i class="bi bi-house-check white-gray"></i> 
-                                            Oferta Wynajmu
+                                            Oferta Sprzedaży
                                     </div>
                                 </div>
                             </li>
@@ -156,7 +156,32 @@
                                 </div>
                             </li>
                             {% endif %}
-                            
+                            {% if sellOffers['Rynek']!='' %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Rynek</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-check white-gray"></i> {{sellOffers['Rynek']}};
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if sellOffers['TypNieruchomosci']!='' %}
+                            <li>
+                                <div style="min-height: 50px;">
+                                    <div>
+                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
+                                        <span class="white-text font-size-very-small padding-left-5">Typ Nieruchomosci</span>
+                                    </div>
+                                    <div class="padding-left-10">
+                                        <i class="bi bi-house-check white-gray"></i> {{sellOffers['TypNieruchomosci']}};
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %}
                             {% if sellOffers['Metraz']!=0 %}
                             <li>
                                 <div style="min-height: 50px;">
@@ -183,19 +208,7 @@
                                 </div>
                             </li>
                             {% endif %}
-                            {% if sellOffers['Kaucja']!=0 %}
-                            <li>
-                                <div style="min-height: 50px;">
-                                    <div>
-                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                        <span class="white-text font-size-very-small padding-left-5">Kaucja</span>
-                                    </div>
-                                    <div class="padding-left-10">
-                                        <i class="bi bi-cash orange-text"></i> {{sellOffers['Kaucja']}} PLN
-                                    </div>
-                                </div>
-                            </li>
-                            {% endif %}
+
                             {% if sellOffers['Czynsz']!=0 %}
                             <li>
                                 <div style="min-height: 50px;">
@@ -218,19 +231,6 @@
                                     </div>
                                     <div class="padding-left-10">
                                         <i class="bi bi-house-up geen-text"></i> {{sellOffers['LiczbaPieter']}}
-                                    </div>
-                                </div>
-                            </li>
-                            {% endif %}
-                            {% if sellOffers['PowierzchniaDzialki']!=0 %}
-                            <li>
-                                <div style="min-height: 50px;">
-                                    <div>
-                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                         <strong class="white-text font-size-very-small">Powierzchnia Dzialki</strong>
-                                    </div>
-                                    <div class="padding-left-10">
-                                        <i class="bi bi-app-indicator white-text"></i> {{sellOffers['PowierzchniaDzialki']}} m&sup2;
                                     </div>
                                 </div>
                             </li>

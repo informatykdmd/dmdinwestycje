@@ -820,12 +820,12 @@ def ofertaSprzedazy():
     categoryOffer = {}
     for i, offerData in enumerate(sellOffer):
         try: 
-            categoryOffer[offerData['TypDomu']] 
+            categoryOffer[offerData['TypNieruchomosci']] 
         except KeyError:
-            categoryOffer[offerData['TypDomu']] = f'.Class_sellOffer_{i}'
+            categoryOffer[offerData['TypNieruchomosci']] = f'.Class_sellOffer_{i}'
     detailOffer = []
     for offerData in sellOffer:
-        offerData['class'] = categoryOffer[offerData['TypDomu']][1:]
+        offerData['class'] = categoryOffer[offerData['TypNieruchomosci']][1:]
         detailOffer.append(offerData)
 
     return render_template(

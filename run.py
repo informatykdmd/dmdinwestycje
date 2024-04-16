@@ -551,9 +551,12 @@ def ofertaNajmu():
             spcOfferON = False
             session['spcOfferON']=spcOfferON
     rentOffer = generator_rentOffert()
-    categoryOffer = set()
-    for offerData in rentOffer:
-        categoryOffer.add(offerData['TypDomu'])
+    categoryOffer = {}
+    for i, offerData in enumerate(rentOffer):
+        try: 
+            categoryOffer[offerData['TypDomu']] 
+        except KeyError:
+            categoryOffer[offerData['TypDomu']] = f'.Class_Offer_{i}'
 
 
     return render_template(

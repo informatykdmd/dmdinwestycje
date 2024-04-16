@@ -40,10 +40,11 @@
         </div>
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
             <div>
+                {{categoryOffer}}
                 <ul class="portfolio-flters">
                     <li data-filter="*" class="filter-active">Wszystkie</li>
-                    {% for cat in categoryOffer %}
-                    <li data-filter=".Project-canada">{{cat}}</li>
+                    {% for cat, OferClass in categoryOffer.items() %}
+                    <li data-filter="{{OferClass}}">{{cat}}</li>
                     {% endfor %}
                     <!-- <li data-filter=".Project-dubai">Lokale usługowe</li>
                     <li data-filter=".Project-australia">Biura</li>

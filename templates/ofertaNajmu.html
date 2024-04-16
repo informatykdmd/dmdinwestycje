@@ -1,5 +1,18 @@
 {% extends 'base.html' %}
 
+{% block head_scripts %}
+<script>
+    var readyCallbacks = [];
+    function addReadyCallback(fn) {
+        readyCallbacks.push(fn);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        readyCallbacks.forEach(function(fn) { fn(); });
+    });
+</script>
+{% endblock %}
+
 {% block content %}
 
 <!-- - - - - - - - -  Hero Section - - - - - - - -  -->
@@ -60,9 +73,9 @@
                         <div class="portfolio-info">
                             <h4><a href="/oferta-najmu-details?offerid={{item['ID']}}" title="More Details" id="title_{{item['ID']}}">{{item['Tytul']}}</a></h4>
                             <script>
-                                window.onload = function() {
+                                addReadyCallback(function() {
                                     typeWriterEffect("title_{{item['ID']}}");
-                                };
+                                });
                             </script>
                             <div class="project-deatils-aside">
                                 <div class="project-btn">

@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="pl">
-{% include 'head_base.html' %}
+<head>
+    {% include 'head_base.html' %}
+    {% block head_scripts %}
+        <!-- Tu będą skrypty specyficzne dla poszczególnych stron -->
+    {% endblock %}
+</head>
+
 
 <body>
   	<div id="preloader"></div>

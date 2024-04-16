@@ -571,6 +571,60 @@ def ofertaNajmu():
         spcOfferON=session['spcOfferON']
         )
 
+@app.route('/oferta-najmu-details', methods=['GET'])
+def ofertaNajmuDetails():
+    session['page'] = 'ofertaNajmu'
+    pageTitle = 'Oferta Najmu'
+
+    if f'spcOfferON' not in session:
+        try:
+            spcOfferON = True 
+            generator_specialOffert()[0]
+            session['spcOfferON']=spcOfferON
+        except IndexError: 
+            spcOfferON = False
+            session['spcOfferON']=spcOfferON
+
+    if 'offerid' in request.args:
+        idOffer = request.args.get('offerid')
+    else:
+        idOffer = None
+
+    if idOffer:
+        try: rentOffers = take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+        except IndexError: rentOffers = {
+                'ID': 0, 'Tytul': 'Brak danych!', 'Opis': 'Brak danych!', 'Cena': 'Brak danych!', 'Kaucja': 'Brak danych!',
+                'Lokalizacja': 'Brak danych!','LiczbaPokoi': 'Brak danych!', 'Metraz': 'Brak danych!', 'Zdjecia': [],
+                'DataPublikacjiOlx': 'Brak danych!','DataPublikacjiAllegro': 'Brak danych!','DataPublikacjiOtoDom': 'Brak danych!',
+                'DataPublikacjiMarketplace': 'Brak danych!', 'DataUtworzenia': 'Brak danych!', 'DataAktualizacji': 'Brak danych!',
+                'RodzajZabudowy': 'Brak danych!', 'Czynsz': 'Brak danych!', 'Umeblowanie': 'Brak danych!', 'LiczbaPieter': 'Brak danych!',
+                'PowierzchniaDzialki': 'Brak danych!', 'TechBudowy': 'Brak danych!', 'FormaKuchni': 'Brak danych!', 'TypDomu': 'Brak danych!',
+                'StanWykonczenia': 'Brak danych!', 'RokBudowy': 'Brak danych!', 'NumerKW': 'Brak danych!', 'InformacjeDodatkowe': 'Brak danych!',
+                'GPS': {}, 'TelefonKontaktowy': 'Brak danych!', 'EmailKontaktowy': 'Brak danych!'
+            }
+
+        {"latitude": 52.229676, "longitude": 21.012229}
+        if "latitude" in rentOffers['GPS'] and "longitude" in rentOffers['GPS']:
+            lat = rentOffers['GPS']["latitude"]
+            lon = rentOffers['GPS']["longitude"]
+        else:
+            lat = 'None'
+            lon = 'None'
+
+        try: mainFoto = rentOffers['Zdjecia'][0]
+        except IndexError: mainFoto = ''
+        except KeyError: mainFoto = ''
+
+    return render_template(
+        f'ofertaNajmuDetails.html',
+        pageTitle=pageTitle,
+        coordinates=[lat, lon],
+        pageTitle=pageTitle,
+        mainFoto=mainFoto,
+        rentOffers=rentOffers,
+        spcOfferON=session['spcOfferON']
+        )
+
 @app.route('/oferta-sprzedazy')
 def ofertaSprzedazy():
     session['page'] = 'ofertaSprzedazy'

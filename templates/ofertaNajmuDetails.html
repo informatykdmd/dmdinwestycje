@@ -7,7 +7,7 @@
     <div class="container position-relative">
         <div class="row gy-5" data-aos="fade-in">
         <div class="col-lg-12  order-lg-1 d-flex flex-column align-items-left justify-content-start text-left caption">
-            <h2>{{secOffers['Tytul']}}</h2>
+            <h2>{{rentOffers['Tytul']}}</h2>
             <p>Oferta Specjalna</p>
         </div>
         </div>
@@ -27,19 +27,19 @@
         <div class="container" data-aos="fade-up">
             <div class="row gy-4">
                 <div class="col-lg-8">
-                    <h2 class="white-text">{{secOffers['Tytul']}}</h2>
+                    <h2 class="white-text">{{rentOffers['Tytul']}}</h2>
                     <img src="{{mainFoto}}" alt="" class="img-fluid gallery-img-main rounded-2" data-bs-toggle="modal" data-bs-target="#galleryModal">
                     <h4 class="white-text">Opis</h4>
                     <p>
-                        {{secOffers['Opis']}}
+                        {{rentOffers['Opis']}}
                     </p>
                     <!-- <p>
-                        {{secOffers}}
+                        {{rentOffers}}
                     </p> -->
                     
                     <div class="row">
                         <div id="gallery-container">
-                            {% for foto in secOffers['Zdjecia'] %}
+                            {% for foto in rentOffers['Zdjecia'] %}
                                 <img src="{{foto}}" alt="" class="gallery-img object-fit-cover rounded" data-bs-toggle="modal" data-bs-target="#galleryModal">
                             {% endfor %}
                         </div>
@@ -55,12 +55,12 @@
                 </div>
                 <div class="col-lg-4 content ps-0" data-aos="fade-left" data-aos-delay="500" >
                     <p class="white-text font-size-very-large" style="font-weight: 900; padding-left: 15px;">
-                        <strong><span id="price">{{secOffers['Cena']}}</span> PLN</strong>
+                        <strong><span id="price">{{rentOffers['Cena']}}</span> PLN</strong>
                     </p>
                     <div class="offer-frame-details">
 
                         <ul >
-                            {% if secOffers['TelefonKontaktowy']!='' and secOffers['EmailKontaktowy']!='' %}
+                            {% if rentOffers['TelefonKontaktowy']!='' and rentOffers['EmailKontaktowy']!='' %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -69,17 +69,17 @@
                                     </div>
                                     <div class="row" class="" style="text-align: center !important;">
                                         <div class="col href-contact-sidebar-email">
-                                            <a href="mailto:{{secOffers['EmailKontaktowy']}}"> 
+                                            <a href="mailto:{{rentOffers['EmailKontaktowy']}}"> 
                                                 <i class="bi bi-envelope font-contact-sidebar"></i> 
                                             </a>
                                         </div>
                                         <div class="col href-contact-sidebar-whatsapp">
-                                            <a href="https://wa.me/{{secOffers['TelefonKontaktowy']}}">
+                                            <a href="https://wa.me/{{rentOffers['TelefonKontaktowy']}}">
                                                 <i class="bi bi-whatsapp font-contact-sidebar"></i> 
                                             </a>
                                         </div>
                                         <div class="col href-contact-sidebar-phone">
-                                            <a href="tel:{{secOffers['TelefonKontaktowy']}}">
+                                            <a href="tel:{{rentOffers['TelefonKontaktowy']}}">
                                                 <i class="bi bi-phone-flip font-contact-sidebar"></i> 
                                             </a>
                                         </div>
@@ -100,17 +100,11 @@
                                     </div>
                                     <div class="padding-left-10">
                                         <i class="bi bi-house-check white-gray"></i> 
-                                        {% if secOffers['Rodzaj'] == 'sprzedaz' %}
-                                            Oferta Sprzedaży
-                                        {% elif secOffers['Rodzaj'] == 'zakup' %}
-                                            Oferta Kupna
-                                        {% elif secOffers['Rodzaj'] == 'wynajem' %}
                                             Oferta Wynajmu
-                                        {% endif %}
                                     </div>
                                 </div>
                             </li>
-                            {% if secOffers['Lokalizacja']!='' %}
+                            {% if rentOffers['Lokalizacja']!='' %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -118,7 +112,7 @@
                                         <span class="white-text font-size-very-small padding-left-5">Lokalizacja</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <strong class="green-text"><i class="bi bi-geo"></i> </strong> {{secOffers['Lokalizacja']}} 
+                                        <strong class="green-text"><i class="bi bi-geo"></i> </strong> {{rentOffers['Lokalizacja']}} 
                                         {% if coordinates[0]!='None' or coordinates[1]!='None' %}
                                         <a href="javascript:void(0);" onClick="openGoogleEarth('{{coordinates[0]}}','{{coordinates[1]}}');">
                                             <i class="fa fa-map-marker red-text"></i>
@@ -132,7 +126,7 @@
                             </li>
                             {% endif %}
                             
-                            {% if secOffers['Metraz']!=0 %}
+                            {% if rentOffers['Metraz']!=0 %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -140,12 +134,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">Metraż</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-house-check white-gray"></i> {{secOffers['Metraz']}} m&sup2;
+                                        <i class="bi bi-house-check white-gray"></i> {{rentOffers['Metraz']}} m&sup2;
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['LiczbaPokoi']!=0 %}
+                            {% if rentOffers['LiczbaPokoi']!=0 %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -153,12 +147,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">Liczba Pokoi</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-house-check orange-text"></i> {{secOffers['LiczbaPokoi']}}
+                                        <i class="bi bi-house-check orange-text"></i> {{rentOffers['LiczbaPokoi']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['Kaucja']!=0 %}
+                            {% if rentOffers['Kaucja']!=0 %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -166,12 +160,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">Kaucja</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-cash orange-text"></i> {{secOffers['Kaucja']}} PLN
+                                        <i class="bi bi-cash orange-text"></i> {{rentOffers['Kaucja']}} PLN
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['Czynsz']!=0 %}
+                            {% if rentOffers['Czynsz']!=0 %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -179,12 +173,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">Czynsz</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-cash green-text"></i> {{secOffers['Czynsz']}} PLN
+                                        <i class="bi bi-cash green-text"></i> {{rentOffers['Czynsz']}} PLN
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['LiczbaPieter']!=0 %}
+                            {% if rentOffers['LiczbaPieter']!=0 %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -192,12 +186,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">Liczba Pięter</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-house-up geen-text"></i> {{secOffers['LiczbaPieter']}}
+                                        <i class="bi bi-house-up geen-text"></i> {{rentOffers['LiczbaPieter']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['PowierzchniaDzialki']!=0 %}
+                            {% if rentOffers['PowierzchniaDzialki']!=0 %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -205,12 +199,12 @@
                                          <strong class="white-text font-size-very-small">Powierzchnia Dzialki</strong>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-app-indicator white-text"></i> {{secOffers['PowierzchniaDzialki']}} m&sup2;
+                                        <i class="bi bi-app-indicator white-text"></i> {{rentOffers['PowierzchniaDzialki']}} m&sup2;
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['TechBudowy']!='' %}
+                            {% if rentOffers['TechBudowy']!='' %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -218,12 +212,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">Technologia Budowy</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-house-gear green-text"></i> {{secOffers['TechBudowy']}}
+                                        <i class="bi bi-house-gear green-text"></i> {{rentOffers['TechBudowy']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['FormaKuchni']!="" %}
+                            {% if rentOffers['FormaKuchni']!="" %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -231,12 +225,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">Forma Kuchni</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-house-heart white-gray"></i> {{secOffers['FormaKuchni']}}
+                                        <i class="bi bi-house-heart white-gray"></i> {{rentOffers['FormaKuchni']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['TypDomu']!="" %}
+                            {% if rentOffers['TypDomu']!="" %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -244,12 +238,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">Rodzaj Nieruchomości</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-house white-gray"></i> {{secOffers['TypDomu']}}
+                                        <i class="bi bi-house white-gray"></i> {{rentOffers['TypDomu']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['StanWykonczenia']!="" %}
+                            {% if rentOffers['StanWykonczenia']!="" %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -257,12 +251,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">Stan Wykończenia</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-house-check white-gray"></i> {{secOffers['StanWykonczenia']}}
+                                        <i class="bi bi-house-check white-gray"></i> {{rentOffers['StanWykonczenia']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['RokBudowy']!=0 %}
+                            {% if rentOffers['RokBudowy']!=0 %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -270,12 +264,12 @@
                                         <span class="white-text font-size-very-small padding-left-5">RokBudowy</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-calendar3 white-gray"></i> {{secOffers['RokBudowy']}}
+                                        <i class="bi bi-calendar3 white-gray"></i> {{rentOffers['RokBudowy']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['NumerKW']!='' %}
+                            {% if rentOffers['NumerKW']!='' %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -283,51 +277,26 @@
                                          <strong class="white-text font-size-very-small">Numer KW</strong>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-journal-text green-text"></i> {{secOffers['NumerKW']}}
+                                        <i class="bi bi-journal-text green-text"></i> {{rentOffers['NumerKW']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['Rynek']!="" %}
+
+                            {% if rentOffers['RodzajZabudowy']!='None' %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
                                         <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                        <span class="white-text font-size-very-small padding-left-5">Rynek</span>
+                                         <span class="white-text font-size-very-small padding-left-5">Rodzaj Zabudowy</span>
                                     </div>
                                     <div class="padding-left-10">
-                                        <i class="bi bi-cart-check white-gray"></i> {{secOffers['Rynek']}}
+                                        <i class="bi bi-stack orange-text"></i> {{rentOffers['RodzajZabudowy']}}
                                     </div>
                                 </div>
                             </li>
                             {% endif %}
-                            {% if secOffers['PrzeznaczenieLokalu']!="" %}
-                            <li>
-                                <div style="min-height: 50px;">
-                                    <div>
-                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                        <span class="white-text font-size-very-small padding-left-5">Przeznaczenie Lokalu</span>
-                                    </div>
-                                    <div class="padding-left-10">
-                                        <i class="bi bi-signpost-split green-text"></i> {{secOffers['PrzeznaczenieLokalu']}}
-                                    </div>
-                                </div>
-                            </li>
-                            {% endif %}
-                            {% if secOffers['Poziom']!='None' %}
-                            <li>
-                                <div style="min-height: 50px;">
-                                    <div>
-                                        <!-- position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger  -->
-                                         <span class="white-text font-size-very-small padding-left-5">Poziom</span>
-                                    </div>
-                                    <div class="padding-left-10">
-                                        <i class="bi bi-stack orange-text"></i> {{secOffers['Poziom']}}
-                                    </div>
-                                </div>
-                            </li>
-                            {% endif %}
-                            {% if secOffers['InformacjeDodatkowe']!="" %}
+                            {% if rentOffers['InformacjeDodatkowe']!="" %}
                             <li>
                                 <div style="min-height: 50px;">
                                     <div>
@@ -335,7 +304,7 @@
                                          <span class="white-text font-size-very-small padding-left-5">Informacje Dodatkowe </span> <i class="bi bi-info-lg green-text"></i>
                                     </div>
                                     <div class="padding-left-10">
-                                         {{secOffers['InformacjeDodatkowe']}}
+                                         {{rentOffers['InformacjeDodatkowe']}}
                                     </div>
                                 </div>
                             </li>
@@ -358,7 +327,7 @@
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <!-- Wnętrze karuzeli z elementami -->
                 <div class="carousel-inner">
-                    {% for foto in secOffers['Zdjecia'] %}
+                    {% for foto in rentOffers['Zdjecia'] %}
                         {% if loop.first %}
                         <!-- active -->
                         <div class="carousel-item active">
@@ -377,12 +346,12 @@
                 </div>
                 <!-- Przyciski nawigacyjne -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Poprzedni</span>
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Poprzedni</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Następny</span>
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Następny</span>
                 </button>
             </div>
             </div>

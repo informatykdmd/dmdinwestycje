@@ -66,6 +66,30 @@
             var features = "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=900,height=600";
             var newWindow = window.open(`https://www.google.com/maps/dir//${lat},${lon}/@${lat},${lon},16z?entry=ttu`, "DemoWindow", features);
         }
+
+        function typeWriterEffect(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.innerHTML; // Pobranie tekstu z elementu
+            element.innerHTML = ''; // Wyczyszczenie elementu przed rozpoczęciem pisania
+            element.style.fontFamily = 'Courier New', 'monospace';
+            element.style.whiteSpace = 'pre';
+            let i = 0;
+    
+            function typeWriter() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100); // Możesz dostosować szybkość pisania tutaj
+            }
+            }
+    
+            typeWriter();
+        }
+        // Przykład użycia:
+        // Upewnij się, że w divie o id 'typing' znajduje się początkowy tekst:
+        // <div id="typing">Tutaj wpisz swój tekst...</div>
+        // typeWriterEffect('typing');
     </script>
+
 </body>
 </html>

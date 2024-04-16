@@ -14,27 +14,4 @@
 
 <!-- Template Main JS File -->
 <script src="static/javascripts/main.js"></script>
-<script>
-	function typeWriterEffect(elementId) {
-		const element = document.getElementById(elementId);
-		const text = element.innerHTML; // Pobranie tekstu z elementu
-		element.innerHTML = ''; // Wyczyszczenie elementu przed rozpoczęciem pisania
-		element.style.fontFamily = 'Courier New', 'monospace';
-		element.style.whiteSpace = 'pre';
-		let i = 0;
 
-		function typeWriter() {
-		if (i < text.length) {
-			element.innerHTML += text.charAt(i);
-			i++;
-			setTimeout(typeWriter, 100); // Możesz dostosować szybkość pisania tutaj
-		}
-		}
-
-		typeWriter();
-	}
-	// Przykład użycia:
-	// Upewnij się, że w divie o id 'typing' znajduje się początkowy tekst:
-	// <div id="typing">Tutaj wpisz swój tekst...</div>
-	// typeWriterEffect('typing');
-</script>

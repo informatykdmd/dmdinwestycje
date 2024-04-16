@@ -9,7 +9,7 @@
         <div class="section-header">
             <div>
                 <h2 class="white-text">Oferta najmu lub sprzedaży | Sprawdź naszą gorącą ofertę</h2>
-                <p id="test">
+                <p>
                     Zajrzyj do naszej sekcji "Oferta najmu lub sprzedaży" i przekonaj się, co sprawia, że nasi klienci wracają do 
                     nas jak bumerang! Znajdziesz tu gorące propozycje, które rozpalą Twoją ciekawość i zaspokoją 
                     nawet najbardziej wymagające gusta. Niezależnie od tego, czy szukasz najnowszych trendów, 
@@ -17,11 +17,6 @@
                     z myślą o Tobie. Nie czekaj, sprawdź, co dla Ciebie przygotowaliśmy!
                 </p>
             </div>
-            <script>
-                window.onload = function() {
-                    typeWriterEffect('test');
-                };
-            </script>
             <!-- <a href="#testimonials" class="btn-get-started" data-aos="fade-up" data-aos-delay="400"><i class="bi bi-chevron-double-right"></i></a> -->
         </div>
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
@@ -40,9 +35,11 @@
                 <div class="portfolio-wrap" data-aos="fade-up" data-aos-delay="100">
                 <a href="{{rentOffer[0]['Zdjecia'][0]}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{rentOffer[0]['Zdjecia'][0]}}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
-                    <h4 id="title_0"><a href="/oferta-najmu-details?offerid=" title="More Details">{{rentOffer[0]['Tytul']}}</a></h4>
+                    <h4><a href="/oferta-najmu-details?offerid=" title="More Details"  id="title_0">{{rentOffer[0]['Tytul']}}</a></h4>
                     <script>
-                        typeWriterEffect('title_0');
+                        window.onload = function() {
+                            typeWriterEffect('title_0');
+                        };
                     </script>
                     <div class="project-deatils-aside">
                     <div class="project-btn"><a href="/oferta-najmu-details?offerid=" class="fill-btn">View Project</a></div>

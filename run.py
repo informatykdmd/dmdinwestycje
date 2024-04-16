@@ -619,7 +619,6 @@ def ofertaNajmuDetails():
         f'ofertaNajmuDetails.html',
         pageTitle=pageTitle,
         coordinates=[lat, lon],
-        pageTitle=pageTitle,
         mainFoto=mainFoto,
         rentOffers=rentOffers,
         spcOfferON=session['spcOfferON']

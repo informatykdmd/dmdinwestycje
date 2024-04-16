@@ -199,7 +199,8 @@ def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
     return rentOffer
 
 def rentOffer_where_ID(idOffer, lang='pl'): #
-    data = take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+    try: data = take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+    except IndexError: return {}
 
     gps_json = {}
 
@@ -212,13 +213,10 @@ def rentOffer_where_ID(idOffer, lang='pl'): #
             raise ValueError("Dane są None, nie można przetworzyć JSON")
     except json.JSONDecodeError:
         print("Błąd: Podane dane nie są poprawnym JSON-em")
-
     except IndexError:
         print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
-
     except TypeError as e:
         print(f"Błąd typu danych: {e}")
-
     except Exception as e:
         print(f"Nieoczekiwany błąd: {e}")
 

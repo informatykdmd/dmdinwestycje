@@ -35,7 +35,10 @@
                 <div class="portfolio-wrap" data-aos="fade-up" data-aos-delay="100">
                 <a href="{{rentOffer[0]['Zdjecia'][0]}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{rentOffer[0]['Zdjecia'][0]}}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
-                    <h4><a href="/oferta-najmu-details?offerid=" title="More Details">{{rentOffer[0]['Tytul']}}</a></h4>
+                    <h4><a href="/oferta-najmu-details?offerid=" title="More Details" id="title_0">{{rentOffer[0]['Tytul']}}</a></h4>
+                    <script>
+                        typeWriterEffect('title_0');
+                    </script>
                     <div class="project-deatils-aside">
                     <div class="project-btn"><a href="/oferta-najmu-details?offerid=" class="fill-btn">View Project</a></div>
                 </div>

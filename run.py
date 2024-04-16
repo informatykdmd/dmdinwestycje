@@ -194,8 +194,8 @@ def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
             'EmailKontaktowy': '' if data[29] is None else data[29]
         }
 
-
         rentOffer.append(theme)
+        
     return rentOffer
 
 def generator_teamDB(lang='pl'):

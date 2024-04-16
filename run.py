@@ -604,6 +604,7 @@ def ofertaNajmuDetails():
             }
 
         {"latitude": 52.229676, "longitude": 21.012229}
+        print(rentOffers)
         if "latitude" in rentOffers['GPS'] and "longitude" in rentOffers['GPS']:
             lat = rentOffers['GPS']["latitude"]
             lon = rentOffers['GPS']["longitude"]

@@ -1672,14 +1672,14 @@ section {
   color: #fff;
 }
 
-.portfolio-2 .portfolio-flters {
+.portfolio .portfolio-flters-2 {
   padding: 0 0 0px 0;
   margin: 0 auto;
   list-style: none;
   text-align: center;
 }
 
-.portfolio-2 .portfolio-flters-2 li {
+.portfolio .portfolio-flters-2 li {
   cursor: pointer;
   display: inline-block;
   padding: 0;
@@ -1695,21 +1695,21 @@ section {
   color: #ffffff;
 }
 
-.portfolio-2 .portfolio-flters-2 li:hover,
-.portfolio-2 .portfolio-flters-2 li.filter-active {
+.portfolio .portfolio-flters-2 li:hover,
+.portfolio .portfolio-flters-2 li.filter-active {
   color: var(--color-primary);
 }
 
-.portfolio-2 .portfolio-flters-2 li:first-child {
+.portfolio .portfolio-flters-2 li:first-child {
   margin-left: 0;
 }
 
-.portfolio-2 .portfolio-flters-2 li:last-child {
+.portfolio .portfolio-flters-2 li:last-child {
   margin-right: 0;
 }
 
 @media (max-width: 575px) {
-  .portfolio-2 .portfolio-flters-2 li {
+  .portfolio .portfolio-flters-2 li {
     font-size: 14px;
   }
 }

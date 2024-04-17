@@ -681,6 +681,44 @@ def index():
     except IndexError: mainFoto = ''
     except KeyError: mainFoto = ''
 
+    rentOffer = generator_rentOffert()
+    categoryOffer = {}
+    for i, offerData in enumerate(rentOffer):
+        try: 
+            categoryOffer[offerData['TypDomu']] 
+        except KeyError:
+            categoryOffer[offerData['TypDomu']] = f'.Class_rentOffer_{i}'
+
+
+    detailOffer = []
+    for offerData in rentOffer:
+        offerData['class'] = categoryOffer[offerData['TypDomu']][1:]
+        
+        try: mainFoto = offerData['Zdjecia'][0]
+        except IndexError: mainFoto = ''
+        except KeyError: mainFoto = ''
+        offerData['mainFoto'] = mainFoto
+        offerData['link'] = '/oferta-najmu-details?offerid='+str(offerData['ID'])
+        detailOffer.append(offerData)
+
+    sellOffer = generator_sellOffert()
+    categorySellOffer = {}
+    for i, offerData in enumerate(sellOffer):
+        try: 
+            categorySellOffer[offerData['TypNieruchomosci']] 
+        except KeyError:
+            categorySellOffer[offerData['TypNieruchomosci']] = f'.Class_sellOffer_{i}'
+
+    for offerData in sellOffer:
+        offerData['class'] = categorySellOffer[offerData['TypNieruchomosci']][1:]
+        try: mainFoto = offerData['Zdjecia'][0]
+        except IndexError: mainFoto = ''
+        except KeyError: mainFoto = ''
+        offerData['mainFoto'] = mainFoto
+        offerData['link'] = '/oferta-sprzedazy-details?offerid='+str(offerData['ID'])
+        detailOffer.append(offerData)
+
+    print(detailOffer)
     return render_template(
         f'index.html', 
         pageTitle=pageTitle,
@@ -726,6 +764,7 @@ def ofertaNajmu():
         except IndexError: 
             spcOfferON = False
             session['spcOfferON']=spcOfferON
+
     rentOffer = generator_rentOffert()
     categoryOffer = {}
     for i, offerData in enumerate(rentOffer):

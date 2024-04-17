@@ -685,15 +685,15 @@ def index():
     categoryOffer = {}
     for i, offerData in enumerate(rentOffer):
         try: 
-            categoryOffer[offerData['TypDomu']] 
+            categoryOffer[offerData['TypDomu'].lower()] 
         except KeyError:
-            categoryOffer[offerData['TypDomu']] = f'.Class_rentOffer_{i}'
+            categoryOffer[offerData['TypDomu'].lower()] = f'.Class_rentOffer_{i}'
 
     categoryOffer['wynajem'] = '.Class_rentOffer_All'
 
     detailOffer = []
     for offerData in rentOffer:
-        offerData['class'] = categoryOffer[offerData['TypDomu']][1:] + ' Class_rentOffer_All'
+        offerData['class'] = categoryOffer[offerData['TypDomu'].lower()][1:] + ' Class_rentOffer_All'
         
         try: mainFoto = offerData['Zdjecia'][0]
         except IndexError: mainFoto = ''

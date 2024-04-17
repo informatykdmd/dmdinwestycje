@@ -67,32 +67,33 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
         try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[7])[0][1:-1]
         except IndexError: fotoList = []
 
+        gps_json = {}
         try:
             if data[29] is not None:
                 gps_json = json.loads(data[29])
                 {"latitude": 52.229676, "longitude": 21.012229}
                 "https://earth.google.com/web/@52.25242614,20.83096693,100.96310044a,116.2153688d,35y,0h,0t,0r/data=OgMKATA" # nowrmal
                 "https://earth.google.com/web/@52.25250876,20.83139622,102.83373871a,0d,60y,333.15344169h,86.56713379t,0r" # 3D
-            else:
-                raise ValueError("Dane są None, nie można przetworzyć JSON")
-        except json.JSONDecodeError:
-            print("Błąd: Podane dane nie są poprawnym JSON-em")
-            gps_json = {}
-        except IndexError:
-            print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
-            gps_json = {}
-        except TypeError as e:
-            print(f"Błąd typu danych: {e}")
-            gps_json = {}
-        except Exception as e:
-            print(f"Nieoczekiwany błąd: {e}")
-            gps_json = {}
+            else: raise ValueError("Dane są None, nie można przetworzyć JSON")
+        except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+        except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+        except TypeError as e: print(f"Błąd typu danych: {e}")
+        except Exception as e: print(f"Nieoczekiwany błąd: {e}")
+
             
+        opis_json = {}
+        try:
+            if data[2] is not None: opis_json = json.loads(data[2])
+            else: raise ValueError("Dane są None, nie można przetworzyć JSON")
+        except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+        except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+        except TypeError as e: print(f"Błąd typu danych: {e}")
+        except Exception as e: print(f"Nieoczekiwany błąd: {e}")
 
         theme = {
             'ID': int(data[0]),
             'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
-            'Opis': data[2] if lang=='pl' else getLangText(data[2]),
+            'Opis': opis_json,
             'Cena': data[3],
             'Lokalizacja': data[4],
             'LiczbaPokoi': '' if data[5] is None else data[5],
@@ -138,33 +139,32 @@ def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
     for data in took_rentOffer:
         try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[8])[0][1:-1]
         except IndexError: fotoList = []
-
+        
+        gps_json = {}
         try:
-            if data[27] is not None:
-                gps_json = json.loads(data[27])
-                {"latitude": 52.229676, "longitude": 21.012229}
-                "https://earth.google.com/web/@52.25242614,20.83096693,100.96310044a,116.2153688d,35y,0h,0t,0r/data=OgMKATA" # nowrmal
-                "https://earth.google.com/web/@52.25250876,20.83139622,102.83373871a,0d,60y,333.15344169h,86.56713379t,0r" # 3D
-            else:
-                raise ValueError("Dane są None, nie można przetworzyć JSON")
-        except json.JSONDecodeError:
-            print("Błąd: Podane dane nie są poprawnym JSON-em")
-            gps_json = {}
-        except IndexError:
-            print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
-            gps_json = {}
-        except TypeError as e:
-            print(f"Błąd typu danych: {e}")
-            gps_json = {}
-        except Exception as e:
-            print(f"Nieoczekiwany błąd: {e}")
-            gps_json = {}
+            if data[27] is not None: gps_json = json.loads(data[27])
+            else: raise ValueError("Dane są None, nie można przetworzyć JSON")
+        except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+        except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+        except TypeError as e: print(f"Błąd typu danych: {e}")
+        except Exception as e: print(f"Nieoczekiwany błąd: {e}")
+
+        opis_json = {}
+        try:
+            if data[2] is not None:
+                opis_json = json.loads(data[2])
+            else: raise ValueError("Dane są None, nie można przetworzyć JSON")
+        except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+        except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+        except TypeError as e: print(f"Błąd typu danych: {e}")
+        except Exception as e: print(f"Nieoczekiwany błąd: {e}")
+        
             
 
         theme = {
             'ID': int(data[0]),
             'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
-            'Opis': data[2] if lang=='pl' else getLangText(data[2]),
+            'Opis': opis_json,
             'Cena': data[3],
             'Kaucja': 0 if data[4] is None else data[4],
             'Lokalizacja': data[5],
@@ -202,28 +202,34 @@ def rentOffer_where_ID(idOffer, lang='pl'): #
     try: data = take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
     except IndexError: return {}
 
-    gps_json = {}
-
     try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[8])[0][1:-1]
     except IndexError: fotoList = []
 
+    gps_json = {}
     try:
         if data[27] is not None:
             gps_json = json.loads(data[27])
+        else:
             raise ValueError("Dane są None, nie można przetworzyć JSON")
-    except json.JSONDecodeError:
-        print("Błąd: Podane dane nie są poprawnym JSON-em")
-    except IndexError:
-        print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
-    except TypeError as e:
-        print(f"Błąd typu danych: {e}")
-    except Exception as e:
-        print(f"Nieoczekiwany błąd: {e}")
+    except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+    except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+    except TypeError as e: print(f"Błąd typu danych: {e}")
+    except Exception as e: print(f"Nieoczekiwany błąd: {e}")
+
+    opis_json = {}
+    try:
+        if data[2] is not None:
+            opis_json = json.loads(data[2])
+        else: raise ValueError("Dane są None, nie można przetworzyć JSON")
+    except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+    except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+    except TypeError as e: print(f"Błąd typu danych: {e}")
+    except Exception as e: print(f"Nieoczekiwany błąd: {e}")
 
     theme = {
         'ID': int(data[0]),
         'Tytul': data[1] if lang=='pl' else getLangText(data[1]),
-        'Opis': data[2] if lang=='pl' else getLangText(data[2]),
+        'Opis': opis_json,
         'Cena': data[3],
         'Kaucja': 0 if data[4] is None else data[4],
         'Lokalizacja': data[5],
@@ -262,28 +268,32 @@ def generator_sellOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
     for data in took_rentOffer:
         try: fotoList = take_data_where_ID('*', 'ZdjeciaOfert', 'ID', data[9])[0][1:-1]
         except IndexError: fotoList = []
+
         gps_json = {}
         try:
-            if data[27] is not None:
-                gps_json = json.loads(data[28])
-                {"latitude": 52.229676, "longitude": 21.012229}
-            else:
-                raise ValueError("Dane są None, nie można przetworzyć JSON")
-        except json.JSONDecodeError:
-            print("Błąd: Podane dane nie są poprawnym JSON-em")
-        except IndexError:
-            print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
-        except TypeError as e:
-            print(f"Błąd typu danych: {e}")
-        except Exception as e:
-            print(f"Nieoczekiwany błąd: {e}")
+            if data[27] is not None: gps_json = json.loads(data[28])
+            else: raise ValueError("Dane są None, nie można przetworzyć JSON")
+        except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+        except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+        except TypeError as e: print(f"Błąd typu danych: {e}")
+        except Exception as e: print(f"Nieoczekiwany błąd: {e}")
+
+        opis_json = {}
+        try:
+            if data[4] is not None:
+                opis_json = json.loads(data[4])
+            else: raise ValueError("Dane są None, nie można przetworzyć JSON")
+        except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+        except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+        except TypeError as e: print(f"Błąd typu danych: {e}")
+        except Exception as e: print(f"Nieoczekiwany błąd: {e}")
 
         theme = {
             'ID': int(data[0]),
             'TypNieruchomosci': data[1] if lang=='pl' else getLangText(data[1]),
             'Tytul': data[2] if lang=='pl' else getLangText(data[2]),
             'Rodzaj': data[3] if data[3] is not None and lang == 'pl' else getLangText(data[3]) if data[3] is not None else '',
-            'Opis': data[4] if lang=='pl' else getLangText(data[4]),
+            'Opis': opis_json,
             'Cena': data[5],
             'Lokalizacja': data[6],
             'LiczbaPokoi': 0 if data[7] is None else data[7],
@@ -326,24 +336,28 @@ def sellOffer_where_ID(idOffer, lang='pl'): #
     except IndexError: fotoList = []
 
     try:
-        if data[27] is not None:
-            gps_json = json.loads(data[28])
-            raise ValueError("Dane są None, nie można przetworzyć JSON")
-    except json.JSONDecodeError:
-        print("Błąd: Podane dane nie są poprawnym JSON-em")
-    except IndexError:
-        print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
-    except TypeError as e:
-        print(f"Błąd typu danych: {e}")
-    except Exception as e:
-        print(f"Nieoczekiwany błąd: {e}")
+        if data[27] is not None: gps_json = json.loads(data[28])
+        else: raise ValueError("Dane są None, nie można przetworzyć JSON")
+    except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+    except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+    except TypeError as e: print(f"Błąd typu danych: {e}")
+    except Exception as e: print(f"Nieoczekiwany błąd: {e}")
+
+    opis_json = {}
+    try:
+        if data[4] is not None: opis_json = json.loads(data[4])
+        else: raise ValueError("Dane są None, nie można przetworzyć JSON")
+    except json.JSONDecodeError: print("Błąd: Podane dane nie są poprawnym JSON-em")
+    except IndexError: print("Błąd: Próba dostępu do indeksu, który nie istnieje w liście")
+    except TypeError as e: print(f"Błąd typu danych: {e}")
+    except Exception as e: print(f"Nieoczekiwany błąd: {e}")
 
     theme = {
         'ID': int(data[0]),
         'TypNieruchomosci': data[1] if lang=='pl' else getLangText(data[1]),
         'Tytul': data[2] if lang=='pl' else getLangText(data[2]),
         'Rodzaj': data[3] if data[3] is not None and lang == 'pl' else getLangText(data[3]) if data[3] is not None else '',
-        'Opis': data[4] if lang=='pl' else getLangText(data[4]),
+        'Opis': opis_json,
         'Cena': data[5],
         'Lokalizacja': data[6],
         'LiczbaPokoi': 0 if data[7] is None else data[7],

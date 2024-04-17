@@ -683,13 +683,15 @@ def index():
 
     rentOffer = generator_rentOffert()
     categoryOffer = {}
+    categoryOffer['wynajem'] = '.Class_rentOffer_All'
+    categoryOffer['sprzedaż'] = '.Class_sellOffer_All'
     for i, offerData in enumerate(rentOffer):
         try: 
             categoryOffer[offerData['TypDomu'].lower()] 
         except KeyError:
             categoryOffer[offerData['TypDomu'].lower()] = f'.Class_rentOffer_{i}'
 
-    categoryOffer['wynajem'] = '.Class_rentOffer_All'
+    
 
     detailOffer = []
     for offerData in rentOffer:
@@ -709,7 +711,7 @@ def index():
         except KeyError:
             categoryOffer[offerData['TypNieruchomosci'].lower()] = f'.Class_sellOffer_{i}'
 
-    categoryOffer['sprzedaż'] = '.Class_sellOffer_All'
+    
 
     for offerData in sellOffer:
         offerData['class'] = categoryOffer[offerData['TypNieruchomosci'].lower()][1:] + ' Class_sellOffer_All'

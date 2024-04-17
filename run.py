@@ -689,10 +689,11 @@ def index():
         except KeyError:
             categoryOffer[offerData['TypDomu']] = f'.Class_rentOffer_{i}'
 
+    categoryOffer['wynajem'] = '.Class_rentOffer_All'
 
     detailOffer = []
     for offerData in rentOffer:
-        offerData['class'] = categoryOffer[offerData['TypDomu']][1:]
+        offerData['class'] = categoryOffer[offerData['TypDomu']][1:] + ' Class_rentOffer_All'
         
         try: mainFoto = offerData['Zdjecia'][0]
         except IndexError: mainFoto = ''
@@ -702,15 +703,16 @@ def index():
         detailOffer.append(offerData)
 
     sellOffer = generator_sellOffert()
-    categorySellOffer = {}
     for i, offerData in enumerate(sellOffer):
         try: 
-            categorySellOffer[offerData['TypNieruchomosci']] 
+            categoryOffer[offerData['TypNieruchomosci'].lower()] 
         except KeyError:
-            categorySellOffer[offerData['TypNieruchomosci']] = f'.Class_sellOffer_{i}'
+            categoryOffer[offerData['TypNieruchomosci'].lower()] = f'.Class_sellOffer_{i}'
+
+    categoryOffer['sprzedaż'] = '.Class_sellOffer_All'
 
     for offerData in sellOffer:
-        offerData['class'] = categorySellOffer[offerData['TypNieruchomosci']][1:]
+        offerData['class'] = categoryOffer[offerData['TypNieruchomosci'].lower()][1:] + ' Class_sellOffer_All'
         try: mainFoto = offerData['Zdjecia'][0]
         except IndexError: mainFoto = ''
         except KeyError: mainFoto = ''
@@ -718,7 +720,7 @@ def index():
         offerData['link'] = '/oferta-sprzedazy-details?offerid='+str(offerData['ID'])
         detailOffer.append(offerData)
 
-    print(categoryOffer, categorySellOffer)
+
     return render_template(
         f'index.html', 
         pageTitle=pageTitle,
@@ -727,7 +729,9 @@ def index():
         blog_post_three=blog_post_three,
         coordinates=[lat, lon],
         mainFoto=mainFoto,
-        secOffers=secOffers
+        secOffers=secOffers,
+        categoryOffer=categoryOffer,
+        detailOffer=detailOffer
         )
 
 @app.route('/oferta-inwestycyjna')
@@ -768,12 +772,12 @@ def ofertaNajmu():
     categoryOffer = {}
     for i, offerData in enumerate(rentOffer):
         try: 
-            categoryOffer[offerData['TypDomu']] 
+            categoryOffer[offerData['TypDomu'].lower()] 
         except KeyError:
-            categoryOffer[offerData['TypDomu']] = f'.Class_Offer_{i}'
+            categoryOffer[offerData['TypDomu'].lower()] = f'.Class_Offer_{i}'
     detailOffer = []
     for offerData in rentOffer:
-        offerData['class'] = categoryOffer[offerData['TypDomu']][1:]
+        offerData['class'] = categoryOffer[offerData['TypDomu'].lower()][1:]
         
         try: mainFoto = offerData['Zdjecia'][0]
         except IndexError: mainFoto = ''
@@ -824,8 +828,6 @@ def ofertaNajmuDetails():
                 'GPS': {}, 'TelefonKontaktowy': 'Brak danych!', 'EmailKontaktowy': 'Brak danych!'
             }
 
-        {"latitude": 52.229676, "longitude": 21.012229}
-        print(rentOffers)
         if "latitude" in rentOffers['GPS'] and "longitude" in rentOffers['GPS']:
             lat = rentOffers['GPS']["latitude"]
             lon = rentOffers['GPS']["longitude"]
@@ -864,12 +866,12 @@ def ofertaSprzedazy():
     categoryOffer = {}
     for i, offerData in enumerate(sellOffer):
         try: 
-            categoryOffer[offerData['TypNieruchomosci']] 
+            categoryOffer[offerData['TypNieruchomosci'].lower()] 
         except KeyError:
-            categoryOffer[offerData['TypNieruchomosci']] = f'.Class_sellOffer_{i}'
+            categoryOffer[offerData['TypNieruchomosci'].lower()] = f'.Class_sellOffer_{i}'
     detailOffer = []
     for offerData in sellOffer:
-        offerData['class'] = categoryOffer[offerData['TypNieruchomosci']][1:]
+        offerData['class'] = categoryOffer[offerData['TypNieruchomosci'].lower()][1:]
         try: mainFoto = offerData['Zdjecia'][0]
         except IndexError: mainFoto = ''
         except KeyError: mainFoto = ''
@@ -919,8 +921,6 @@ def ofertaSprzedazyDetails():
                 'GPS': {}, 'TelefonKontaktowy': 'Brak danych!', 'EmailKontaktowy': 'Brak danych!'
             }
 
-        {"latitude": 52.229676, "longitude": 21.012229}
-        print(sellOffers)
         if "latitude" in sellOffers['GPS'] and "longitude" in sellOffers['GPS']:
             lat = sellOffers['GPS']["latitude"]
             lon = sellOffers['GPS']["longitude"]
@@ -992,7 +992,6 @@ def ofertaSpecjalna():
             'EmailKontaktowy': 'Brak danych!'
         }
 
-    {"latitude": 52.229676, "longitude": 21.012229}
     if "latitude" in secOffers['GPS'] and "longitude" in secOffers['GPS']:
         lat = secOffers['GPS']["latitude"]
         lon = secOffers['GPS']["longitude"]

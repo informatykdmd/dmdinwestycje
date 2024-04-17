@@ -718,7 +718,7 @@ def index():
         offerData['link'] = '/oferta-sprzedazy-details?offerid='+str(offerData['ID'])
         detailOffer.append(offerData)
 
-    print(detailOffer)
+    print(categoryOffer, categorySellOffer)
     return render_template(
         f'index.html', 
         pageTitle=pageTitle,
@@ -738,11 +738,10 @@ def ofertaInwestycyjna():
     if f'spcOfferON' not in session:
         try:
             spcOfferON = True 
-            secOffers = generator_specialOffert()[0]
+            generator_specialOffert()[0]
             session['spcOfferON']=spcOfferON
         except IndexError: 
             spcOfferON = False
-            secOffers = {}
             session['spcOfferON']=spcOfferON
 
     return render_template(

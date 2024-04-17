@@ -268,11 +268,6 @@
 					{% for cat, class in categoryOffer.items() %}
 						<li data-filter="{{class}}">{{cat}}</li>
 					{% endfor %}
-					<!-- <li data-filter=".Project-dubai">Lokale usługowe</li>
-					<li data-filter=".Project-australia">Biura</li>
-					<li data-filter=".Project-germany">Hale</li>
-					<li data-filter=".Project-germany">Magazyny</li>
-					<li data-filter=".Project-wars">test</li> -->
 				</ul>
 			</div>
 			
@@ -294,6 +289,11 @@
 								<div class="project-btn">
 									<a href="{{data['link']}}" class="fill-btn">
 										Sprawdź Szczegóły Oferty
+									</a>
+								</div>
+								<div class="project-btn">
+									<a href="{{data['link']}}" class="fill-btn">
+										{{data['oferta']}}
 									</a>
 								</div>
 							</div>

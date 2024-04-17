@@ -702,6 +702,7 @@ def index():
         except KeyError: mainFoto = ''
         offerData['mainFoto'] = mainFoto
         offerData['link'] = '/oferta-najmu-details?offerid='+str(offerData['ID'])
+        offerData['oferta'] = 'Na Wynajem'
         detailOffer.append(offerData)
 
     sellOffer = generator_sellOffert()
@@ -720,6 +721,7 @@ def index():
         except KeyError: mainFoto = ''
         offerData['mainFoto'] = mainFoto
         offerData['link'] = '/oferta-sprzedazy-details?offerid='+str(offerData['ID'])
+        offerData['oferta'] = 'Na Sprzedaż'
         detailOffer.append(offerData)
 
 

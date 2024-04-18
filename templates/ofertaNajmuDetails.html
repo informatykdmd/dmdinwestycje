@@ -63,19 +63,14 @@
                             </ul>
                         {% endif %}
                         {% if key=='li-horizonatal' %}
-                            <!-- zadbaj o klasę listy poziomej -->
+                            <!-- zadbaj o klasę listy poziomej np. class="horizontal-list" -->
                             <ul class="horizontal-list">
                             {% for li_item in val %}
                                 <li>{{li_item}}</li>
                             {% endfor %}
                             </ul>
                         {% endif %}
-
-                    
                     {% endfor %}
-                    <p>
-                        {{rentOffers['Opis']}}
-                    </p>
                     
                     <div class="row">
                         <div id="gallery-container">

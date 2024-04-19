@@ -191,7 +191,8 @@ def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
             'InformacjeDodatkowe': '' if data[26] is None else data[26],
             'GPS': gps_json,
             'TelefonKontaktowy': '' if data[28] is None else data[28],
-            'EmailKontaktowy': '' if data[29] is None else data[29]
+            'EmailKontaktowy': '' if data[29] is None else data[29],
+            'StatusOferty': 0 if data[30] is None else data[30]
         }
 
         rentOffer.append(theme)
@@ -256,7 +257,8 @@ def rentOffer_where_ID(idOffer, lang='pl'): #
         'InformacjeDodatkowe': '' if data[26] is None else data[26],
         'GPS': gps_json,
         'TelefonKontaktowy': '' if data[28] is None else data[28],
-        'EmailKontaktowy': '' if data[29] is None else data[29]
+        'EmailKontaktowy': '' if data[29] is None else data[29],
+        'StatusOferty': 0 if data[30] is None else data[30]
     }
 
     return theme
@@ -319,7 +321,8 @@ def generator_sellOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
             'InformacjeDodatkowe': '' if data[27] is None else data[27],
             'GPS': gps_json,
             'TelefonKontaktowy': '' if data[29] is None else data[29],
-            'EmailKontaktowy': '' if data[30] is None else data[30]
+            'EmailKontaktowy': '' if data[30] is None else data[30],
+            'StatusOferty': 0 if data[31] is None else data[31]
         }
 
         rentOffer.append(theme)
@@ -383,7 +386,8 @@ def sellOffer_where_ID(idOffer, lang='pl'): #
         'InformacjeDodatkowe': '' if data[27] is None else data[27],
         'GPS': gps_json,
         'TelefonKontaktowy': '' if data[29] is None else data[29],
-        'EmailKontaktowy': '' if data[30] is None else data[30]
+        'EmailKontaktowy': '' if data[30] is None else data[30],
+        'StatusOferty': 0 if data[31] is None else data[31]
     }
 
     return theme

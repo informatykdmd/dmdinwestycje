@@ -10,6 +10,7 @@ from datetime import datetime
 from googletrans import Translator
 import random
 import json
+import html
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -648,6 +649,9 @@ def smart_truncate(content, length=200):
 ##      ######           ###
 ############################
 
+@app.template_filter()
+def decode_html_entities_filter(text):
+    return html.unescape(text)
 
 @app.route('/')
 def index():

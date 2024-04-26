@@ -30,41 +30,43 @@
                     <h2 class="white-text">{{rentOffers['Tytul']}}</h2>
                     <img src="{{mainFoto}}" alt="" class="img-fluid gallery-img-main rounded-2" data-bs-toggle="modal" data-bs-target="#galleryModal">
                     <h4 class="white-text">Opis</h4>
-                    {% for key, val in rentOffers['Opis'] %}
-                        {% if key=='li' %}
-                            <ul>
-                            {% for li_item in val %}
-                                <li>{{li_item|decode_html_entities_filter}}</li>
-                            {% endfor %}
-                            </ul>
-                        {% else %}
-                            {% set decoded_val = val|decode_html_entities_filter %}
-                            {% if key=='p' %}
-                                <p class='white-text'>{{decoded_val}}</p>
+                    {% for item in rentOffers['Opis'] %}
+                        {% for key, val in item.items() %}
+                            {% if key=='li' %}
+                                <ul>
+                                {% for li_item in val %}
+                                    <li>{{li_item|decode_html_entities_filter}}</li>
+                                {% endfor %}
+                                </ul>
+                            {% else %}
+                                {% set decoded_val = val|decode_html_entities_filter %}
+                                {% if key=='p' %}
+                                    <p class='white-text'>{{decoded_val}}</p>
+                                {% endif %}
+                                {% if key=='strong' %}
+                                    <strong class='white-text'>{{decoded_val}}</strong>
+                                {% endif %}
+                                {% if key=='h1' %}
+                                    <h1 class='white-text'>{{decoded_val}}</h1>
+                                {% endif %}
+                                {% if key=='h1-strong' %}
+                                    <h1 class='white-text'><strong>{{decoded_val}}</strong></h1>
+                                {% endif %}
+                                {% if key=='h2' %}
+                                    <h2 class='white-text'>{{decoded_val}}</h2>
+                                {% endif %}
+                                {% if key=='h2-strong' %}
+                                    <h2 class='white-text'><strong>{{decoded_val}}</strong></h2>
+                                {% endif %}
+                                {% if key=='h3' %}
+                                    <h3 class='white-text'>{{decoded_val}}</h3>
+                                {% endif %}
+                                {% if key=='h3-strong' %}
+                                    <h3 class='white-text'><strong>{{decoded_val}}</strong></h3>
+                                {% endif %}
+                            
                             {% endif %}
-                            {% if key=='strong' %}
-                                <strong class='white-text'>{{decoded_val}}</strong>
-                            {% endif %}
-                            {% if key=='h1' %}
-                                <h1 class='white-text'>{{decoded_val}}</h1>
-                            {% endif %}
-                            {% if key=='h1-strong' %}
-                                <h1 class='white-text'><strong>{{decoded_val}}</strong></h1>
-                            {% endif %}
-                            {% if key=='h2' %}
-                                <h2 class='white-text'>{{decoded_val}}</h2>
-                            {% endif %}
-                            {% if key=='h2-strong' %}
-                                <h2 class='white-text'><strong>{{decoded_val}}</strong></h2>
-                            {% endif %}
-                            {% if key=='h3' %}
-                                <h3 class='white-text'>{{decoded_val}}</h3>
-                            {% endif %}
-                            {% if key=='h3-strong' %}
-                                <h3 class='white-text'><strong>{{decoded_val}}</strong></h3>
-                            {% endif %}
-                        
-                        {% endif %}
+                        {% endfor %}
                     {% endfor %}
                     
                     <div class="row">

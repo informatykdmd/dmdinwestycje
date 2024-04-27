@@ -653,6 +653,12 @@ def smart_truncate(content, length=200):
 def decode_html_entities_filter(text):
     return html.unescape(text)
 
+@app.template_filter()
+def update_new_line_chars(text: str):
+    text = text.replace('\r\n', '<br>')  # najpierw standard Windows
+    text = text.replace('\n', '<br>')  # potem standard Unix/Linux
+    return text
+
 @app.route('/')
 def index():
     session['page'] = 'index'

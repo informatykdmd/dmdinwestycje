@@ -39,7 +39,7 @@
                                 {% endfor %}
                                 </ul>
                             {% else %}
-                                {% set decoded_val = val|update_new_line_chars|decode_html_entities_filter %}
+                                {% set decoded_val = val|update_new_line_chars|update_new_line_chars_v2 %}
                                 {% set decoded_val1 = val|update_new_line_chars %}
                                 {% set decoded_val2 = val|decode_html_entities_filter %}
                                 {% set decoded_val3 = val|update_new_line_chars_v2 %}

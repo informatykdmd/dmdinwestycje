@@ -43,11 +43,13 @@
                                 {% set decoded_val1 = val|update_new_line_chars %}
                                 {% set decoded_val2 = val|decode_html_entities_filter %}
                                 {% set decoded_val3 = val|update_new_line_chars_v2 %}
+                                {% set decoded_val4 = val|safe %}
                                 {% if key=='p' %}
                                     <p class='white-text'>{{decoded_val}}</p>
                                     <p class='white-text'>{{decoded_val1}}</p>
                                     <p class='white-text'>{{decoded_val2}}</p>
                                     <p class='white-text'>{{decoded_val3}}</p>
+                                    <p class='white-text'>{{decoded_val4}}</p>
                                 {% endif %}
                                 {% if key=='strong' %}
                                     <strong class='white-text'>{{decoded_val}}</strong>

@@ -11,6 +11,7 @@ from googletrans import Translator
 import random
 import json
 import html
+from jinja2 import Markup
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -663,8 +664,7 @@ def update_new_line_chars(text: str):
 def update_new_line_chars_v2(text: str):
     text = text.replace('\r\n', '<br>')  # najpierw standard Windows
     text = text.replace('\n', '<br>')  # potem standard Unix/Linux
-
-    return html.unescape(text)
+    return Markup(html.unescape(text))
 
 @app.route('/')
 def index():

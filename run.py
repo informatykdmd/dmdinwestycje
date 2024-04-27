@@ -658,12 +658,6 @@ def decode_html_entities_filter(text):
 def update_new_line_chars(text: str):
     text = text.replace('\r\n', '<br>')  # najpierw standard Windows
     text = text.replace('\n', '<br>')  # potem standard Unix/Linux
-    return text
-
-@app.template_filter()
-def update_new_line_chars_v2(text: str):
-    text = text.replace('\r\n', '<br>')  # najpierw standard Windows
-    text = text.replace('\n', '<br>')  # potem standard Unix/Linux
     return Markup(html.unescape(text))
 
 @app.route('/')

@@ -35,11 +35,11 @@
                             {% if key=='li' %}
                                 <ul>
                                 {% for li_item in val %}
-                                    <li>{{li_item|update_new_line_chars|decode_html_entities_filter}}</li>
+                                    <li>{{li_item|decode_html_entities_filter|update_new_line_chars}}</li>
                                 {% endfor %}
                                 </ul>
                             {% else %}
-                                {% set decoded_val = val|decode_html_entities_filter|update_new_line_chars_v2 %}
+                                {% set decoded_val = val|decode_html_entities_filter|update_new_line_chars %}
                                 {% if key=='p' %}
                                     <p class='white-text'>{{decoded_val}}</p>
                                 {% endif %}

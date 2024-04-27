@@ -36,6 +36,8 @@
                                 <ul>
                                 {% for li_item in val %}
                                     <li>{{li_item|update_new_line_chars|decode_html_entities_filter}}</li>
+                                    <li>{{li_item|decode_html_entities_filter}}</li>
+                                    <li>{{li_item|update_new_line_chars}}</li>
                                 {% endfor %}
                                 </ul>
                             {% else %}

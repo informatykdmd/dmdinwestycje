@@ -11,7 +11,7 @@ from googletrans import Translator
 import random
 import json
 import html
-from jinja2 import Markup
+from markupsafe import Markup
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie

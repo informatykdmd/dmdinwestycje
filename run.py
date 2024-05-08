@@ -726,10 +726,10 @@ def index():
     for offerData in rentOffer:
         offerData['class'] = categoryOffer[offerData['TypDomu'].lower()][1:] + ' Class_rentOffer_All'
         
-        try: mainFoto = offerData['Zdjecia'][0]
-        except IndexError: mainFoto = ''
-        except KeyError: mainFoto = ''
-        offerData['mainFoto'] = mainFoto
+        try: mainFotorent = offerData['Zdjecia'][0]
+        except IndexError: mainFotorent = ''
+        except KeyError: mainFotorent = ''
+        offerData['mainFoto'] = mainFotorent
         offerData['link'] = '/oferta-najmu-details?offerid='+str(offerData['ID'])
         offerData['oferta'] = 'Na Wynajem'
         detailOffer.append(offerData)
@@ -745,10 +745,10 @@ def index():
 
     for offerData in sellOffer:
         offerData['class'] = categoryOffer[offerData['TypNieruchomosci'].lower()][1:] + ' Class_sellOffer_All'
-        try: mainFoto = offerData['Zdjecia'][0]
-        except IndexError: mainFoto = ''
-        except KeyError: mainFoto = ''
-        offerData['mainFoto'] = mainFoto
+        try: mainFotosell = offerData['Zdjecia'][0]
+        except IndexError: mainFotosell = ''
+        except KeyError: mainFotosell = ''
+        offerData['mainFoto'] = mainFotosell
         offerData['link'] = '/oferta-sprzedazy-details?offerid='+str(offerData['ID'])
         offerData['oferta'] = 'Na Sprzedaż'
         detailOffer.append(offerData)

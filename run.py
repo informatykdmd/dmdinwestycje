@@ -135,7 +135,7 @@ def generator_specialOffert(lang='pl', status='aktywna'): # status='aktywna', 'n
     return specOffer
 
 def generator_rentOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystkie'
-    took_rentOffer = take_data_table('*', 'OfertyNajmu')
+    took_rentOffer = take_data_where_ID('*', 'OfertyNajmu', 'StatusOferty', 1)
     
     rentOffer = []
     for data in took_rentOffer:
@@ -266,7 +266,7 @@ def rentOffer_where_ID(idOffer, lang='pl'): #
     return theme
 
 def generator_sellOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystkie'
-    took_rentOffer = take_data_table('*', 'OfertySprzedazy')
+    took_rentOffer = take_data_where_ID('*', 'OfertySprzedazy', 'StatusOferty', 1)
     
     rentOffer = []
     for data in took_rentOffer:

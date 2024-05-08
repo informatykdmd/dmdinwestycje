@@ -303,10 +303,10 @@ def generator_sellOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystki
             'LiczbaPokoi': 0 if data[7] is None else data[7],
             'Metraz': 0 if data[8] is None else data[8],
             'Zdjecia': [foto for foto in fotoList if foto is not None],
-            'DataPublikacjiOlx': format_date(data[10]),
-            'DataPublikacjiAllegro': format_date(data[11]),
-            'DataPublikacjiOtoDom': format_date(data[12]),
-            'DataPublikacjiMarketplace': format_date(data[13]),
+            'DataPublikacjiOlx': None if data[10] is None else format_date(data[10]),#
+            'DataPublikacjiAllegro': None if data[11] is None else format_date(data[11]),#
+            'DataPublikacjiOtoDom': None if data[12] is None else format_date(data[12]),#
+            'DataPublikacjiMarketplace': None if data[13] is None else format_date(data[13]),#
             'DataUtworzenia': format_date(data[14]),
             'DataAktualizacji': format_date(data[15]),
             'RodzajZabudowy': '' if data[16] is None else data[16],
@@ -368,10 +368,10 @@ def sellOffer_where_ID(idOffer, lang='pl'): #
         'LiczbaPokoi': 0 if data[7] is None else data[7],
         'Metraz': 0 if data[8] is None else data[8],
         'Zdjecia': [foto for foto in fotoList if foto is not None],
-        'DataPublikacjiOlx': format_date(data[10]),
-        'DataPublikacjiAllegro': format_date(data[11]),
-        'DataPublikacjiOtoDom': format_date(data[12]),
-        'DataPublikacjiMarketplace': format_date(data[13]),
+        'DataPublikacjiOlx': None if data[10] is None else format_date(data[10]),#
+        'DataPubkacjiOtoDom': None if data[12] is None else format_date(data[12]),#
+        'DataPublilikacjiAllegro': None if data[11] is None else format_date(data[11]),#
+        'DataPublikacjiMarketplace': None if data[13] is None else format_date(data[13]),#
         'DataUtworzenia': format_date(data[14]),
         'DataAktualizacji': format_date(data[15]),
         'RodzajZabudowy': '' if data[16] is None else data[16],

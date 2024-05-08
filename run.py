@@ -262,7 +262,8 @@ def rentOffer_where_ID(idOffer, lang='pl'): #
         'EmailKontaktowy': '' if data[29] is None else data[29],
         'StatusOferty': 0 if data[30] is None else data[30]
     }
-
+    if theme['StatusOferty'] == 0:
+        return None
     return theme
 
 def generator_sellOffert(lang='pl'): # status='aktywna', 'nieaktywna', 'wszystkie'
@@ -391,7 +392,8 @@ def sellOffer_where_ID(idOffer, lang='pl'): #
         'EmailKontaktowy': '' if data[30] is None else data[30],
         'StatusOferty': 0 if data[31] is None else data[31]
     }
-
+    if theme['StatusOferty'] == 0:
+        return None
     return theme
 
 def generator_teamDB(lang='pl'):
@@ -848,7 +850,9 @@ def ofertaNajmuDetails():
         idOffer = None
 
     if idOffer:
-        try: rentOffers = rentOffer_where_ID(idOffer) #take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+        try: 
+            rentOffers = rentOffer_where_ID(idOffer) #take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+            rentOffers['StatusOferty']
 
         except IndexError: rentOffers = {
                 'ID': 0, 'Tytul': 'Brak danych!', 'Opis': 'Brak danych!', 'Cena': 'Brak danych!', 'Kaucja': 'Brak danych!',
@@ -860,6 +864,10 @@ def ofertaNajmuDetails():
                 'StanWykonczenia': 'Brak danych!', 'RokBudowy': 'Brak danych!', 'NumerKW': 'Brak danych!', 'InformacjeDodatkowe': 'Brak danych!',
                 'GPS': {}, 'TelefonKontaktowy': 'Brak danych!', 'EmailKontaktowy': 'Brak danych!'
             }
+        except KeyError:
+            return redirect(url_for('ofertaNajmu'))
+        except TypeError:
+            return redirect(url_for('ofertaNajmu'))
 
         if "latitude" in rentOffers['GPS'] and "longitude" in rentOffers['GPS']:
             lat = rentOffers['GPS']["latitude"]
@@ -941,8 +949,9 @@ def ofertaSprzedazyDetails():
         idOffer = None
 
     if idOffer:
-        try: sellOffers = sellOffer_where_ID(idOffer) #take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
-
+        try: 
+            sellOffers = sellOffer_where_ID(idOffer) #take_data_where_ID('*', 'OfertyNajmu', 'ID', idOffer)[0]
+            sellOffers['StatusOferty']
         except IndexError: sellOffers = {
                 'ID': 0, 'Tytul': 'Brak danych!', 'Opis': 'Brak danych!', 'Cena': 'Brak danych!', 'Kaucja': 'Brak danych!',
                 'Lokalizacja': 'Brak danych!','LiczbaPokoi': 'Brak danych!', 'Metraz': 'Brak danych!', 'Zdjecia': [],
@@ -953,6 +962,10 @@ def ofertaSprzedazyDetails():
                 'StanWykonczenia': 'Brak danych!', 'RokBudowy': 'Brak danych!', 'NumerKW': 'Brak danych!', 'InformacjeDodatkowe': 'Brak danych!',
                 'GPS': {}, 'TelefonKontaktowy': 'Brak danych!', 'EmailKontaktowy': 'Brak danych!'
             }
+        except KeyError:
+            return redirect(url_for('ofertaSprzedazy'))
+        except TypeError:
+            return redirect(url_for('ofertaSprzedazy'))
 
         if "latitude" in sellOffers['GPS'] and "longitude" in sellOffers['GPS']:
             lat = sellOffers['GPS']["latitude"]

@@ -73,7 +73,7 @@
                   {% endfor %}
                 </ul>
                 <dic class="row mt-20"  id="author_link">
-                  <div class="col-10">
+                  <div class="col-sm-12 col-md-10">
                     <p><strong>TAGI:</strong></p>
                     <ul  class="horizontal-list">
                       {% for tag in choiced['tags'] %}
@@ -81,7 +81,7 @@
                       {% endfor %}
                     </ul>
                   </div>
-                  <div class="col-2">
+                  <div class="col-sm-12 col-md-2">
                     <p><strong>UDOSTĘPNIJ:</strong></p>
                     <ul class="horizontal-list">
                       <li>
@@ -103,9 +103,12 @@
                 </dic>
                 <!-- align-items-center -->
                 <div class="post-author d-flex "  id="comments_link">
-                  <div class="author-image">
+                  <div class="author-image d-none d-sm-none d-xs-none d-md-none d-lg-block">
                       <img src="{{choiced['author_avatar']}}" class="flex-shrink-0" alt="">
                   </div>
+                  <div class="author-image d-none d-xl-none d-xxl-none">
+                    <img src="{{choiced['author_avatar']}}" class="flex-shrink-0" style="width: 50px; height: 50px;" alt="">
+                </div>
                   <div class="blog-author-align-top">
                       <h4>{{choiced['author']}}</h4>
                       <div class="horizontal-list">

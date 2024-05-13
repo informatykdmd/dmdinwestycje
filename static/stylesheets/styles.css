@@ -2628,7 +2628,7 @@ button:focus:not(:focus-visible){
   width: 100%;
 }
 .counter {
-  font-size: 122px;
+  font-size: 50px;
   line-height: 100px;
   margin-top: 10px;
   font-weight: 300;

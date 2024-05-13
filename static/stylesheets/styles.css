@@ -4015,3 +4015,16 @@ button.btn-get-started:hover {
   color: #141414;
 }
 
+.page-highlight {
+  background-color: #282828;
+  color: whitesmoke;
+  padding: 13px;
+  border-left: #58e132 3px solid;
+  font-size: 13pt;
+  font-weight: 300;
+}
+
+.page-highlight a {
+  background-color: #282828;
+  color: #FFA500;
+}

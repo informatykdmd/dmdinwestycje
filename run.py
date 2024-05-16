@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, jsonify, session, request, current_app
+from flask import Flask, render_template, redirect, url_for, flash, jsonify, session, request, current_app, send_from_directory
 from flask_wtf import FlaskForm
 from flask_paginate import Pagination, get_page_args
 from wtforms import StringField, PasswordField, SubmitField
@@ -651,6 +651,10 @@ def smart_truncate(content, length=200):
 ##      ######           ###
 ##      ######           ###
 ############################
+
+@app.route('/.well-known/pki-validation/certum.txt')
+def download_file():
+    return send_from_directory(app.root_path, 'certum.txt')
 
 @app.template_filter()
 def decode_html_entities_filter(text):

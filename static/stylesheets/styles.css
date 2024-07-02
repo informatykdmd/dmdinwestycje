@@ -2269,11 +2269,18 @@ button:focus:not(:focus-visible){
     animation: crescendo 30.5s alternate infinite ease-in;
 }
 
-/* Dla urządzeń mobilnych */
+/* Ukryj obrazek mobilny na desktopie */
+.mobile-image {
+  display: none;
+}
+
+/* Ukryj obrazek desktopowy na urządzeniach mobilnych */
 @media (max-width: 768px) {
-  .hero-main-image {
-      left: 50%;
-      transform: translateX(-50%);
+  .desktop-image {
+      display: none;
+  }
+  .mobile-image {
+      display: block;
   }
 }
 

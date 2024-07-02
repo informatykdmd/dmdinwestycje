@@ -2361,6 +2361,30 @@ button:focus:not(:focus-visible){
   border: 1px solid #FFD700;
 }
 
+.btn-get-started-green {
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  letter-spacing: 1px;
+  padding: 14px 21px;
+  text-align: center;
+  transition: 0.3s;
+  color: #000000;
+  /* background: var(--color-primary); */
+  background-color: #179101;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-primary);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-get-started-green:hover {
+  border-color: #29ff04;
+  background: #29ff04;
+  color: #000000;
+  border: 1px solid #29ff04;
+}
+
 .btn-watch-video {
   font-size: 16px;
   transition: 0.5s;

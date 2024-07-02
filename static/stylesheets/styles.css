@@ -2362,7 +2362,7 @@ button:focus:not(:focus-visible){
 }
 
 .btn-get-started-green {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
   display: flex;
   letter-spacing: 1px;

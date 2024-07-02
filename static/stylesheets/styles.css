@@ -2269,6 +2269,14 @@ button:focus:not(:focus-visible){
     animation: crescendo 30.5s alternate infinite ease-in;
 }
 
+/* Dla urządzeń mobilnych */
+@media (max-width: 768px) {
+  .hero-main-image {
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+
 .position-bottom{
   position: absolute;
   bottom: 0;

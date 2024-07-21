@@ -1755,7 +1755,7 @@ def receive_token():
         token = request.args.get('token')
         if request.method == 'POST':
             form_data = request.form.to_dict()
-
+            print([token],form_data)
             decoded_data = decode_integer(token, form_data['pinCode'])
             print([token],form_data, decoded_data)
             decoded_string = decoded_data['success']

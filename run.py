@@ -1783,7 +1783,7 @@ def receive_token():
 @app.route('/get-whatsapp-data', methods=['POST'])
 def get_whatsapp_data():
     data = request.json
-
+    print(data)
     phone = data.get("direct_whatsapp")
     pin = data.get("pin")
     from_wa = data.get("own_whatsapp")

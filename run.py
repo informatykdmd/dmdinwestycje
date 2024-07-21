@@ -1779,7 +1779,7 @@ def receive_token():
             SelftWatsApp=decoded_to
         )
     else:
-        return render_template("decode-project-pin.html", token=token)
+        return render_template("decode-project-pin.html")
 
     
 @app.route('/get-whatsapp-data', methods=['POST'])

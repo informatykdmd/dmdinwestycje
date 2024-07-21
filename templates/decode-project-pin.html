@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="POST" action="{{ url_for('receive_token') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ url_for('receive_token', token=request.args.get('token')) }}" enctype="multipart/form-data">
             <div class="row g-2 m-3">
                 <div class="col-md">
                     <div class="form-floating">
@@ -29,7 +29,6 @@
             
             <div class="row g-2 m-3">
                 <div class="col-md">
-                    <input type="hidden" name="token" value="{{token}}" />
                     <button type="submit" id="verifyButton" class="btn btn-info"><i class="bi bi-person-raised-hand"></i> Check It </button>
                 </div>
             </div>

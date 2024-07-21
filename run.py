@@ -1791,6 +1791,7 @@ def get_whatsapp_data():
 
     encode_message = encode_string(message, pin, from_wa, phone)
     prepared_message = f'https://dmdinwestycje/encode?token={encode_message["TK"]}'
+    print(prepared_message)
     # Przetwarzanie danych (np. formatowanie wiadomości)
     response_data = {
         "phone": phone,

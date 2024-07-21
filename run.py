@@ -1765,20 +1765,21 @@ def receive_token():
         print([token], form_data, decoded_data)
         if 'success' in decoded_data:
             decoded_string = decoded_data.get('success')
-            decoded_pin = decoded_data['PIN']
-            decoded_from = decoded_data['FROM']
-            decoded_to = decoded_data['TO']
-
-            return render_template(
-                "answer-project.html",
-                deCodedMessage=decoded_string,
-                formatCode='link',
-                pinCode=decoded_pin,
-                DirectWatsApp=decoded_from,
-                SelftWatsApp=decoded_to
-                )
         else:
-            return render_template("encode-project.html")
+            decoded_string = decoded_data.get('error')
+        
+        decoded_pin = decoded_data.get('PIN')
+        decoded_from = decoded_data.get('FROM')
+        decoded_to = decoded_data.get('TO')
+
+        return render_template(
+            "answer-project.html",
+            deCodedMessage=decoded_string,
+            formatCode='link',
+            pinCode=decoded_pin,
+            DirectWatsApp=decoded_from,
+            SelftWatsApp=decoded_to
+            )
     else:
         return render_template("decode-project-pin.html")
 

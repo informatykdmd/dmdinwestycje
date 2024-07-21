@@ -1751,9 +1751,9 @@ def addComm():
 
 @app.route('/encode', methods=['POST', 'GET'])
 def receive_token():
+    print(request.method)
     if 'token' in request.args:
         token = request.args.get('token')
-        print(request.method)
         if request.method == 'POST':
             form_data = request.form.to_dict()
             print([token],form_data)

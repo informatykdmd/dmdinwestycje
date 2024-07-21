@@ -1753,10 +1753,10 @@ def addComm():
 def receive_token():
     if 'token' in request.args:
         token = request.args.get('token')
-        print(token)
         if request.method == 'POST':
             form_data = request.form.to_dict()
 
+            print([token],form_data)
             decoded_data = decode_integer(token, form_data['pinCode'])
             decoded_string = decoded_data['success']
             decoded_pin = decoded_data['PIN']
@@ -1790,7 +1790,7 @@ def get_whatsapp_data():
     message = data.get("message")
 
     encode_message = encode_string(message, pin, from_wa, phone)
-    prepared_message = f'https://dmdinwestycje/encode?token={encode_message["TK"]}'
+    prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
     print(prepared_message)
     # Przetwarzanie danych (np. formatowanie wiadomości)
     response_data = {

@@ -1751,18 +1751,18 @@ def addComm():
 
 @app.route('/encode', methods=['POST', 'GET'])
 def receive_token():
-    print(request.args)
+    # print(request.args)
     token = request.args.get('token')
     
     if not token:
         return render_template("encode-project.html")
 
-    print(request.method)
+    # print(request.method)
     if request.method == 'POST':
         form_data = request.form.to_dict()
-        print([token], form_data)
+        # print([token], form_data)
         decoded_data = decode_integer(token, form_data['pinCode'])
-        print([token], form_data, decoded_data)
+        # print([token], form_data, decoded_data)
         
         decoded_string = decoded_data['success']
         decoded_pin = decoded_data['PIN']
@@ -1792,7 +1792,7 @@ def get_whatsapp_data():
 
     encode_message = encode_string(message, pin, from_wa, phone)
     prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
-    print(prepared_message)
+    # print(prepared_message)
     # Przetwarzanie danych (np. formatowanie wiadomości)
     response_data = {
         "phone": phone,

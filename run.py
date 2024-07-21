@@ -1753,7 +1753,7 @@ def addComm():
 def receive_token():
     if 'token' in request.args:
         token = request.args.get('token')
-
+        print(token)
         if request.method == 'POST':
             form_data = request.form.to_dict()
 

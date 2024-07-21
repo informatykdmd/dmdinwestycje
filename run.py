@@ -13,6 +13,8 @@ import json
 import html
 from markupsafe import Markup
 
+from end_1 import decode_integer, encode_string
+
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
 app.config['SECRET_KEY'] = secrets.token_hex(16)
@@ -1739,10 +1741,62 @@ def addComm():
                 return jsonify({'success': True, 'message': f'Post został skomentowany!'})
         else:
             return jsonify({'success': False, 'message': f'Musisz być naszym subskrybentem żeby komentować naszego bloga!'})
-
-
-        
     return redirect(url_for('blogs'))
+
+# ===============================================
+# ===============================================
+# ===========    ENCODE PROJECT   ===============
+# ===============================================
+# ===============================================
+
+@app.route('/encode', methods=['POST'])
+def receive_token():
+    if 'token' in request.args:
+        token = request.args.get('token')
+
+        if request.method == 'POST':
+            form_data = request.form.to_dict()
+
+            decoded_data = decode_integer(token, form_data['pinCode'])
+            decoded_string = decoded_data['success']
+            decoded_pin = decoded_data['PIN']
+            decoded_from = decoded_data['FROM']
+            decoded_to = decoded_data['TO']
+
+            return render_template(
+                    "answer-project.html",
+                    deCodedMessage=decoded_string,
+                    formatCode='link',
+                    pinCode=decoded_pin,
+                    DirectWatsApp=decoded_from,
+                    SelftWatsApp=decoded_to
+                    )
+        else:
+            return render_template(
+                    "decode-project-pin.html",
+                    )
+    else:
+        return render_template(
+                    "encode-project.html",
+                    )
+
+@app.route('/get-whatsapp-data', methods=['POST'])
+def get_whatsapp_data():
+    data = request.json
+
+    phone = data.get("direct_whatsapp")
+    pin = data.get("pin")
+    from_wa = data.get("own_whatsapp")
+    message = data.get("message")
+
+    encode_message = encode_string(message, pin, from_wa, phone)
+    prepared_message = f'https://dmdinwestycje/encode?token={encode_message["TK"]}'
+    # Przetwarzanie danych (np. formatowanie wiadomości)
+    response_data = {
+        "phone": phone,
+        "message": prepared_message
+    }
+    return jsonify(response_data)
 
 if __name__ == '__main__':
     # app.run(debug=True, port=4000)

@@ -1752,35 +1752,34 @@ def addComm():
 @app.route('/encode', methods=['POST', 'GET'])
 def receive_token():
     print(request.args)
-    if 'token' in request.args:
-        token = request.args.get('token')
-    else:
-        return render_template(
-                    "encode-project.html",
-                    )
+    token = request.args.get('token')
+    
+    if not token:
+        return render_template("encode-project.html")
+
     print(request.method)
     if request.method == 'POST':
         form_data = request.form.to_dict()
-        print([token],form_data)
+        print([token], form_data)
         decoded_data = decode_integer(token, form_data['pinCode'])
-        print([token],form_data, decoded_data)
+        print([token], form_data, decoded_data)
+        
         decoded_string = decoded_data['success']
         decoded_pin = decoded_data['PIN']
         decoded_from = decoded_data['FROM']
         decoded_to = decoded_data['TO']
 
         return render_template(
-                "answer-project.html",
-                deCodedMessage=decoded_string,
-                formatCode='link',
-                pinCode=decoded_pin,
-                DirectWatsApp=decoded_from,
-                SelftWatsApp=decoded_to
-                )
+            "answer-project.html",
+            deCodedMessage=decoded_string,
+            formatCode='link',
+            pinCode=decoded_pin,
+            DirectWatsApp=decoded_from,
+            SelftWatsApp=decoded_to
+        )
     else:
-        return render_template(
-                "decode-project-pin.html",
-                )
+        return render_template("decode-project-pin.html")
+
     
 @app.route('/get-whatsapp-data', methods=['POST'])
 def get_whatsapp_data():

@@ -1762,21 +1762,23 @@ def receive_token():
         form_data = request.form.to_dict()
         # print([token], form_data)
         decoded_data = decode_integer(token, form_data['pinCode'])
-        # print([token], form_data, decoded_data)
-        
-        decoded_string = decoded_data['success']
-        decoded_pin = decoded_data['PIN']
-        decoded_from = decoded_data['FROM']
-        decoded_to = decoded_data['TO']
+        print([token], form_data, decoded_data)
+        if 'success' in decoded_data:
+            decoded_string = decoded_data.get('success')
+            decoded_pin = decoded_data['PIN']
+            decoded_from = decoded_data['FROM']
+            decoded_to = decoded_data['TO']
 
-        return render_template(
-            "answer-project.html",
-            deCodedMessage=decoded_string,
-            formatCode='link',
-            pinCode=decoded_pin,
-            DirectWatsApp=decoded_from,
-            SelftWatsApp=decoded_to
-        )
+            return render_template(
+                "answer-project.html",
+                deCodedMessage=decoded_string,
+                formatCode='link',
+                pinCode=decoded_pin,
+                DirectWatsApp=decoded_from,
+                SelftWatsApp=decoded_to
+                )
+        else:
+            return render_template("encode-project.html")
     else:
         return render_template("decode-project-pin.html")
 

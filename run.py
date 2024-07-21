@@ -1749,7 +1749,7 @@ def addComm():
 # ===============================================
 # ===============================================
 
-@app.route('/encode', methods=['POST'])
+@app.route('/encode', methods=['POST', 'GET'])
 def receive_token():
     if 'token' in request.args:
         token = request.args.get('token')

@@ -142,11 +142,11 @@ def decode_integer(encoded_integer, pin):
     try: decoded_string = decoded_string_with_pin[:-1].split('-super-tag-xpcs-')[0]
     except Exception as e: 
         print(e)
-        return {'eror':'Brak autoryzacji!'}
+        return {'error':'Brak autoryzacji!'}
     try: decoded_footer_list = decoded_string_with_pin[:-1].split('-super-tag-xpcs-')[1].split('-footerSepparatorTag-')
     except Exception as e: 
         print(e)
-        return {'eror':'Brak autoryzacji!'}
+        return {'error':'Brak autoryzacji!'}
     decoded_footer_dict = {}
     for item in decoded_footer_list:
         k, v = item.split('-footerSepparatorDotter-')
@@ -156,13 +156,13 @@ def decode_integer(encoded_integer, pin):
     if 'PIN' in decoded_footer_dict:
         decoded_pin = decoded_footer_dict['PIN']
     else:
-        return {'eror':'Brak autoryzacji!'}
+        return {'error':'Brak autoryzacji!'}
     
     # print(f"Decoded pin: {pin, decoded_pin}")
     if len(pin) != 4:
         return {'eror':'Brak autoryzacji!'}
     if pin != decoded_pin:
-        return {'eror':'Brak autoryzacji!'}
+        return {'error':'Brak autoryzacji!'}
     print(f"PIN: {decoded_footer_dict['PIN']}")
     print(f"FROM: {decoded_footer_dict['FROM']}")
     print(f"TO: {decoded_footer_dict['TO']}")

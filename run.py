@@ -1751,9 +1751,10 @@ def addComm():
 
 @app.route('/encode', methods=['POST', 'GET'])
 def receive_token():
-    print(request.method)
+    print(request.args)
     if 'token' in request.args:
         token = request.args.get('token')
+        print(request.method)
         if request.method == 'POST':
             form_data = request.form.to_dict()
             print([token],form_data)
@@ -1784,7 +1785,7 @@ def receive_token():
 @app.route('/get-whatsapp-data', methods=['POST'])
 def get_whatsapp_data():
     data = request.json
-    print(data)
+    # print(data)
     phone = data.get("direct_whatsapp")
     pin = data.get("pin")
     from_wa = data.get("own_whatsapp")

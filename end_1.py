@@ -34,10 +34,17 @@ def change_token_for_int(integer_or_token):
             token = True
     # print(token, new_in_integer_str)
     if token:
-        return int(new_in_integer_str)
+        try: export=int(new_in_integer_str)
+        except: export= 0
+        return export
     else:
-        integer = integer_or_token
-        return int(integer)
+        try: 
+            integer = integer_or_token
+            export=int(integer)
+        except: 
+            export= 0
+        
+        return export
 
 def encode_string(s, pin=None, phone_from=None, phone_to=None):
 
@@ -96,7 +103,7 @@ def decode_integer(encoded_integer, pin):
     encoded_integer = change_token_for_int(encoded_integer)
     pin = str(pin)
     if encoded_integer == 0 or len(pin) != 4:
-        return {'eror':'Brak autoryzacji!'}
+        return {'error':'Brak autoryzacji!'}
     
     encoded_string = str(encoded_integer)
     # print(f"Encoded string from integer: {encoded_string}")
@@ -160,7 +167,7 @@ def decode_integer(encoded_integer, pin):
     
     # print(f"Decoded pin: {pin, decoded_pin}")
     if len(pin) != 4:
-        return {'eror':'Brak autoryzacji!'}
+        return {'error':'Brak autoryzacji!'}
     if pin != decoded_pin:
         return {'error':'Brak autoryzacji!'}
     print(f"PIN: {decoded_footer_dict['PIN']}")

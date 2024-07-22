@@ -99,18 +99,18 @@ def decode_integer(encoded_integer, pin):
         return {'eror':'Brak autoryzacji!'}
     
     encoded_string = str(encoded_integer)
-    # print(f"Encoded string from integer: {encoded_string}")
+    print(f"Encoded string from integer: {encoded_string}")
     
     divider = int(encoded_string[-1])
     encoded_string = encoded_string[:-1]
-    # print(f"Divider: {divider}")
-    # print(f"Encoded string without divider: {encoded_string}")
+    print(f"Divider: {divider}")
+    print(f"Encoded string without divider: {encoded_string}")
 
     int_code = int(encoded_string) * divider
-    # print(f"Integer code multiplied: {int_code}")
+    print(f"Integer code multiplied: {int_code}")
     
     long_string = str(int_code)
-    # print(f"Long string: {long_string}")
+    print(f"Long string: {long_string}")
     
     modified_codes = []
     a = 0
@@ -126,10 +126,10 @@ def decode_integer(encoded_integer, pin):
             modified_codes.append(tree_part_str)
             a = 0
         a += 1
-    # print(f"Modified codes: {modified_codes}")
+    print(f"Modified codes: {modified_codes}")
     
     ascii_codes = [int(a) for a in modified_codes]
-    # print(f"ASCII codes: {ascii_codes}")
+    print(f"ASCII codes: {ascii_codes}")
     
     decoded_string_with_pin = ''.join(chr(code) for code in ascii_codes)
     # Poprawne usuwanie delimiterów
@@ -152,13 +152,13 @@ def decode_integer(encoded_integer, pin):
         k, v = item.split('-footerSepparatorDotter-')
         decoded_footer_dict[k] = v
     
-    # print(f"Decoded decoded_footer_dict: {decoded_footer_dict}")
+    print(f"Decoded decoded_footer_dict: {decoded_footer_dict}")
     if 'PIN' in decoded_footer_dict:
         decoded_pin = decoded_footer_dict['PIN']
     else:
         return {'error':'Brak autoryzacji!'}
     
-    # print(f"Decoded pin: {pin, decoded_pin}")
+    print(f"Decoded pin: {pin, decoded_pin}")
     if len(pin) != 4:
         return {'eror':'Brak autoryzacji!'}
     if pin != decoded_pin:

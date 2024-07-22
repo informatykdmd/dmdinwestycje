@@ -1762,11 +1762,12 @@ def receive_token():
         form_data = request.form.to_dict()
         # print([token], form_data)
         decoded_data = decode_integer(token, form_data['pinCode'])
-        print([token], form_data, decoded_data)
+        # print([token], form_data, decoded_data)
         if 'success' in decoded_data:
             decoded_string = decoded_data.get('success')
         else:
-            decoded_string = decoded_data.get('error')
+            decoded_string_error = decoded_data.get('error')
+            return render_template("decode-project-pin.html", errorMessage=decoded_string_error)
         
         decoded_pin = decoded_data.get('PIN')
         decoded_from = decoded_data.get('FROM')

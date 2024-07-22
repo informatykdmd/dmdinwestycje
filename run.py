@@ -1795,9 +1795,15 @@ def get_whatsapp_data():
     pin = data.get("pin")
     from_wa = data.get("own_whatsapp")
     message = data.get("message")
-
+    format = data.get("format")
+    # print(format)
     encode_message = encode_string(message, pin, from_wa, phone)
-    prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
+    if format == 'LINK':
+        prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
+    elif format == 'TOKEN':
+        prepared_message = f'{encode_message["TK"]}'
+    else:
+        prepared_message = f'{encode_message["EI"]}'
     # print(prepared_message)
     # Przetwarzanie danych (np. formatowanie wiadomości)
     response_data = {

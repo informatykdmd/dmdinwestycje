@@ -1809,7 +1809,7 @@ def get_whatsapp_data():
     # print(prepared_message)
     # Przetwarzanie danych (np. formatowanie wiadomości)
     response_data = {
-        "phone": phone,
+        "phone": '+48'+phone,
         "message": prepared_message
     }
     return jsonify(response_data)

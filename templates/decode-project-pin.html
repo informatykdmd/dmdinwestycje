@@ -11,6 +11,25 @@
 <body>
     <div class="container">
         <form method="POST" action="{{ url_for('receive_token', token=request.args.get('token')) }}" enctype="multipart/form-data">
+            <div class="collapse" id="advancedToken_1">
+                <div class="card card-body">
+                    <textarea 
+                        class="form-control" 
+                        placeholder="Leave a comment here" 
+                        id="inputToken"
+                        name="advancedToken"
+                        style="min-height: 50px;"></textarea>
+                    <label for="inputToken">INTEGER OR TOKEN HERE:</label>
+                </div>
+            </div>
+            <div class="row g-2 m-3">
+                <div class="col-md">
+                    <a class="btn btn-secondary" data-bs-toggle="collapse" href="#advancedToken_1" role="button" aria-expanded="false" aria-controls="advancedToken_1">
+                        Advanced token
+                    </a>
+                </div>
+            </div>
+                
             <div class="row g-2 m-3">
                 <div class="col-md">
                     <div class="form-floating">

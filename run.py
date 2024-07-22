@@ -1753,6 +1753,8 @@ def addComm():
 def receive_token():
     # print(request.args)
     token = request.args.get('token')
+    print(f'Print token: {str(token)}')
+    print(f'Len token: {len(str(token))}')
     
     if not token:
         return render_template("encode-project.html")

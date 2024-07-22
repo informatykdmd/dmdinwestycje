@@ -1757,7 +1757,7 @@ def receive_token():
     print(f'Len token: {len(str(token))}')
     
     if not token:
-        return render_template("encode-project.html")
+        return render_template("encode-project.html", errorMessage=None)
 
     # print(request.method)
     if request.method == 'POST':
@@ -1769,7 +1769,7 @@ def receive_token():
             decoded_string = decoded_data.get('success')
         else:
             decoded_string_error = decoded_data.get('error')
-            return render_template("decode-project-pin.html", errorMessage=decoded_string_error)
+            return render_template("encode-project.html", errorMessage=decoded_string_error)
         
         decoded_pin = decoded_data.get('PIN')
         decoded_from = decoded_data.get('FROM')

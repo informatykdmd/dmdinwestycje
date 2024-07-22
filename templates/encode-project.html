@@ -11,7 +11,11 @@
 <body>
     <div class="container">
         <h1>EndCoded Project</h1>
-
+        {% if errorMessage!=None %}
+        <div class="alert alert-danger" role="alert">
+            {{errorMessage}}
+        </div>
+        {% endif %}
         
         <div class="form-floating m-3">
             <textarea 

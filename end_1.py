@@ -30,7 +30,7 @@ def change_token_for_int(integer_or_token):
             x = int(str(integer_or_token)[i])
             new_in_integer_str += f'{str(integer_or_token)[i]}'
         except Exception as e:
-            # print(f'Ocurrent Error: {e} dla {i}')
+            print(f'Ocurrent Error: {e} dla {i}')
             token = True
     # print(token, new_in_integer_str)
     if token:

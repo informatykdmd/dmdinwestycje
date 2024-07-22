@@ -1799,7 +1799,7 @@ def get_whatsapp_data():
     message = data.get("message")
     format = data.get("format")
     # print(format)
-    encode_message = encode_string(message, pin, from_wa, phone)
+    encode_message = encode_string(message, pin, '+48'+from_wa, '+48'+phone)
     if format == 'LINK':
         prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
     elif format == 'TOKEN':

@@ -135,7 +135,7 @@ def decode_integer(encoded_integer, pin):
     # Poprawne usuwanie delimiterów
     if decoded_string_with_pin[0] == '#' and decoded_string_with_pin[-1] == '#':
         decoded_string_with_pin = decoded_string[1:-1]
-    # print(f"Decoded string with pin: {decoded_string_with_pin}")
+    print(f"Decoded string with pin: {decoded_string_with_pin}")
     # decoded_string = decoded_string_with_pin[:-5]
     # decoded_pin = decoded_string_with_pin[-5:-1]
 

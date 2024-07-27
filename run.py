@@ -1799,7 +1799,9 @@ def get_whatsapp_data():
     message = data.get("message")
     format = data.get("format")
     # print(format)
-    encode_message = encode_string(message, pin, '+48'+from_wa, '+48'+phone)
+    prepared_from_wa = '+48'+str(from_wa).strip()
+    prepared_phone = '+48'+str(phone).strip()
+    encode_message = encode_string(message, pin, prepared_from_wa, prepared_phone)
     if format == 'LINK':
         prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
     elif format == 'TOKEN':
@@ -1809,7 +1811,7 @@ def get_whatsapp_data():
     # print(prepared_message)
     # Przetwarzanie danych (np. formatowanie wiadomości)
     response_data = {
-        "phone": '+48'+phone,
+        "phone": prepared_phone,
         "message": prepared_message
     }
     return jsonify(response_data)

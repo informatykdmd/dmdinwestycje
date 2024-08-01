@@ -72,7 +72,7 @@
         </div>
         <div class="row g-2 m-3">
             <div class="col-md">
-                <button type="button" id="sendWhatsapp" class="btn btn-success form-control"><i class="bi bi-whatsapp"></i> Send</button>
+                <button type="button" id="sendWhatsapp" class="btn btn-success"><i class="bi bi-whatsapp"></i> Send</button>
 
                 <a class="btn btn-secondary" href="/encode?token=advaced" role="button" >
                     Advance Decode
@@ -139,7 +139,7 @@
 
             document.querySelectorAll('.form-control').forEach(input => {
             input.addEventListener('input', function() {
-                const sendButton = document.getElementById('sendButton');
+                const sendButton = document.getElementById('sendWhatsapp');
                 if (this.value.includes('@')) {
                 sendButton.innerHTML = '<i class="bi bi-envelope-at-fill"></i> Send';
                 } else {

@@ -28,10 +28,10 @@
         <div class="row g-2 m-3">
             <div class="col-md">
                 <div class="input-group mb-3">
-                    <span class="input-group-text">+48</span>
+                    <span class="input-group-text country-code-dw">+48</span>
                     <div class="form-floating">
                         <input type="text" class="form-control" id="floatingInputGrid_DW" placeholder="Direct WhatsApp">
-                        <label for="floatingInputGrid_DW">Direct WhatsApp</label>
+                        <label for="floatingInputGrid_DW" class="label-dw">Direct WhatsApp</label>
                     </div>
                 </div>
             </div>
@@ -50,10 +50,10 @@
         <div class="row g-2 m-3">
             <div class="col-md">
                 <div class="input-group mb-3">
-                    <span class="input-group-text">+48</span>
+                    <span class="input-group-text country-code-yw">+48</span>
                     <div class="form-floating">
                         <input type="text" class="form-control" id="floatingInputGrid_YW" placeholder="Yours WhatsApp">
-                        <label for="floatingInputGrid_YW">Yours WhatsApp</label>
+                        <label for="floatingInputGrid_YW" class="label-yw">Yours WhatsApp</label>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
             .then(data => {
                 const phone = data.phone;
                 const message = encodeURIComponent(data.message);
-
+                '<a href="mailto:adres@email.com?subject=Tytuł%20Wiadomości&body=Treść%20wiadomości">Wyślij email</a>';
                 const whatsappLink = `https://wa.me/${phone}?text=${message}`;
                 
                 window.open(whatsappLink, '_blank');
@@ -116,6 +116,37 @@
             .catch(error => console.error('Error:', error));
         });
 
+        function updateInputAndSpan(inputSelector, spanSelector, labelSelector, emailPlaceholder, whatsappPlaceholder) {
+            document.querySelector(inputSelector).addEventListener('input', function() {
+                const input = this.value;
+                const span = document.querySelector(spanSelector);
+                const label = document.querySelector(labelSelector);
+
+                if (input.includes('@')) {
+                span.textContent = '@';
+                this.placeholder = emailPlaceholder;
+                label.textContent = emailPlaceholder;
+                } else {
+                span.textContent = '+48';
+                this.placeholder = whatsappPlaceholder;
+                label.textContent = whatsappPlaceholder;
+                }
+            });
+            }
+
+            updateInputAndSpan('#floatingInputGrid_DW', '.country-code-dw', '.label-dw', 'Direct Email', 'Direct WhatsApp');
+            updateInputAndSpan('#floatingInputGrid_YW', '.country-code-yw', '.label-yw', 'Yours Email', 'Yours WhatsApp');
+
+            document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('input', function() {
+                const sendButton = document.getElementById('sendButton');
+                if (this.value.includes('@')) {
+                sendButton.innerHTML = '<i class="bi bi-envelope-at-fill"></i> Send';
+                } else {
+                sendButton.innerHTML = '<i class="bi bi-whatsapp"></i> Send';
+                }
+            });
+            });
         
     </script>
 </body>

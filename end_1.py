@@ -46,7 +46,52 @@ def change_token_for_int(integer_or_token):
         
         return export
 
-def encode_string(s, pin=None, phone_from=None, phone_to=None):
+def encode_string(s, pin=None, auth_from=None, direct_to=None):
+
+    if pin is None:
+        pin = f"{random.randint(0, 9)}{random.randint(0, 9)}{random.randint(0, 9)}{random.randint(0, 9)}"
+    if len(str(pin)) != 4:
+        return {
+        "error": False,
+        "EI":0,
+        "CS":'0001',
+        "TK": 'a0B'
+            }
+    correct_pin = str(pin)
+    if auth_from == None: auth_from = 'unknow Phone Frome'
+    if direct_to == None: direct_to = 'unknow Phone To'
+    s = f'#{s}-super-tag-xpcs-PIN-footerSepparatorDotter-{correct_pin}-footerSepparatorTag-FROM-footerSepparatorDotter-{auth_from}-footerSepparatorTag-TO-footerSepparatorDotter-{direct_to}-footerSepparatorTag-LOST-footerSepparatorDotter-wtp01234#'
+    
+    ascii_codes = [ord(char) for char in s]
+    
+    divider = random.randint(3, 9)
+    
+    modified_codes = []
+
+    for code in ascii_codes:
+        if len(str(code)) == 1:
+            code = f'{divider}{divider}{code}'
+        elif len(str(code)) == 2:
+            code = f'{divider}{code}'
+        else:
+            code = str(code)
+        modified_codes.append(code)
+
+    long_string = ''.join(modified_codes)
+    
+    int_code = int(long_string) // divider
+    
+    encoded_string = str(int_code) + str(divider)
+    
+    encoded_integer = int(encoded_string)
+    
+    return {
+        "succes": True,
+        "EI":encoded_integer,
+        "CS":correct_pin,
+        "TK": make_token(encoded_integer)
+            }
+def encode_string_old_ver(s, pin=None, phone_from=None, phone_to=None):
 
     if pin is None:
         pin = f"{random.randint(0, 9)}{random.randint(0, 9)}{random.randint(0, 9)}{random.randint(0, 9)}"

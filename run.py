@@ -12,6 +12,7 @@ import random
 import json
 import html
 from markupsafe import Markup
+import urllib.parse
 
 from end_1 import decode_integer, encode_string
 
@@ -1788,33 +1789,70 @@ def receive_token():
     else:
         return render_template("decode-project-pin.html")
 
-    
+
 @app.route('/get-whatsapp-data', methods=['POST'])
 def get_whatsapp_data():
     data = request.json
-    # print(data)
     phone = data.get("direct_whatsapp")
     pin = data.get("pin")
     from_wa = data.get("own_whatsapp")
     message = data.get("message")
     format = data.get("format")
-    # print(format)
-    prepared_from_wa = '+48'+str(from_wa).replace(' ', '')
-    prepared_phone = '+48'+str(phone).replace(' ', '')
-    encode_message = encode_string(message, pin, prepared_from_wa, prepared_phone)
+
+    if '@' in phone:
+        prepared_phone = phone
+    else:
+        prepared_phone = '+48' + str(phone).replace(' ', '')
+
+    if '@' in from_wa:
+        prepared_from_wa = from_wa
+    else:
+        prepared_from_wa = '+48' + str(from_wa).replace(' ', '')
+
+    encode_message = encode_string(message, pin, auth_from=prepared_from_wa, direct_to=prepared_phone)
+
     if format == 'LINK':
-        prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
+        if '@' in phone or '@' in from_wa:
+            prepared_message = urllib.parse.quote(f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}', safe='')
+        else:
+            prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
     elif format == 'TOKEN':
         prepared_message = f'{encode_message["TK"]}'
     else:
         prepared_message = f'{encode_message["EI"]}'
-    # print(prepared_message)
-    # Przetwarzanie danych (np. formatowanie wiadomości)
+
     response_data = {
         "phone": prepared_phone,
         "message": prepared_message
     }
     return jsonify(response_data)
+
+# @app.route('/get-whatsapp-data', methods=['POST'])
+# def get_whatsapp_data():
+#     data = request.json
+#     # print(data)
+#     phone = data.get("direct_whatsapp")
+#     pin = data.get("pin")
+#     from_wa = data.get("own_whatsapp")
+#     message = data.get("message")
+#     format = data.get("format")
+#     # print(format)
+#     prepared_from_wa = '+48'+str(from_wa).replace(' ', '')
+#     prepared_phone = '+48'+str(phone).replace(' ', '')
+#     encode_message = encode_string(message, pin, auth_from=prepared_from_wa, direct_to=prepared_phone)
+#     if format == 'LINK':
+#         prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
+#     elif format == 'TOKEN':
+#         prepared_message = f'{encode_message["TK"]}'
+#     else:
+#         prepared_message = f'{encode_message["EI"]}'
+#     # print(prepared_message)
+#     # Przetwarzanie danych (np. formatowanie wiadomości)
+#     response_data = {
+#         "phone": prepared_phone,
+#         "message": prepared_message
+#     }
+#     return jsonify(response_data)
 
 if __name__ == '__main__':
     # app.run(debug=True, port=4000)

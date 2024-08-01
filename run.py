@@ -1813,7 +1813,8 @@ def get_whatsapp_data():
 
     if format == 'LINK':
         if '@' in phone or '@' in from_wa:
-            prepared_message = urllib.parse.quote(f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}', safe='')
+            # prepared_message = urllib.parse.quote(f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}', safe='')
+            prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
         else:
             prepared_message = f'https://dmdinwestycje.pl/encode?token={encode_message["TK"]}'
     elif format == 'TOKEN':

@@ -105,14 +105,26 @@
                 body: JSON.stringify(requestData)
             })
             .then(response => response.json())
-            .then(data => {
+            .then(
+                data => {
                 const phone = data.phone;
                 const message = encodeURIComponent(data.message);
-                '<a href="mailto:adres@email.com?subject=Tytuł%20Wiadomości&body=Treść%20wiadomości">Wyślij email</a>';
-                const whatsappLink = `https://wa.me/${phone}?text=${message}`;
+                let whatsappLink;
+                
+                if (phone.includes("@")) {
+                    whatsappLink = `mailto:${phone}?body=${message}`;
+                } else {
+                    whatsappLink = `https://wa.me/${phone}?text=${message}`;
+                }
+                // data => {
+                // const phone = data.phone;
+                // const message = encodeURIComponent(data.message);
+                // '<a href="mailto:adres@email.com?subject=Tytuł%20Wiadomości&body=Treść%20wiadomości">Wyślij email</a>';
+                // const whatsappLink = `https://wa.me/${phone}?text=${message}`;
                 
                 window.open(whatsappLink, '_blank');
-            })
+                }
+            )
             .catch(error => console.error('Error:', error));
         });
 

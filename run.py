@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, flash, jsonify, session, request, current_app, send_from_directory
 from flask_wtf import FlaskForm
+from flask_session import Session
 from flask_paginate import Pagination, get_page_args
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
@@ -19,6 +20,8 @@ from end_1 import decode_integer, encode_string
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
 app.config['SECRET_KEY'] = secrets.token_hex(16)
+app.config['SESSION_TYPE'] = 'filesystem'  # Możesz wybrać inny backend, np. 'redis', 'sqlalchemy', itp.
+Session(app)
 
 def getLangText(text):
     """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
@@ -655,9 +658,9 @@ def smart_truncate(content, length=200):
 ##      ######           ###
 ############################
 
-@app.route('/.well-known/pki-validation/certum.txt')
-def download_file():
-    return send_from_directory(app.root_path, 'certum.txt')
+# @app.route('/.well-known/pki-validation/certum.txt')
+# def download_file():
+#     return send_from_directory(app.root_path, 'certum.txt')
 
 @app.template_filter()
 def decode_html_entities_filter(text):

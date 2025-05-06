@@ -91,6 +91,7 @@ def encode_string(s, pin=None, auth_from=None, direct_to=None):
         "CS":correct_pin,
         "TK": make_token(encoded_integer)
             }
+
 def encode_string_old_ver(s, pin=None, phone_from=None, phone_to=None):
 
     if pin is None:

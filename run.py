@@ -658,9 +658,9 @@ def smart_truncate(content, length=200):
 ##      ######           ###
 ############################
 
-# @app.route('/.well-known/pki-validation/certum.txt')
-# def download_file():
-#     return send_from_directory(app.root_path, 'certum.txt')
+@app.route('/.well-known/pki-validation/certum.txt')
+def download_file():
+    return send_from_directory(app.root_path, 'certum.txt')
 
 @app.template_filter()
 def decode_html_entities_filter(text):

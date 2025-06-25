@@ -14,6 +14,7 @@ import json
 import html
 from markupsafe import Markup
 import urllib.parse
+import logging
 
 from end_1 import decode_integer, encode_string
 
@@ -658,9 +659,30 @@ def smart_truncate(content, length=200):
 ##      ######           ###
 ############################
 
-@app.route('/.well-known/pki-validation/certum.txt')
-def download_file():
-    return send_from_directory(app.root_path, 'certum.txt')
+
+logFileName = '/home/johndoe/app/dmdinwestycje/logs/access.log'  # 🔁 ZMIENIAJ dla każdej aplikacji
+
+# Konfiguracja loggera
+logging.basicConfig(filename=logFileName, level=logging.INFO,
+                    format='%(asctime)s - %(message)s', filemode='a')
+
+# Funkcja do logowania informacji o zapytaniu
+def log_request():
+    ip_address = request.remote_addr
+    date_time = datetime.now()
+    endpoint = request.endpoint or request.path  # fallback jeśli brak endpointu
+    method = request.method
+
+    logging.info(f'IP: {ip_address}, Time: {date_time}, Endpoint: {endpoint}, Method: {method}')
+
+@app.before_request
+def before_request_logging():
+    log_request()
+
+
+# @app.route('/.well-known/pki-validation/certum.txt')
+# def download_file():
+#     return send_from_directory(app.root_path, 'certum.txt')
 
 @app.template_filter()
 def decode_html_entities_filter(text):

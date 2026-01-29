@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 import mysqlDB as msq
 import secrets
 from datetime import datetime
-from googletrans import Translator
+import requests
 import random
 import json
 import html
@@ -24,11 +24,23 @@ app.config['SECRET_KEY'] = secrets.token_hex(16)
 app.config['SESSION_TYPE'] = 'filesystem'  # Możesz wybrać inny backend, np. 'redis', 'sqlalchemy', itp.
 Session(app)
 
-def getLangText(text):
-    """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
-    translator = Translator()
-    translation = translator.translate(str(text), dest='en')
-    return translation.text
+def getLangText(text, dest="en", source="pl"):
+    if not text:
+        return text
+    # bezpiecznik: nie tłumacz "ścian"
+    if len(text) > 8000:
+        return text
+    try:
+        r = requests.post(
+            "http://127.0.0.1:5055/translate",
+            json={"text": text, "source": source, "target": dest, "format": "text"},
+            timeout=(2, 8),
+        )
+        r.raise_for_status()
+        return r.json().get("text", text)
+    except Exception as e:
+        print(f"Exception Error: {e}")
+        return text
 
 def format_date(date_input, pl=True):
     ang_pol = {

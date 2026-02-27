@@ -4091,6 +4091,15 @@ button.btn-get-started:hover {
   display: inline-block;
 }
 
+#orly .orly-content,
+#orly .orly-content h3{
+  color: #fff;
+}
+
+#orly .orly-lead{
+  opacity: 0.85; /* żeby było jak w reszcie sekcji */
+}
+
 /* Mobile: ładne centrowanie */
 @media (max-width: 991px){
   #orly .orly-content{
@@ -4100,4 +4109,16 @@ button.btn-get-started:hover {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+/* Nagłówek sekcji Orły: lead ma być POD h2 */
+#orly .section-header{
+  display: block;        /* reset ewentualnego flexa */
+  text-align: left;      /* jak reszta */
+  max-width: 900px;      /* opcjonalnie, żeby nie rozlewało */
+}
+
+#orly .section-header p{
+  margin-top: 10px;
+  margin-bottom: 0;
 }

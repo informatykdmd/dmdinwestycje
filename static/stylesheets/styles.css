@@ -4150,7 +4150,16 @@ button.btn-get-started:hover {
     text-align: center;
   }
 
+}
+
+@media (max-width: 991px){
+  #orly .col-lg-5{
+    text-align: center !important;
+  }
+
   #orly .orly-img{
-    max-width: 320px; /* opcjonalnie: 300–340 pod gust */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
 }

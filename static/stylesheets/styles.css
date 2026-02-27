@@ -4125,7 +4125,7 @@ button.btn-get-started:hover {
 
 /* 1) Zbij odstęp między obrazkiem a blokiem tekstu */
 #orly .orly-img{
-  margin-bottom: 0 !important;   /* theme często daje mb */
+  margin-bottom: 5px !important;   /* theme często daje mb */
 }
 
 #orly .orly-media{
@@ -4134,7 +4134,7 @@ button.btn-get-started:hover {
 
 /* jeśli tekst ma własny "oddech" z theme */
 #orly .orly-content{
-  margin-top: 0 !important;
+  margin-top: 5px !important;
 }
 
 /* 2) Responsywność: centruj obrazek na mniejszych ekranach */

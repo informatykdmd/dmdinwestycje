@@ -4067,3 +4067,37 @@ button.btn-get-started:hover {
   background-color: #282828;
   color: #FFA500;
 }
+
+/* ===== Orły (dmdinwestycje) ===== */
+#orly .orly-img{
+  width: 100%;
+  max-width: 340px;  /* kwadrat wygląda premium w tym zakresie */
+  height: auto;
+  display: block;
+}
+
+#orly .orly-title{
+  margin: 0 0 10px 0;
+}
+
+#orly .orly-lead{
+  margin: 0 0 18px 0;
+  opacity: 0.95;
+  max-width: 760px;
+}
+
+/* na bg-grey i white-text: CTA w jasnym stylu */
+#orly .orly-cta{
+  display: inline-block;
+}
+
+/* Mobile: ładne centrowanie */
+@media (max-width: 991px){
+  #orly .orly-content{
+    text-align: center;
+  }
+  #orly .orly-lead{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

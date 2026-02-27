@@ -4122,3 +4122,35 @@ button.btn-get-started:hover {
   margin-top: 10px;
   margin-bottom: 0;
 }
+
+/* 1) Zbij odstęp między obrazkiem a blokiem tekstu */
+#orly .orly-img{
+  margin-bottom: 0 !important;   /* theme często daje mb */
+}
+
+#orly .orly-media{
+  margin-bottom: 14px;           /* kontrolowany odstęp */
+}
+
+/* jeśli tekst ma własny "oddech" z theme */
+#orly .orly-content{
+  margin-top: 0 !important;
+}
+
+/* 2) Responsywność: centruj obrazek na mniejszych ekranach */
+@media (max-width: 991px){
+  #orly .orly-media{
+    display: flex;
+    justify-content: center !important;
+  }
+
+  /* jakby kolumna miała text-align left z theme */
+  #orly .orly-media,
+  #orly .orly-media *{
+    text-align: center;
+  }
+
+  #orly .orly-img{
+    max-width: 320px; /* opcjonalnie: 300–340 pod gust */
+  }
+}

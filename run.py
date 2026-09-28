@@ -19,6 +19,7 @@ import logging
 from end_1 import decode_integer, encode_string
 
 app = Flask(__name__)
+msq.init_app(app)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 app.config['SESSION_TYPE'] = 'filesystem'  # Możesz wybrać inny backend, np. 'redis', 'sqlalchemy', itp.
@@ -452,195 +453,151 @@ def generator_subsDataDB():
         subsData.append(theme)
     return subsData
 
+def _blog_rows(limit=None, post_id=None, detailed=False, offset=0):
+    if isinstance(offset, bool) or not isinstance(offset, int) or offset < 0:
+        raise ValueError('offset must be a non-negative integer')
+    if offset and limit is None:
+        raise ValueError('offset requires a limit')
+    columns = [
+        ('p.ID', 'post_id'), ('c.ID', 'id'), ('c.TITLE', 'title'),
+        ('c.HIGHLIGHTS', 'highlight'), ('c.HEADER_FOTO', 'mainFoto'),
+        ('c.CATEGORY', 'category'), ('c.DATE_TIME', 'data'),
+        ('a.NAME_AUTHOR', 'author'),
+    ]
+    if detailed:
+        columns += [
+            ('c.CONTENT_MAIN', 'introduction'), ('c.CONTENT_FOTO', 'contentFoto'),
+            ('c.BULLETS', 'additionalList'), ('c.TAGS', 'tags'),
+            ('a.ABOUT_AUTHOR', 'author_about'), ('a.AVATAR_AUTHOR', 'author_avatar'),
+            ('a.FACEBOOK', 'author_facebook'), ('a.TWITER_X', 'author_twitter'),
+            ('a.INSTAGRAM', 'author_instagram'),
+        ]
+    query = 'SELECT ' + ', '.join(column for column, _ in columns)
+    query += """
+        FROM blog_posts p
+        LEFT JOIN contents c ON c.ID = p.CONTENT_ID
+        LEFT JOIN authors a ON a.ID = p.AUTHOR_ID
+    """
+    params = []
+    if post_id is not None:
+        query += ' WHERE p.ID = %s'
+        params.append(post_id)
+    query += ' ORDER BY p.ID DESC'
+    if limit is not None:
+        if isinstance(limit, bool) or not isinstance(limit, int) or limit < 0:
+            raise ValueError('limit must be a non-negative integer')
+        query += ' LIMIT %s'
+        params.append(limit)
+        if offset:
+            query += ' OFFSET %s'
+            params.append(offset)
+    rows = msq.safe_connect_to_database(query, tuple(params))
+    return [dict(zip((key for _, key in columns), row)) for row in rows]
+
+
+def _blog_theme(row, lang):
+    theme = {key: value for key, value in row.items() if key != 'post_id'}
+    if lang != 'pl':
+        for key in ('title', 'highlight', 'category', 'introduction',
+                    'additionalList', 'tags', 'author_about'):
+            if key in theme:
+                theme[key] = getLangText(theme[key])
+    theme['data'] = format_date(theme['data'], lang == 'pl')
+    if 'additionalList' in theme:
+        bullets = str(theme['additionalList'])
+        if lang != 'pl':
+            bullets = bullets.replace('#SPLX#', '#splx#')
+        theme['additionalList'] = bullets.split('#splx#')
+        theme['tags'] = str(theme['tags']).split(', ')
+    return theme
+
+
+def _blog_details(lang='pl', post_id=None):
+    rows = _blog_rows(post_id=post_id, detailed=True)
+    if not rows:
+        return []
+    # Fetch comments and their authors once for the whole selected collection.
+    query = """
+        SELECT com.*, n.CLIENT_NAME, n.CLIENT_EMAIL, n.AVATAR_USER
+        FROM comments com
+        JOIN blog_posts p ON p.ID = com.BLOG_POST_ID
+        LEFT JOIN newsletter n ON n.ID = com.AUTHOR_OF_COMMENT_ID
+    """
+    params = ()
+    if post_id is not None:
+        query += ' WHERE p.ID = %s'
+        params = (post_id,)
+    query += ' ORDER BY com.ID'
+    comments = {}
+    for com in msq.safe_connect_to_database(query, params):
+        post_comments = comments.setdefault(com[1], {})
+        post_comments[len(post_comments)] = {
+            'id': com[0],
+            'message': com[2] if lang == 'pl' else getLangText(com[2]),
+            'user': com[-3], 'e-mail': com[-2], 'avatar': com[-1],
+            'data-time': format_date(com[4], lang == 'pl'),
+        }
+    result = []
+    for row in rows:
+        theme = _blog_theme(row, lang)
+        theme['comments'] = comments.get(row['post_id'], {})
+        result.append(theme)
+    return result
+
+
 def generator_daneDBList(lang='pl'):
-    daneList = []
-    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
-    for post in took_allPost:
-        id = post[0]
-        id_content = post[1]
-        id_author = post[2]
+    return _blog_details(lang)
 
-        allPostComments = take_data_where_ID('*', 'comments', 'BLOG_POST_ID', id)
-        comments_dict = {}
-        for i, com in enumerate(allPostComments):
-            comments_dict[i] = {}
-            comments_dict[i]['id'] = com[0]
-            comments_dict[i]['message'] = com[2] if lang=='pl' else getLangText(com[2])
-            comments_dict[i]['user'] = take_data_where_ID('CLIENT_NAME', 'newsletter', 'ID', com[3])[0][0]
-            comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
-            comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
-            comments_dict[i]['data-time'] = format_date(com[4]) if lang=='pl' else format_date(com[4], False)
-            
-        theme = {
-            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
-            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
-            'introduction': take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0]),
-            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
-            'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
-            'contentFoto': take_data_where_ID('CONTENT_FOTO', 'contents', 'ID', id_content)[0][0],
-            'additionalList': str(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0]).split('#splx#') if lang=='pl' else str(getLangText(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0])).replace('#SPLX#', '#splx#').split('#splx#'),
-            'tags': str(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0]).split(', ') if lang=='pl' else str(getLangText(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0])).split(', '),
-            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
-            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
-            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
 
-            'author_about': take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0] if lang=='pl' else getLangText(take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0]),
-            'author_avatar': take_data_where_ID('AVATAR_AUTHOR', 'authors', 'ID', id_author)[0][0],
-            'author_facebook': take_data_where_ID('FACEBOOK', 'authors', 'ID', id_author)[0][0],
-            'author_twitter': take_data_where_ID('TWITER_X', 'authors', 'ID', id_author)[0][0],
-            'author_instagram': take_data_where_ID('INSTAGRAM', 'authors', 'ID', id_author)[0][0],
+def generator_daneDBList_short(lang='pl', limit=None, offset=0):
+    # Unlimited by default: the home page explicitly requests only three rows.
+    return [_blog_theme(row, lang) for row in _blog_rows(limit=limit, offset=offset)]
 
-            'comments': comments_dict
-        }
-        daneList.append(theme)
-    return daneList
 
-def generator_daneDBList_short(lang='pl'):
-    daneList = []
-    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
-    for post in took_allPost:
+def _blog_count():
+    rows = msq.connect_to_database('SELECT COUNT(*) FROM blog_posts')
+    return rows[0][0] if rows else 0
 
-        id_content = post[1]
-        id_author = post[2]
-
-        theme = {
-            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
-            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
-            
-            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
-            'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
-            
-            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
-            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
-            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
-
-        }
-        daneList.append(theme)
-    return daneList
 
 def generator_daneDBList_prev_next(main_id):
-    # Załóżmy, że msq.connect_to_database() zwraca listę tuple'i reprezentujących posty, np. [(1, 'Content1'), (2, 'Content2'), ...]
-    took_allPost = msq.connect_to_database('SELECT ID FROM blog_posts ORDER BY ID DESC;')
-    
-    # Przekształcenie wyników z bazy danych do listy ID dla łatwiejszego wyszukiwania
-    id_list = [post[0] for post in took_allPost]
-    
-    # Inicjalizacja słownika dla wyników
-    pre_next = {
-        'prev': None,
-        'next': None
-    }
-    
-    # Znajdowanie indeksu podanego ID w liście
-    if main_id in id_list:
-        current_index = id_list.index(main_id)
-        
-        # Sprawdzanie i przypisywanie poprzedniego ID, jeśli istnieje
-        if current_index > 0:
-            pre_next['prev'] = id_list[current_index - 1]
-        
-        # Sprawdzanie i przypisywanie następnego ID, jeśli istnieje
-        if current_index < len(id_list) - 1:
-            pre_next['next'] = id_list[current_index + 1]
-    
-    return pre_next
+    rows = msq.safe_connect_to_database("""
+        SELECT
+            (SELECT MIN(ID) FROM blog_posts WHERE ID > %s),
+            (SELECT MAX(ID) FROM blog_posts WHERE ID < %s)
+        FROM blog_posts WHERE ID = %s
+    """, (main_id, main_id, main_id))
+    return dict(zip(('prev', 'next'), rows[0])) if rows else {'prev': None, 'next': None}
+
 
 def generator_daneDBList_cetegory():
-    # Pobranie kategorii z bazy danych
     took_allPost = msq.connect_to_database('SELECT CATEGORY FROM contents ORDER BY ID DESC;')
-    
-    # Zliczanie wystąpień każdej kategorii
     cat_count = {}
-    for post in took_allPost:
-        category = post[0]
-        if category in cat_count:
-            cat_count[category] += 1
-        else:
-            cat_count[category] = 1
+    for (category,) in took_allPost:
+        cat_count[category] = cat_count.get(category, 0) + 1
+    return [f"{cat} ({count})" for cat, count in cat_count.items()], cat_count
 
-    # Tworzenie listy stringów z nazwami kategorii i ilością wystąpień
-    cat_list = [f"{cat} ({count})" for cat, count in cat_count.items()]
-    cat_dict = cat_count
-    
-    return cat_list, cat_dict
 
-def generator_daneDBList_RecentPosts(main_id, amount = 3):
-    # Pobieranie ID wszystkich postów oprócz main_id
-    query = f"SELECT ID FROM contents WHERE ID != {main_id} ORDER BY ID DESC;"
-    took_allPost = msq.connect_to_database(query)
+def generator_daneDBList_RecentPosts(main_id, amount=3):
+    # Preserve the existing random selection of suggested posts.
+    rows = msq.safe_connect_to_database(
+        'SELECT ID FROM contents WHERE ID != %s ORDER BY ID DESC', (main_id,))
+    ids = [row[0] for row in rows]
+    return random.sample(ids, min(amount, len(ids)))
 
-    # Przekształcanie wyników zapytania na listę ID
-    all_post_ids = [post[0] for post in took_allPost]
-
-    # Losowanie unikalnych ID z listy (zakładając, że chcemy np. 5 losowych postów, lub mniej jeśli jest mniej dostępnych)
-    num_posts_to_select = min(amount, len(all_post_ids))  
-    posts = random.sample(all_post_ids, num_posts_to_select)
-
-    return posts
 
 def generator_daneDBList_one_post_id(id_post, lang='pl'):
-    daneList = []
-    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts WHERE ID={id_post};') # take_data_table('*', 'blog_posts')
-    for post in took_allPost:
-        id = post[0]
-        id_content = post[1]
-        id_author = post[2]
+    return _blog_details(lang, post_id=id_post)
 
-        allPostComments = take_data_where_ID('*', 'comments', 'BLOG_POST_ID', id)
-        comments_dict = {}
-        for i, com in enumerate(allPostComments):
-            comments_dict[i] = {}
-            comments_dict[i]['id'] = com[0]
-            comments_dict[i]['message'] = com[2] if lang=='pl' else getLangText(com[2])
-            comments_dict[i]['user'] = take_data_where_ID('CLIENT_NAME', 'newsletter', 'ID', com[3])[0][0]
-            comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
-            comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
-            comments_dict[i]['data-time'] = format_date(com[4]) if lang=='pl' else format_date(com[4], False)
-            
-        theme = {
-            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
-            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
-            'introduction': take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0]),
-            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
-            'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
-            'contentFoto': take_data_where_ID('CONTENT_FOTO', 'contents', 'ID', id_content)[0][0],
-            'additionalList': str(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0]).split('#splx#') if lang=='pl' else str(getLangText(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0])).replace('#SPLX#', '#splx#').split('#splx#'),
-            'tags': str(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0]).split(', ') if lang=='pl' else str(getLangText(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0])).split(', '),
-            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
-            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
-            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
-
-            'author_about': take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0] if lang=='pl' else getLangText(take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0]),
-            'author_avatar': take_data_where_ID('AVATAR_AUTHOR', 'authors', 'ID', id_author)[0][0],
-            'author_facebook': take_data_where_ID('FACEBOOK', 'authors', 'ID', id_author)[0][0],
-            'author_twitter': take_data_where_ID('TWITER_X', 'authors', 'ID', id_author)[0][0],
-            'author_instagram': take_data_where_ID('INSTAGRAM', 'authors', 'ID', id_author)[0][0],
-
-            'comments': comments_dict
-        }
-        daneList.append(theme)
-    return daneList
 
 def generator_daneDBList_3(lang='en'):
-    daneList = []
-    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
-    for i, post in enumerate(took_allPost):
-        id_content = post[1]
-        id_author = post[2]
+    posts = []
+    for row in _blog_rows(limit=3):
+        theme = _blog_theme(row, lang)
+        # This legacy footer helper has always used English dates.
+        theme['data'] = format_date(row['data'], False)
+        posts.append({key: theme[key] for key in ('id', 'title', 'category', 'data', 'author')})
+    return posts
 
-        theme = {
-            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
-            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
-            
-            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
-            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
-            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
-
-        }
-        daneList.append(theme)
-        if i == 2:
-            break
-    return daneList
 
 def smart_truncate(content, length=200):
     if len(content) <= length:
@@ -722,7 +679,7 @@ def index():
         if  i < 4: fourListTeam.append(member)
         
     if f'BLOG-SHORT' not in session:
-        blog_post = generator_daneDBList_short()
+        blog_post = generator_daneDBList_short(limit=3)
         session[f'BLOG-SHORT'] = blog_post
     else:
         blog_post = session[f'BLOG-SHORT']
@@ -1317,15 +1274,16 @@ def blogs():
             secOffers = {}
             session['spcOfferON']=spcOfferON
 
-    blog_post = generator_daneDBList()
-
     # Ustawienia paginacji
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-    total = len(blog_post)
+    page = max(1, page)
+    per_page = max(1, per_page)
+    offset = (page - 1) * per_page
+    total = _blog_count()
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
-    # Pobierz tylko odpowiednią ilość postów na aktualnej stronie
-    posts = blog_post[offset: offset + per_page]
+    # Fetch only the card data needed by this page, directly in SQL.
+    posts = generator_daneDBList_short(limit=per_page, offset=offset)
 
     return render_template(
         f'blogs.html',
@@ -1349,10 +1307,7 @@ def blogOne():
     choiced = generator_daneDBList_one_post_id(post_id_int)[0]
     choiced['len'] = len(choiced['comments'])
 
-    pre_next = {
-        'prev': generator_daneDBList_prev_next(post_id_int)['prev'],  
-        'next': generator_daneDBList_prev_next(post_id_int)['next']
-        }
+    pre_next = generator_daneDBList_prev_next(post_id_int)
 
     cats = generator_daneDBList_cetegory()
     cat_dict = cats[1]
